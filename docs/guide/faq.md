@@ -42,4 +42,4 @@ Yes. HearthShelf supports multi-library setups. The sidebar lets you switch betw
 
 ## Where is HearthShelf's data stored?
 
-HearthShelf stores nothing. Your library, progress, and settings all live in AudiobookShelf. The only thing HearthShelf persists locally is your auth token (in `localStorage`) so you stay logged in across sessions.
+Your library, progress, and playback sessions all live in AudiobookShelf - HearthShelf never duplicates them. HearthShelf keeps only its own small state in an embedded SQLite database (app settings, AI recommendation config and history, and request/feedback data). In the browser, the only thing it persists is your auth token (in `localStorage`) so you stay logged in across sessions.

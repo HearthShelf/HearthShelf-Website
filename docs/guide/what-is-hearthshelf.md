@@ -14,12 +14,16 @@ HearthShelf is a **replacement UI for [AudiobookShelf](https://www.audiobookshel
 
 HearthShelf is **only the face**. Your ABS server stays exactly where it is and keeps doing everything it already does — managing your files, transcoding audio, tracking progress. HearthShelf replaces the web UI that ABS ships with a redesigned, browser-first experience.
 
-All data comes from ABS via its REST API. HearthShelf has:
+All of your **library** data comes from ABS via its REST API. HearthShelf has:
 
-- No database
 - No file management
 - No transcoding
-- No server-side logic beyond the nginx proxy that eliminates CORS
+- No copy of your library, progress, or sessions - those always live in ABS
+
+HearthShelf does keep a small backend of its own (QuestGiver) with an embedded
+SQLite database for HearthShelf-specific state only - app settings, AI
+recommendation config and history, and request/feedback data. It never
+duplicates your ABS library.
 
 ## What it is not
 
@@ -69,7 +73,7 @@ HearthShelf does **not** replace AudiobookShelf itself. You need a running ABS i
 
 ## What's planned
 
-See [Scope](/architecture/scope) for the full phased roadmap. Upcoming phases include:
+The full phased roadmap covers upcoming work including:
 authors/narrators, collections, an immersive player, podcast support, editing tools, admin panel, and optional AI recommendations.
 
 ::: tip AudiobookShelf

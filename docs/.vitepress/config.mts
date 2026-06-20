@@ -11,7 +11,7 @@ export default defineConfig({
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', {
       rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap'
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Geist+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=swap'
     }],
     ['meta', { name: 'theme-color', content: '#1b1a18' }],
     ['meta', { property: 'og:type', content: 'website' }],
@@ -25,7 +25,6 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/what-is-hearthshelf' },
       { text: 'Setup', link: '/setup/docker' },
-      { text: 'Architecture', link: '/architecture/overview' },
       {
         text: 'GitHub',
         link: 'https://github.com/hearthshelf/hearthshelf',
@@ -54,18 +53,6 @@ export default defineConfig({
           ],
         },
       ],
-      '/architecture/': [
-        {
-          text: 'Architecture',
-          items: [
-            { text: 'Overview', link: '/architecture/overview' },
-            { text: 'Tech Stack', link: '/architecture/tech-stack' },
-            { text: 'API Integration', link: '/architecture/api-integration' },
-            { text: 'Audio Streaming', link: '/architecture/audio-streaming' },
-            { text: 'State Management', link: '/architecture/state-management' },
-          ],
-        },
-      ],
     },
 
     socialLinks: [
@@ -73,8 +60,8 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'HearthShelf is an independent project, not affiliated with AudiobookShelf.',
+      message: 'Released under the GNU Affero General Public License v3.',
+      copyright: 'HearthShelf is an independent project, not affiliated with AudiobookShelf. You are responsible for the content you add and the backends you connect.',
     },
 
     search: {
