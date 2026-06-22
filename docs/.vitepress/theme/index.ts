@@ -1,9 +1,13 @@
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import { useData } from 'vitepress'
+import { clerkPlugin } from '@clerk/vue'
 import HomeLayout from './HomeLayout.vue'
 import AppFrame from './AppFrame.vue'
+import NavAuth from './NavAuth.vue'
 import './custom.css'
+
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 export default {
   ...DefaultTheme,
@@ -12,10 +16,19 @@ export default {
     if (frontmatter.value.layout === 'page' && frontmatter.value.home) {
       return h(HomeLayout)
     }
-    return h(DefaultTheme.Layout)
+    // Inject the auth control into the nav. NavAuth wraps its Clerk UI in
+    // <ClientOnly> itself, so SSR is safe.
+    return h(DefaultTheme.Layout, null, {
+      'nav-bar-content-after': () => h(NavAuth),
+    })
   },
   enhanceApp({ app }) {
     app.component('HomeLayout', HomeLayout)
     app.component('AppFrame', AppFrame)
-  }
+    // Clerk plugin. Guarded: only initialise in the browser and only when a key
+    // is configured, so SSR/builds without the key don't crash.
+    if (PUBLISHABLE_KEY && typeof window !== 'undefined') {
+      app.use(clerkPlugin, { publishableKey: PUBLISHABLE_KEY })
+    }
+  },
 }
