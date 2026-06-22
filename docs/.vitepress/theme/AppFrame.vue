@@ -329,12 +329,12 @@
                   </div>
                 </div>
                 <div class="af-leaderboard-card">
-                  <div class="af-card-title">Server leaderboard</div>
-                  <div v-for="f in friends" :key="f.name" class="af-lb-row">
-                    <span class="af-lb-rank af-mono">{{ f.rank }}</span>
-                    <span class="af-lb-avatar" :style="{ background: f.cv }">{{ f.initial }}</span>
-                    <span class="af-lb-name" :style="{ color: f.nameColor, fontWeight: f.weight }">{{ f.name }}</span>
-                    <span class="af-lb-hrs af-mono">{{ f.h }}h</span>
+                  <div class="af-card-title">Top books</div>
+                  <div v-for="b in topBooks" :key="b.title" class="af-lb-row">
+                    <span class="af-lb-rank af-mono">{{ b.rank }}</span>
+                    <span class="af-lb-avatar af-lb-cover" :style="{ background: b.cv }"></span>
+                    <span class="af-lb-name">{{ b.title }}</span>
+                    <span class="af-lb-hrs af-mono">{{ b.h }}h</span>
                   </div>
                 </div>
               </div>
@@ -526,26 +526,29 @@ onBeforeUnmount(() => {
   if (typeof document !== 'undefined') document.removeEventListener('visibilitychange', onVisibility)
 })
 
-/* ---- Static data ---- */
+/* ---- Static data ----
+   Stats mirror what the app actually ships: totals, a heatmap, and top books.
+   No streaks or server leaderboard - those aren't built yet. */
 const tiles = [
-  { ico: 'local_fire_department', num: '23',   cap: 'Day streak',       fill: true,  color: 'var(--primary)' },
-  { ico: 'emoji_events',          num: '64',   cap: 'Longest streak',   fill: false, color: 'var(--muted-foreground)' },
-  { ico: 'task_alt',              num: '48',   cap: 'Books finished',   fill: false, color: 'var(--muted-foreground)' },
-  { ico: 'headphones',            num: '1.4×', cap: 'Avg. speed',       fill: false, color: 'var(--muted-foreground)' },
-  { ico: 'calendar_month',        num: '19',   cap: 'This month (h)',   fill: false, color: 'var(--muted-foreground)' },
-  { ico: 'menu_book',             num: '6',    cap: 'In progress',      fill: false, color: 'var(--muted-foreground)' },
+  { ico: 'schedule',       num: '19',   cap: 'This month (h)',  fill: false, color: 'var(--muted-foreground)' },
+  { ico: 'task_alt',       num: '48',   cap: 'Books finished',  fill: false, color: 'var(--muted-foreground)' },
+  { ico: 'event_available',num: '156',  cap: 'Active days',     fill: false, color: 'var(--muted-foreground)' },
+  { ico: 'headphones',     num: '1.4×', cap: 'Avg. speed',      fill: false, color: 'var(--muted-foreground)' },
+  { ico: 'today',          num: '42',   cap: 'Today (min)',     fill: true,  color: 'var(--primary)' },
+  { ico: 'menu_book',      num: '6',    cap: 'In progress',     fill: false, color: 'var(--muted-foreground)' },
 ]
 
 const wraw = [1.2, 2.4, 0.8, 3.1, 1.9, 4.2, 2.7]
 const week = ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => ({ d, key: d + i, h: Math.round(wraw[i] / 4.2 * 108) }))
 
-const friends = [
-  { name: 'Ari Mensah',    h: 42, rank: 1, cv: '#c4663a' },
-  { name: 'Lena Park',     h: 27, rank: 2, cv: '#5e76c4' },
-  { name: 'Theo Vance',    h: 23, rank: 3, cv: '#7fa86b' },
-  { name: 'Jordan Reese',  h: 19, rank: 4, cv: '#e0654a', me: true },
-  { name: 'Priya Rao',     h: 15, rank: 5, cv: '#4f9db0' },
-].map(f => ({ ...f, initial: f.name[0], weight: f.me ? 700 : 500, nameColor: f.me ? 'var(--primary)' : 'var(--foreground)' }))
+// Top most-listened books (matches the app's StatsPage "Top books").
+const topBooks = [
+  { title: 'The Tide Between Us', h: 42, rank: 1, cv: '#3f7d8c' },
+  { title: 'Notes on Falling',    h: 27, rank: 2, cv: '#7fa86b' },
+  { title: 'Redshift Country',    h: 23, rank: 3, cv: '#cc5b4a' },
+  { title: 'Wavelength',          h: 19, rank: 4, cv: '#4db6ac' },
+  { title: 'Quiet Machines',      h: 15, rank: 5, cv: '#5e76c4' },
+]
 
 const nav = [
   { icon: 'grid_view',    label: 'Library', screen: 'library' },
@@ -1212,7 +1215,8 @@ const urlLabel = computed(() => urlLabels[activeScreen.value] || urlLabels.libra
 }
 .af-lb-rank    { font-size: 13px; color: var(--muted-foreground); width: 18px; }
 .af-lb-avatar  { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 700; }
-.af-lb-name    { flex: 1; font-size: 14px; }
+.af-lb-cover   { width: 24px; height: 32px; border-radius: 4px; }
+.af-lb-name    { flex: 1; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .af-lb-hrs     { font-size: 13px; color: var(--foreground); }
 
 .af-stats-screen .af-main-inner { padding: 40px 44px; }

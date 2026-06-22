@@ -108,10 +108,10 @@
           <div class="hs-feature-text">
             <span class="hs-feature-icon"><span class="ms fill">insights</span></span>
             <h3 class="hs-feature-h3">Stats worth opening the app for.</h3>
-            <p class="hs-feature-p">Streaks, hours, finished counts — and a server leaderboard so the people sharing your instance can compare notes. Your numbers stay on your hardware, never a third party's.</p>
+            <p class="hs-feature-p">Hours listened, books finished, and a six-month heatmap of your listening — laid out so the picture is clear at a glance. Your numbers stay on your hardware, never a third party's.</p>
             <ul class="hs-check-list">
-              <li><span class="ms fill">check_circle</span>Listening streaks &amp; weekly trends</li>
-              <li><span class="ms fill">check_circle</span>Shared-server leaderboard</li>
+              <li><span class="ms fill">check_circle</span>Weekly bars &amp; a six-month listening heatmap</li>
+              <li><span class="ms fill">check_circle</span>Your most-listened books, ranked</li>
               <li><span class="ms fill">check_circle</span>Private by default — your data, your box</li>
             </ul>
           </div>
@@ -125,11 +125,11 @@
           <div class="hs-feature-text">
             <span class="hs-feature-icon"><span class="ms fill">menu_book</span></span>
             <h3 class="hs-feature-h3">Read and listen in the same place.</h3>
-            <p class="hs-feature-p">A full immersive ebook reader, built in. Choose your theme — dark, sepia, light, or paper — adjust type size, font, and spacing, then settle in. If the book has both audio and an ebook, a quiet marker shows where the narration has reached so you can jump between them without losing your place.</p>
+            <p class="hs-feature-p">A full immersive ebook reader, built in. Choose your theme — dark, sepia, light, or paper — adjust type size, font, and spacing, then settle in. If the book has both audio and an ebook, one tap jumps you to roughly where the narration has reached, so you can switch between listening and reading without losing your place.</p>
             <ul class="hs-check-list">
               <li><span class="ms fill">check_circle</span>Four reading themes including sepia &amp; dark</li>
               <li><span class="ms fill">check_circle</span>Adjustable typeface, size, line height &amp; margins</li>
-              <li><span class="ms fill">check_circle</span>Read-along: quiet audio position marker in-page</li>
+              <li><span class="ms fill">check_circle</span>Jump to the audio's spot without leaving the page</li>
             </ul>
           </div>
           <div class="hs-feature-media">
@@ -145,7 +145,7 @@
         <div class="hs-section-header">
           <div class="hs-eyebrow">Same engine, warmer room</div>
           <h2 class="hs-section-h2">HearthShelf vs. vanilla Audiobookshelf</h2>
-          <p class="hs-compare-sub">HearthShelf isn't a replacement — it's a front-end. Same library, same files, same mobile apps and API. It adds an ebook reader and a warmer desktop experience, then stays out of your way.</p>
+          <p class="hs-compare-sub">HearthShelf isn't a replacement — it's an alternative front-end for the server you already run. Same library, same files, same API, nothing to migrate. Audiobookshelf already does the essentials well; HearthShelf rehouses them in a warmer interface and adds a few things of its own.</p>
         </div>
         <div class="hs-compare-table">
           <div class="hs-compare-header">
@@ -194,7 +194,7 @@
           </div>
           <div class="hs-gallery-item">
             <AppFrame screen="stats" :scale="0.42" :accent="accent" interactive />
-            <div class="hs-gallery-caption"><strong>Stats</strong> · streaks &amp; leaderboard</div>
+            <div class="hs-gallery-caption"><strong>Stats</strong> · heatmap &amp; top books</div>
           </div>
         </div>
       </div>
@@ -324,24 +324,23 @@ import { ref } from 'vue'
 const accent = '#e0654a'
 const copied = ref(false)
 
+// Every row is verified against current source in both projects. The Audiobookshelf
+// column reflects what its web client actually ships; rows where both are equal
+// (mini player, sleep timer, bookmarks, speed, chapters) are intentionally left
+// out because they aren't differentiators.
 const compareRows = [
-  // ── Design & player
-  { label: 'Warm dark "hearth" design system', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
-  { label: 'Dynamic cover-glow that tints the interface', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
-  { label: 'Immersive full-screen player with panels', base: 'Mini bar only', absIcon: null },
-  { label: 'Persistent mini player across every page', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
-  { label: 'Sleep timer, bookmarks & speed presets', base: 'Speed only', absIcon: null },
-  // ── Ebooks
-  { label: 'Built-in ebook reader (dark, sepia, light, paper)', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
-  { label: 'Read-along: audio position marker in the ebook', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
-  // ── Discovery & recommendations
+  // ── Look & feel
+  { label: 'Warm "hearth" design with themes & accent presets', base: 'One fixed dark theme', absIcon: null },
+  { label: 'Cover-art glow that tints the whole interface', base: 'Share pages only', absIcon: null },
+  { label: 'Immersive full-screen player view', base: 'Mini bar + dialogs', absIcon: null },
+  // ── Reading
+  { label: 'Ebook reader woven into the same player', base: 'Separate reader', absIcon: null },
+  // ── Discovery & requests
   { label: 'QuestGiver — AI next-listen recommender', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
-  { label: 'Personalized discover shelves with feedback', base: 'Basic shelves', absIcon: null },
+  { label: 'Discover shelves you tune with thumbs up / down', base: 'Discover shelf, no feedback', absIcon: null },
   { label: 'ReadMeABook request tracking (bring your own backend)', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
-  // ── Stats
-  { label: 'Weekly listening heatmap & top books', base: 'Basic totals', absIcon: null },
   // ── Same foundation
-  { label: 'Same library, files, API & mobile apps', base: 'Yes', absIcon: 'check_circle', absColor: 'var(--muted-foreground)' },
+  { label: 'Same library, files & API — nothing to migrate', base: 'Yes', absIcon: 'check_circle', absColor: 'var(--muted-foreground)' },
   { label: 'Self-hosted — your data, your hardware', base: 'Yes', absIcon: 'check_circle', absColor: 'var(--muted-foreground)' },
 ]
 
