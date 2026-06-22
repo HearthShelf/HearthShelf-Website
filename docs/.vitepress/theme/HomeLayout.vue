@@ -35,7 +35,7 @@
             A warmer home for Audiobookshelf
           </div>
           <h1 class="hs-hero-h1">Your whole library, in one warm place.</h1>
-          <p class="hs-hero-sub">A single pane of glass for your self-hosted audiobooks. HearthShelf keeps everything Audiobookshelf does well and rehouses it in an interface you'll actually want to open at night.</p>
+          <p class="hs-hero-sub">A single pane of glass for your self-hosted audiobooks and ebooks. HearthShelf keeps everything Audiobookshelf does well and rehouses it in an interface you'll actually want to open at night.</p>
           <div class="hs-hero-actions">
             <a class="hs-btn hs-btn-primary hs-btn-lg" href="#quickstart">
               <span class="ms fill">rocket_launch</span>Deploy with Docker
@@ -46,7 +46,7 @@
           </div>
           <div class="hs-hero-stats">
             <div class="hs-stat"><div class="hs-stat-num">100%</div><div class="hs-stat-label">Self-hosted</div></div>
-            <div class="hs-stat"><div class="hs-stat-num">GPL v3</div><div class="hs-stat-label">Open source</div></div>
+            <div class="hs-stat"><div class="hs-stat-num">AGPL v3</div><div class="hs-stat-label">Open source</div></div>
             <div class="hs-stat"><div class="hs-stat-num">1</div><div class="hs-stat-label">Docker command</div></div>
           </div>
         </div>
@@ -61,7 +61,7 @@
       <div class="hs-section-inner">
         <div class="hs-section-header">
           <div class="hs-eyebrow">Why HearthShelf</div>
-          <h2 class="hs-section-h2">Built for the way you actually listen.</h2>
+          <h2 class="hs-section-h2">Built for the way you actually listen — and read.</h2>
         </div>
 
         <!-- Feature 1: cover-glow -->
@@ -114,6 +114,23 @@
             <AppFrame screen="stats" :scale="0.5" :accent="accent" />
           </div>
         </div>
+
+        <!-- Feature 4: ebook reader -->
+        <div class="hs-feature-row hs-feature-row-reverse">
+          <div class="hs-feature-text">
+            <span class="hs-feature-icon"><span class="ms fill">menu_book</span></span>
+            <h3 class="hs-feature-h3">Read and listen in the same place.</h3>
+            <p class="hs-feature-p">A full immersive ebook reader, built in. Choose your theme — dark, sepia, light, or paper — adjust type size, font, and spacing, then settle in. If the book has both audio and an ebook, a quiet marker shows where the narration has reached so you can jump between them without losing your place.</p>
+            <ul class="hs-check-list">
+              <li><span class="ms fill">check_circle</span>Four reading themes including sepia &amp; dark</li>
+              <li><span class="ms fill">check_circle</span>Adjustable typeface, size, line height &amp; margins</li>
+              <li><span class="ms fill">check_circle</span>Read-along: quiet audio position marker in-page</li>
+            </ul>
+          </div>
+          <div class="hs-feature-media">
+            <AppFrame screen="reader" :scale="0.5" :accent="accent" />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -123,7 +140,7 @@
         <div class="hs-section-header">
           <div class="hs-eyebrow">Same engine, warmer room</div>
           <h2 class="hs-section-h2">HearthShelf vs. vanilla Audiobookshelf</h2>
-          <p class="hs-compare-sub">HearthShelf isn't a replacement — it's a front-end. Same library, same files, same mobile apps and API. It just makes the desktop experience feel like home.</p>
+          <p class="hs-compare-sub">HearthShelf isn't a replacement — it's a front-end. Same library, same files, same mobile apps and API. It adds an ebook reader and a warmer desktop experience, then stays out of your way.</p>
         </div>
         <div class="hs-compare-table">
           <div class="hs-compare-header">
@@ -156,17 +173,21 @@
           <div class="hs-eyebrow">A look around</div>
           <h2 class="hs-section-h2">Every screen, reconsidered.</h2>
         </div>
-        <div class="hs-gallery">
+        <div class="hs-gallery hs-gallery-4">
           <div class="hs-gallery-item">
-            <AppFrame screen="library" :scale="0.5" :accent="accent" />
+            <AppFrame screen="library" :scale="0.42" :accent="accent" />
             <div class="hs-gallery-caption"><strong>Library</strong> · your whole collection</div>
           </div>
           <div class="hs-gallery-item">
-            <AppFrame screen="player" :scale="0.5" :accent="accent" />
+            <AppFrame screen="player" :scale="0.42" :accent="accent" />
             <div class="hs-gallery-caption"><strong>Player</strong> · immersive, cover-lit</div>
           </div>
           <div class="hs-gallery-item">
-            <AppFrame screen="stats" :scale="0.5" :accent="accent" />
+            <AppFrame screen="reader" :scale="0.42" :accent="accent" />
+            <div class="hs-gallery-caption"><strong>Reader</strong> · books &amp; read-along</div>
+          </div>
+          <div class="hs-gallery-item">
+            <AppFrame screen="stats" :scale="0.42" :accent="accent" />
             <div class="hs-gallery-caption"><strong>Stats</strong> · streaks &amp; leaderboard</div>
           </div>
         </div>
@@ -254,7 +275,7 @@
               <span class="ms fill hs-logo-icon">local_fire_department</span>
               <span class="hs-wordmark"><span class="hs-hearth">Hearth</span><span class="hs-shelf">Shelf</span></span>
             </a>
-            <p class="hs-footer-tagline">A calmer, self-hosted web client for your audiobook library.</p>
+            <p class="hs-footer-tagline">A calmer, self-hosted web client for your audiobook and ebook library.</p>
             <div class="hs-footer-quote">"the only light the glow of the story itself."</div>
           </div>
           <div class="hs-footer-col">
@@ -304,6 +325,9 @@ const compareRows = [
   { label: 'Immersive full-screen player with panels', base: 'Mini bar only', absIcon: null },
   { label: 'Persistent mini player across every page', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
   { label: 'Sleep timer, bookmarks & speed presets', base: 'Speed only', absIcon: null },
+  // ── Ebooks
+  { label: 'Built-in ebook reader (dark, sepia, light, paper)', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
+  { label: 'Read-along: audio position marker in the ebook', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
   // ── Discovery & recommendations
   { label: 'QuestGiver — AI next-listen recommender', base: '—', absIcon: 'remove', absColor: 'var(--muted-foreground)' },
   { label: 'Personalized discover shelves with feedback', base: 'Basic shelves', absIcon: null },
@@ -1073,6 +1097,12 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   flex-wrap: wrap;
   align-items: flex-start;
+}
+.hs-gallery-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  justify-items: center;
 }
 
 .hs-gallery-item {

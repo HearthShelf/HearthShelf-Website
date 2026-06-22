@@ -3,3 +3,6 @@ docs/.vitepress/dist/
 docs/.vitepress/cache/
 *.local
 .DS_Store
+
+# Claude Design handoff bundles (prototypes + design system), not site source
+*-handoff.zip
