@@ -5,6 +5,8 @@ import { clerkPlugin } from '@clerk/vue'
 import HomeLayout from './HomeLayout.vue'
 import AppFrame from './AppFrame.vue'
 import NavAuth from './NavAuth.vue'
+import NavLogo from './NavLogo.vue'
+import NotFound from './NotFound.vue'
 import './custom.css'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -19,7 +21,9 @@ export default {
     // Inject the auth control into the nav. NavAuth wraps its Clerk UI in
     // <ClientOnly> itself, so SSR is safe.
     return h(DefaultTheme.Layout, null, {
+      'nav-bar-title-before': () => h(NavLogo),
       'nav-bar-content-after': () => h(NavAuth),
+      'not-found': () => h(NotFound),
     })
   },
   enhanceApp({ app }) {

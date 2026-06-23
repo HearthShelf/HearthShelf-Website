@@ -4,7 +4,7 @@
     <!-- NAV -->
     <nav class="hs-nav">
       <a href="#top" class="hs-nav-logo">
-        <span class="ms fill hs-logo-icon">local_fire_department</span>
+        <img class="hs-logo-icon" src="/flame.png" alt="" />
         <span class="hs-wordmark"><span class="hs-hearth">Hearth</span><span class="hs-shelf">Shelf</span></span>
       </a>
       <div class="hs-nav-links">
@@ -256,7 +256,7 @@
         <div class="hs-cta-card">
           <div class="hs-cta-glow"></div>
           <div class="hs-cta-body">
-            <span class="ms fill hs-cta-icon">local_fire_department</span>
+            <img class="hs-cta-icon" src="/flame.png" alt="" />
             <h2 class="hs-cta-h2">Bring your library home.</h2>
             <p class="hs-cta-sub">Free and open source, yours to run forever. Point it at your own Audiobookshelf server and open the door.</p>
             <div class="hs-cta-actions">
@@ -278,7 +278,7 @@
         <div class="hs-footer-grid">
           <div class="hs-footer-brand">
             <a href="#top" class="hs-nav-logo">
-              <span class="ms fill hs-logo-icon">local_fire_department</span>
+              <img class="hs-logo-icon" src="/flame.png" alt="" />
               <span class="hs-wordmark"><span class="hs-hearth">Hearth</span><span class="hs-shelf">Shelf</span></span>
             </a>
             <p class="hs-footer-tagline">A calmer, self-hosted web client for your audiobook and ebook library.</p>
@@ -433,8 +433,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hs-logo-icon {
-  font-size: 23px;
-  color: var(--brand-hearth);
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
   filter: drop-shadow(0 0 10px color-mix(in oklab, var(--brand-hearth) 55%, transparent));
 }
 
@@ -1286,8 +1287,9 @@ a { color: inherit; text-decoration: none; }
 .hs-cta-body { position: relative; }
 
 .hs-cta-icon {
-  font-size: 40px;
-  color: var(--brand-hearth);
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
   filter: drop-shadow(0 0 16px color-mix(in oklab, var(--brand-hearth) 55%, transparent));
 }
 

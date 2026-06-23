@@ -26,7 +26,7 @@
         <div v-if="activeScreen === 'library'" class="af-screen af-library af-fade">
           <aside class="af-sidebar">
             <div class="af-sidebar-logo">
-              <span class="ms fill af-hearth-icon">local_fire_department</span>
+              <img class="af-hearth-icon" src="/flame.png" alt="" />
               <span class="af-wordmark"><span class="af-wm-hearth">Hearth</span><span class="af-wm-shelf">Shelf</span></span>
             </div>
             <nav class="af-nav">
@@ -208,7 +208,7 @@
           <!-- Left sidebar (collapsed nav) -->
           <aside class="af-sidebar af-reader-sidebar">
             <div class="af-sidebar-logo">
-              <span class="ms fill af-hearth-icon">local_fire_department</span>
+              <img class="af-hearth-icon" src="/flame.png" alt="" />
               <span class="af-wordmark"><span class="af-wm-hearth">Hearth</span><span class="af-wm-shelf">Shelf</span></span>
             </div>
             <nav class="af-nav">
@@ -289,7 +289,7 @@
         <div v-else-if="activeScreen === 'stats'" class="af-screen af-stats-screen af-fade">
           <aside class="af-sidebar">
             <div class="af-sidebar-logo">
-              <span class="ms fill af-hearth-icon">local_fire_department</span>
+              <img class="af-hearth-icon" src="/flame.png" alt="" />
               <span class="af-wordmark"><span class="af-wm-hearth">Hearth</span><span class="af-wm-shelf">Shelf</span></span>
             </div>
             <nav class="af-nav">
@@ -674,8 +674,9 @@ const urlLabel = computed(() => urlLabels[activeScreen.value] || urlLabels.libra
   padding: 0 8px 28px;
 }
 .af-hearth-icon {
-  font-size: 22px;
-  color: var(--brand-hearth);
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
   filter: drop-shadow(0 0 10px color-mix(in oklab, var(--brand-hearth) 50%, transparent));
 }
 .af-wordmark { font-size: 19px; font-family: var(--font-brand); }

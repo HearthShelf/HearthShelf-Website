@@ -6,12 +6,12 @@ export default defineConfig({
   lang: 'en-US',
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+    ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', {
       rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Geist+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=swap'
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Geist+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=block'
     }],
     ['meta', { name: 'theme-color', content: '#1b1a18' }],
     ['meta', { property: 'og:type', content: 'website' }],
@@ -19,13 +19,11 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
     siteTitle: false,
 
     nav: [
       { text: 'Guide', link: '/guide/what-is-hearthshelf' },
       { text: 'Setup', link: '/setup/docker' },
-      { text: 'Architecture', link: '/architecture/overview' },
       { text: 'WebApp', link: '/webapp/overview' },
       {
         text: 'GitHub',
@@ -52,19 +50,6 @@ export default defineConfig({
             { text: 'Configuration', link: '/setup/configuration' },
             { text: 'Reverse Proxy', link: '/setup/reverse-proxy' },
             { text: 'Authentication', link: '/setup/authentication' },
-          ],
-        },
-      ],
-      '/architecture/': [
-        {
-          text: 'Architecture',
-          items: [
-            { text: 'Overview', link: '/architecture/overview' },
-            { text: 'Tech Stack', link: '/architecture/tech-stack' },
-            { text: 'API Integration', link: '/architecture/api-integration' },
-            { text: 'Audio Streaming', link: '/architecture/audio-streaming' },
-            { text: 'State Management', link: '/architecture/state-management' },
-            { text: 'QuestGiver & Database', link: '/architecture/questgiver' },
           ],
         },
       ],
