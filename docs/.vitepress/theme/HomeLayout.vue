@@ -14,7 +14,7 @@
         <a class="navlink" href="/guide/what-is-hearthshelf">Docs</a>
       </div>
       <div class="hs-nav-right">
-        <a class="navlink hs-github-star" href="https://github.com/hearthshelf/hearthshelf" target="_blank">
+        <a class="navlink hs-github-star" href="https://github.com/HearthShelf/HearthShelf" target="_blank">
           <span class="ms">star</span>4.2k
         </a>
         <a class="hs-btn hs-btn-primary hs-btn-sm" href="#quickstart">
@@ -121,7 +121,7 @@
         <div class="hs-feature-row hs-feature-row-reverse">
           <div class="hs-feature-text">
             <span class="hs-feature-icon"><span class="ms fill">menu_book</span></span>
-            <h3 class="hs-feature-h3">Read and listen in the same place.</h3>
+            <h3 class="hs-feature-h3">Reader and player, side by side.</h3>
             <p class="hs-feature-p">A full immersive ebook reader, built in. Choose your theme — dark, sepia, light, or paper — adjust type size, font, and spacing, then settle in. If the book has both audio and an ebook, one tap jumps you to roughly where the narration has reached, so you can switch between listening and reading without losing your place.</p>
             <ul class="hs-check-list">
               <li><span class="ms fill">check_circle</span>Four reading themes including sepia &amp; dark</li>
@@ -260,7 +260,7 @@
               <a class="hs-btn hs-btn-primary hs-btn-lg" href="#quickstart">
                 <span class="ms fill">rocket_launch</span>Deploy with Docker
               </a>
-              <a class="hs-btn hs-btn-pill hs-btn-lg" href="https://github.com/hearthshelf/hearthshelf" target="_blank">
+              <a class="hs-btn hs-btn-pill hs-btn-lg" href="https://github.com/HearthShelf/HearthShelf" target="_blank">
                 <span class="ms fill">star</span>Star on GitHub
               </a>
             </div>
@@ -292,14 +292,12 @@
             <div class="hs-footer-col-head">Resources</div>
             <a class="navlink" href="/guide/what-is-hearthshelf">Documentation</a>
             <a class="navlink" href="/setup/docker">Installation</a>
-            <a class="navlink" href="https://github.com/hearthshelf/hearthshelf" target="_blank">GitHub</a>
+            <a class="navlink" href="https://github.com/HearthShelf/HearthShelf" target="_blank">GitHub</a>
             <a class="navlink" href="#">Changelog</a>
           </div>
           <div class="hs-footer-col">
             <div class="hs-footer-col-head">Community</div>
-            <a class="navlink" href="#">Discord</a>
-            <a class="navlink" href="#">Reddit</a>
-            <a class="navlink" href="#">Matrix</a>
+            <a class="navlink" href="https://discord.gg/c62ECD4EuC" target="_blank">Discord</a>
           </div>
         </div>
         <div class="hs-footer-bottom">

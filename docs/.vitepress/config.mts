@@ -27,7 +27,7 @@ export default defineConfig({
       { text: 'WebApp', link: '/webapp/overview' },
       {
         text: 'GitHub',
-        link: 'https://github.com/hearthshelf/hearthshelf',
+        link: 'https://github.com/HearthShelf/HearthShelf',
       },
     ],
 
@@ -66,7 +66,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/hearthshelf/hearthshelf' },
+      { icon: 'github', link: 'https://github.com/HearthShelf/HearthShelf' },
     ],
 
     footer: {
@@ -79,7 +79,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/hearthshelf/hearthshelf-website/edit/main/docs/:path',
+      pattern: 'https://github.com/HearthShelf/HearthShelf-Website/edit/main/docs/:path',
       text: 'Edit this page on GitHub',
     },
   },
