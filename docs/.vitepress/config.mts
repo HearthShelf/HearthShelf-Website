@@ -46,7 +46,9 @@ export default defineConfig({
         {
           text: 'Setup',
           items: [
-            { text: 'Docker', link: '/setup/docker' },
+            { text: 'Docker (Slim)', link: '/setup/docker' },
+            { text: 'All-in-One', link: '/setup/all-in-one' },
+            { text: 'Migrate to All-in-One', link: '/setup/migrate-to-aio' },
             { text: 'Configuration', link: '/setup/configuration' },
             { text: 'Reverse Proxy', link: '/setup/reverse-proxy' },
             { text: 'Authentication', link: '/setup/authentication' },

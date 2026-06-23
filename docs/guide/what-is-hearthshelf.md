@@ -60,24 +60,6 @@ HearthShelf does **not** replace AudiobookShelf itself. You need a running ABS i
 - **Desktop-first** — designed for the browser, responsive enough for tablets
 - **Libre Baskerville** brand wordmark — editorial serif for a warm, bookish feel
 
-## What's already built
-
-- Login (username/password + OAuth2/OpenID button)
-- Token persistence with on-load validation and protected routes
-- Persistent app shell: sidebar, cover-glow bloom, persistent player bar
-- Home with personalized shelves and a "jump back in" hero
-- Library browsing (responsive grid, paginated), multi-library support
-- Series browsing (index + detail)
-- Book detail page (cover, metadata chips, description, chapters)
-- Native audio playback with transport controls, speed, and chapter navigation
-- Progress sync (every 30s + on pause + `sendBeacon` on tab close)
-- Cover images (real artwork + typeset fallback), full design system
-
-## What's planned
-
-The full phased roadmap covers upcoming work including:
-authors/narrators, collections, an immersive player, podcast support, editing tools, admin panel, and optional AI recommendations.
-
 ::: tip AudiobookShelf
-HearthShelf requires AudiobookShelf v2.x running on your network. [Get ABS here.](https://www.audiobookshelf.org/)
+HearthShelf is built on AudiobookShelf v2.x. Point the [slim image](/setup/docker) at a server you already run, or use the [all-in-one image](/setup/all-in-one), which bundles AudiobookShelf so you don't have to run it separately. [Learn about ABS.](https://www.audiobookshelf.org/)
 :::

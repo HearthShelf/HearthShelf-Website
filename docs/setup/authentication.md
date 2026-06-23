@@ -47,4 +47,4 @@ Only the token is persisted — user state is re-fetched from ABS on every load.
 
 ## Multi-User
 
-Each ABS user account works independently. HearthShelf makes no distinction between user types — admin and regular users both log in the same way. Admin-only features (when implemented in Phase 5) will be gated by the role returned by ABS.
+Each ABS user account works independently — everyone logs in the same way, with their own AudiobookShelf credentials. Admin-only features (server configuration, user management, and first-run setup) are gated by the role ABS returns for the signed-in user, so regular users simply don't see them.

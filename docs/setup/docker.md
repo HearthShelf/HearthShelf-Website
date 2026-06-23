@@ -1,6 +1,15 @@
 # Docker Setup
 
-HearthShelf uses a **runtime configuration** approach. A single Docker image works for any ABS server URL — no rebuild required. The `ABS_SERVER_URL` environment variable is injected into the nginx config at container start via `envsubst`.
+HearthShelf ships two images:
+
+- **Slim** (`:latest`) — HearthShelf only. You point it at an AudiobookShelf server you already run. This page covers the slim image.
+- **All-in-One** (`:latest-aio`) — HearthShelf *with AudiobookShelf bundled inside*, one container, set up for you. See [All-in-One](/setup/all-in-one).
+
+::: tip Which one?
+Already have AudiobookShelf running? Use **slim** (below). Starting fresh, or want a single container that is the whole stack? Use [All-in-One](/setup/all-in-one) — it's the most frictionless setup. Want to consolidate an existing slim + ABS setup down to one container? See [Migrate to All-in-One](/setup/migrate-to-aio).
+:::
+
+The slim image uses a **runtime configuration** approach. A single Docker image works for any ABS server URL — no rebuild required. The `ABS_SERVER_URL` environment variable is injected into the nginx config at container start via `envsubst`.
 
 ## Basic Setup
 
