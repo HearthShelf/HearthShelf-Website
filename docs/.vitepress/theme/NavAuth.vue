@@ -7,25 +7,29 @@
 // @clerk/vue gates content with <Show when="signed-in|signed-out">. Clerk is
 // client-only, so the whole thing renders inside <ClientOnly> (a VitePress
 // global) and waits for <ClerkLoaded> to avoid a flash before hydration.
-import { Show, UserButton, ClerkLoaded } from '@clerk/vue'
+//
+// The Clerk plugin is only installed when a publishable key is configured
+// (see theme/index.ts). Without it, the Clerk components call useClerk() with
+// no plugin and crash the nav - so we gate the live UI on `clerkReady` and
+// fall back to plain Log in / Sign up links when Clerk isn't available.
+import { defineAsyncComponent } from 'vue'
 
 const APP_URL = 'https://app.hearthshelf.com'
+const clerkReady = !!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+
+// Async so the @clerk/vue bundle is only pulled in when a key exists.
+const ClerkNav = clerkReady
+  ? defineAsyncComponent(() => import('./ClerkNav.vue'))
+  : null
 </script>
 
 <template>
   <ClientOnly>
-    <ClerkLoaded>
-      <div class="auth-nav">
-        <Show when="signed-out">
-          <a class="auth-link" :href="`${APP_URL}/sign-in`">Log in</a>
-          <a class="auth-cta" :href="`${APP_URL}/sign-up`">Sign up</a>
-        </Show>
-        <Show when="signed-in">
-          <a class="auth-cta" :href="APP_URL">Open HearthShelf</a>
-          <UserButton after-sign-out-url="https://hearthshelf.com" />
-        </Show>
-      </div>
-    </ClerkLoaded>
+    <component :is="ClerkNav" v-if="ClerkNav" />
+    <div v-else class="auth-nav">
+      <a class="auth-link" :href="`${APP_URL}/sign-in`">Log in</a>
+      <a class="auth-cta" :href="`${APP_URL}/sign-up`">Sign up</a>
+    </div>
   </ClientOnly>
 </template>
 
