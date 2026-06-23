@@ -25,6 +25,8 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/what-is-hearthshelf' },
       { text: 'Setup', link: '/setup/docker' },
+      { text: 'Architecture', link: '/architecture/overview' },
+      { text: 'WebApp', link: '/webapp/overview' },
       {
         text: 'GitHub',
         link: 'https://github.com/hearthshelf/hearthshelf',
@@ -50,6 +52,29 @@ export default defineConfig({
             { text: 'Configuration', link: '/setup/configuration' },
             { text: 'Reverse Proxy', link: '/setup/reverse-proxy' },
             { text: 'Authentication', link: '/setup/authentication' },
+          ],
+        },
+      ],
+      '/architecture/': [
+        {
+          text: 'Architecture',
+          items: [
+            { text: 'Overview', link: '/architecture/overview' },
+            { text: 'Tech Stack', link: '/architecture/tech-stack' },
+            { text: 'API Integration', link: '/architecture/api-integration' },
+            { text: 'Audio Streaming', link: '/architecture/audio-streaming' },
+            { text: 'State Management', link: '/architecture/state-management' },
+            { text: 'QuestGiver & Database', link: '/architecture/questgiver' },
+          ],
+        },
+      ],
+      '/webapp/': [
+        {
+          text: 'Hosted WebApp',
+          items: [
+            { text: 'Overview', link: '/webapp/overview' },
+            { text: 'Architecture', link: '/webapp/architecture' },
+            { text: 'Linking & Invites', link: '/webapp/pairing' },
           ],
         },
       ],

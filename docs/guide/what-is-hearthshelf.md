@@ -35,13 +35,15 @@ HearthShelf does **not** replace AudiobookShelf itself. You need a running ABS i
 ┌──────────────────────────────────────┐
 │           Your Browser               │
 │                                      │
-│   HearthShelf SPA  ←  UI only        │
+│   HearthShelf SPA  ←  UI             │
 └──────────────┬───────────────────────┘
-               │ /abs-api/* (proxied)
+               │ /abs-api/*  (library data)
+               │ /api/qg/*   (app state)
                ▼
 ┌──────────────────────────────────────┐
 │      HearthShelf nginx Container     │
-│  Serves the SPA + proxies ABS API    │
+│  Serves the SPA, proxies ABS API,    │
+│  hosts QuestGiver (app state + DB)   │
 └──────────────┬───────────────────────┘
                │ internal network
                ▼
