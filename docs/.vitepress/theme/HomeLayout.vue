@@ -52,10 +52,7 @@
         </div>
         <div class="hs-hero-screen">
           <div class="hs-hero-frame-wrap">
-            <AppFrame screen="library" :scale="0.72" :accent="accent" interactive live />
-            <div class="hs-hero-hint">
-              <span class="ms">touch_app</span>Live demo — click around
-            </div>
+            <AppFrame screen="library" :scale="0.72" :accent="accent" live />
           </div>
         </div>
       </div>
@@ -82,7 +79,7 @@
             </ul>
           </div>
           <div class="hs-feature-media">
-            <AppFrame screen="player" :scale="0.5" :accent="accent" interactive />
+            <AppFrame screen="player" :scale="0.5" :accent="accent" />
           </div>
         </div>
 
@@ -99,7 +96,7 @@
             </ul>
           </div>
           <div class="hs-feature-media">
-            <AppFrame screen="player" :scale="0.5" :accent="accent" interactive />
+            <AppFrame screen="player" :scale="0.5" :accent="accent" />
           </div>
         </div>
 
@@ -116,7 +113,7 @@
             </ul>
           </div>
           <div class="hs-feature-media">
-            <AppFrame screen="stats" :scale="0.5" :accent="accent" interactive />
+            <AppFrame screen="stats" :scale="0.5" :accent="accent" />
           </div>
         </div>
 
@@ -133,7 +130,7 @@
             </ul>
           </div>
           <div class="hs-feature-media">
-            <AppFrame screen="reader" :scale="0.5" :accent="accent" interactive />
+            <AppFrame screen="reader" :scale="0.5" :accent="accent" />
           </div>
         </div>
       </div>
@@ -175,26 +172,26 @@
     <section id="gallery" class="hs-section">
       <div class="hs-section-inner">
         <div class="hs-section-header">
-          <div class="hs-eyebrow">A look around — all live</div>
+          <div class="hs-eyebrow">A look around</div>
           <h2 class="hs-section-h2">Every screen, reconsidered.</h2>
-          <p class="hs-compare-sub">These aren't screenshots. Click the sidebar in any panel to move between screens, play a title, or switch reading themes.</p>
+          <p class="hs-compare-sub">A tour of the interface — the library, the immersive player, the built-in reader, and your listening stats.</p>
         </div>
         <div class="hs-gallery hs-gallery-4">
           <div class="hs-gallery-item">
-            <AppFrame screen="library" :scale="0.42" :accent="accent" interactive />
+            <AppFrame screen="library" :scale="0.42" :accent="accent" />
             <div class="hs-gallery-caption"><strong>Library</strong> · your whole collection</div>
           </div>
           <div class="hs-gallery-item">
-            <AppFrame screen="player" :scale="0.42" :accent="accent" interactive />
+            <AppFrame screen="player" :scale="0.42" :accent="accent" />
             <div class="hs-gallery-caption"><strong>Player</strong> · immersive, cover-lit</div>
           </div>
           <div class="hs-gallery-item">
-            <AppFrame screen="reader" :scale="0.42" :accent="accent" interactive />
+            <AppFrame screen="reader" :scale="0.42" :accent="accent" />
             <div class="hs-gallery-caption"><strong>Reader</strong> · books &amp; read-along</div>
           </div>
           <div class="hs-gallery-item">
-            <AppFrame screen="stats" :scale="0.42" :accent="accent" interactive />
-            <div class="hs-gallery-caption"><strong>Stats</strong> · heatmap &amp; top books</div>
+            <AppFrame screen="stats" :scale="0.42" :accent="accent" />
+            <div class="hs-gallery-caption"><strong>Stats</strong> · top books &amp; weekly listening</div>
           </div>
         </div>
       </div>
@@ -594,35 +591,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hs-hero-frame-wrap { position: relative; }
-
-.hs-hero-hint {
-  position: absolute;
-  bottom: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 7px 15px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--card) 92%, transparent);
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--foreground);
-  white-space: nowrap;
-  backdrop-filter: blur(8px);
-  animation: hintPulse 2.6s ease-in-out infinite;
-}
-.hs-hero-hint .ms { font-size: 16px; color: var(--primary); }
-@keyframes hintPulse {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-3px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hs-hero-hint { animation: none; }
-}
 
 /* ── App mockup ── */
 .hs-app-mockup {
