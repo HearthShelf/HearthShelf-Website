@@ -1,24 +1,25 @@
-# HearthShelf Website &amp; Docs
+# HearthShelf Website
 
-The public website and documentation for [HearthShelf](https://hearthshelf.com) - a
-self-hostable reading and listening UI for the library you run. This repo holds the
-marketing pages and the docs for the whole HearthShelf ecosystem.
+The marketing landing page for [HearthShelf](https://hearthshelf.com) - a
+self-hostable reading and listening UI for the library you run.
 
-Built with [VitePress](https://vitepress.dev).
+Built with **Vite + React + TypeScript + Tailwind + ShadCN**, hosted on Cloudflare
+Pages at **hearthshelf.com**.
+
+The documentation lives in a separate repo:
+[HearthShelf-Docs](https://github.com/HearthShelf/HearthShelf-Docs) (docs.hearthshelf.com).
 
 ## What HearthShelf is
 
 HearthShelf is a UI over a server you run, in the same category as Plex or Jellyfin.
 You connect your own backend and you are responsible for the legality of the content
-you add and the backends you connect. See the [guide](docs/guide/what-is-hearthshelf.md)
-for the full picture.
+you add and the backends you connect.
 
-This repo documents several projects:
+This site links to several projects:
 
 - **HearthShelf** - the self-hostable, AGPLv3 app and its QuestGiver backend.
-- **Hosted Web App** (`app.hearthshelf.com`) - a closed-source hosted service. The
-  site links to it and documents it at the service level only; its internals are not
-  in this repo.
+- **Hosted Web App** (`app.hearthshelf.com`) - a closed-source hosted service the
+  nav links to for Log in / Sign up.
 
 ## Local development
 
@@ -27,45 +28,40 @@ Requires [Node.js](https://nodejs.org) 18+.
 ```bash
 npm install
 npm run dev      # start the dev server at http://localhost:5173
-npm run build    # build the static site to docs/.vitepress/dist
+npm run build    # type-check and build the static site to dist/
 npm run preview  # preview the production build locally
 ```
 
 ## Project layout
 
 ```
-docs/
-  index.md                  # home page
-  guide/                    # what HearthShelf is, getting started, FAQ
-  setup/                    # docker, configuration, auth, reverse proxy
-  webapp/                   # hosted web app docs (overview, pairing, architecture)
-  public/                   # static assets (logo, favicon, images)
-  .vitepress/
-    config.mts              # site config, nav, sidebar
-    theme/                  # custom VitePress theme (Vue components, CSS)
+index.html                  # entry HTML (fonts, meta)
+src/
+  main.tsx                  # React entry
+  App.tsx                   # renders <Home />
+  index.css                 # Tailwind layers + brand/ShadCN tokens
+  lib/utils.ts              # cn() + canonical external URLs
+  components/
+    ui/button.tsx           # ShadCN-style button primitive
+    landing/
+      Home.tsx              # the full landing page
+      home.css              # landing page styles
+      AppFrame.tsx          # the in-browser app mockup (library/player/reader/stats)
+      AppFrame.css          # mockup styles
+public/                     # static assets (logo, favicon, _redirects)
 ```
 
 ### A note on auth
 
-The "Log in / Sign up" controls in the nav are a thin stub
-([NavAuth.vue](docs/.vitepress/theme/NavAuth.vue)) that redirects to the hosted web
-app's own Clerk-hosted pages at `app.hearthshelf.com`. There is no authentication
-logic, no secrets, and no proprietary code in this repo - it is just links. The
-Clerk **publishable** key used by the stub is public by design (it ships in browser
-bundles) and lives in a gitignored `.env.local`; it is not a secret.
+The "Log in / Sign up" controls in the nav are plain links to the hosted web app's
+own Clerk-hosted pages at `app.hearthshelf.com/sign-in` and `/sign-up`. There is no
+authentication logic, no secrets, and no proprietary code in this repo.
 
 ## Deployment
 
-The site deploys to Cloudflare Pages. The build output directory is
-`docs/.vitepress/dist` (see [wrangler.toml](wrangler.toml)). Pushing to `main`
-triggers a deploy.
-
-## Contributing
-
-Documentation fixes and improvements are welcome - typos, broken links, clearer
-explanations. Please read [CONTRIBUTING.md](CONTRIBUTING.md) first, and note the
-positioning guardrails in [AGENTS.md](AGENTS.md): how HearthShelf is described
-matters legally, so site copy follows specific rules.
+The site deploys to Cloudflare Pages. The build command is `npm run build` and the
+output directory is `dist` (see [wrangler.toml](wrangler.toml)). The `public/_redirects`
+file routes all paths to `index.html` for the single-page app.
 
 ## License
 
