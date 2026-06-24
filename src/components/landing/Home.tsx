@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import { AppFrame } from './AppFrame'
 import { Button } from '@/components/ui/button'
 import { APP_URL, DOCS_URL, GITHUB_URL, DISCORD_URL } from '@/lib/utils'
@@ -98,10 +100,16 @@ export function Home() {
             <GitHubIcon />
             GitHub
           </a>
-          <a className="navlink hs-login-link" href={`${APP_URL}/sign-in`}>Log in</a>
-          <Button variant="primary" size="sm" href={`${APP_URL}/sign-up`}>
-            Sign up
-          </Button>
+          <SignedOut>
+            <Link className="navlink hs-login-link" to="/sign-in">Log in</Link>
+            <Link className="hs-btn hs-btn-primary hs-btn-sm" to="/sign-up">Sign up</Link>
+          </SignedOut>
+          <SignedIn>
+            <a className="hs-btn hs-btn-primary hs-btn-sm" href={APP_URL}>
+              <span className="ms fill">rocket_launch</span>Open HearthShelf
+            </a>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
         </div>
       </nav>
 

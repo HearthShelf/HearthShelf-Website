@@ -8,5 +8,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+    // Ensure a single React copy so Clerk (and any other lib) shares ours.
+    dedupe: ['react', 'react-dom'],
   },
 })

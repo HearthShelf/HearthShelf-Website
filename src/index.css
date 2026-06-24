@@ -4,21 +4,25 @@
 
 @layer base {
   :root {
-    /* ShadCN tokens (HSL channels), tuned to the HearthShelf dark palette */
-    --background: 40 7% 10%;
-    --foreground: 40 33% 94%;
-    --card: 36 6% 15%;
-    --card-foreground: 40 33% 94%;
-    --popover: 30 6% 13%;
-    --primary: 12 70% 58%;
-    --primary-foreground: 24 33% 98%;
-    --secondary: 40 6% 18%;
-    --secondary-foreground: 40 33% 94%;
-    --muted: 40 6% 18%;
-    --muted-foreground: 40 13% 62%;
-    --border: 36 7% 20%;
-    --input: 36 7% 20%;
-    --ring: 12 70% 58%;
+    /* ShadCN tokens (exact hex, mirroring HS-WebApp tokens.css .dark theme so
+       the Clerk skin in clerkAppearance.ts renders identically on both sites). */
+    --background: #1b1a18;
+    --foreground: #f4f1ea;
+    --card: #2a2825;
+    --card-foreground: #f4f1ea;
+    --popover: #242220;
+    --popover-foreground: #f4f1ea;
+    --primary: #e0654a;
+    --primary-foreground: #fffaf6;
+    --secondary: #322f2b;
+    --secondary-foreground: #f4f1ea;
+    --muted: #322f2b;
+    --muted-foreground: #aba498;
+    --accent: #322f2b;
+    --accent-foreground: #f4f1ea;
+    --border: #383530;
+    --input: #1b1a18;
+    --ring: #e0654a;
     --radius: 0.625rem;
 
     /* Brand hex tokens used directly by the ported landing markup */

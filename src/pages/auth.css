@@ -1,0 +1,47 @@
+/* Full-page shell for the /sign-in and /sign-up routes. Mirrors HS-WebApp's
+   auth page layout: centered flame + wordmark over the embedded Clerk card. */
+.hs-auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 64px 20px;
+  background: var(--background);
+}
+
+.hs-auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hs-auth-flame {
+  width: 4em;
+  height: 4em;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px color-mix(in oklab, var(--brand-hearth) 55%, transparent));
+}
+
+.hs-wordmark-brand {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  line-height: 1;
+}
+.hs-wm-lt {
+  font-weight: 400;
+  color: var(--brand-hearth);
+}
+.hs-wm-bd {
+  font-weight: 700;
+  color: var(--wordmark-shelf);
+}
+
+.hs-auth-note {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+}
