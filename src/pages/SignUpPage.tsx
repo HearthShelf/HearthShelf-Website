@@ -1,5 +1,6 @@
 import { SignUp } from '@clerk/clerk-react'
 import { Wordmark } from '@/components/Wordmark'
+import { APP_URL, clerkEnabled } from '@/lib/utils'
 import './auth.css'
 
 /**
@@ -14,7 +15,16 @@ export function SignUpPage() {
         <img src="/flame.png" alt="" className="hs-auth-flame" />
         <Wordmark style={{ fontSize: '3em' }} />
       </div>
-      <SignUp routing="path" path="/sign-up" signInUrl="/sign-in" fallbackRedirectUrl="/" />
+      {clerkEnabled ? (
+        <SignUp routing="path" path="/sign-up" signInUrl="/sign-in" fallbackRedirectUrl="/" />
+      ) : (
+        <div className="hs-auth-fallback">
+          <p>Account creation is handled on the HearthShelf app.</p>
+          <a className="hs-btn hs-btn-primary hs-btn-lg" href={`${APP_URL}/sign-up`}>
+            <span className="ms fill">rocket_launch</span>Continue to HearthShelf
+          </a>
+        </div>
+      )}
     </div>
   )
 }

@@ -45,3 +45,49 @@
   border-radius: 10px;
   padding: 10px 16px;
 }
+
+/* Shown when Clerk isn't configured (no publishable key in the build): the
+   page still renders and points users to the app's own auth instead. */
+.hs-auth-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  max-width: 360px;
+}
+.hs-auth-fallback p {
+  font-size: 15px;
+  color: var(--muted-foreground);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Button styles, duplicated from home.css so the auth pages (which don't import
+   it) can use the primary button for the fallback CTA. */
+.hs-auth-page .hs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: inherit;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.hs-auth-page .hs-btn-primary {
+  background: var(--primary);
+  color: #fffaf6;
+  border-radius: 10px;
+  padding: 0 18px;
+}
+.hs-auth-page .hs-btn-primary:hover {
+  background: color-mix(in oklab, var(--primary) 85%, black);
+  box-shadow: 0 0 22px color-mix(in oklab, var(--primary) 40%, transparent);
+}
+.hs-auth-page .hs-btn-lg {
+  height: 50px;
+  font-size: 15px;
+}

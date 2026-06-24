@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 import { SignIn } from '@clerk/clerk-react'
 import { Wordmark } from '@/components/Wordmark'
+import { APP_URL, clerkEnabled } from '@/lib/utils'
 import './auth.css'
 
 /**
@@ -29,7 +30,16 @@ export function SignInPage() {
         <Wordmark style={{ fontSize: '3em' }} />
       </div>
       {note && <div className="hs-auth-note">{note}</div>}
-      <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" fallbackRedirectUrl="/" />
+      {clerkEnabled ? (
+        <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" fallbackRedirectUrl="/" />
+      ) : (
+        <div className="hs-auth-fallback">
+          <p>Sign-in is handled on the HearthShelf app.</p>
+          <a className="hs-btn hs-btn-primary hs-btn-lg" href={`${APP_URL}/sign-in`}>
+            <span className="ms fill">rocket_launch</span>Continue to HearthShelf
+          </a>
+        </div>
+      )}
     </div>
   )
 }

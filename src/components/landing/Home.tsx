@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import { AppFrame } from './AppFrame'
 import { Button } from '@/components/ui/button'
-import { APP_URL, DOCS_URL, GITHUB_URL, DISCORD_URL } from '@/lib/utils'
+import { APP_URL, DOCS_URL, GITHUB_URL, DISCORD_URL, clerkEnabled } from '@/lib/utils'
 import './home.css'
 
 const accent = '#e0654a'
@@ -100,16 +100,25 @@ export function Home() {
             <GitHubIcon />
             GitHub
           </a>
-          <SignedOut>
-            <Link className="navlink hs-login-link" to="/sign-in">Log in</Link>
-            <Link className="hs-btn hs-btn-primary hs-btn-sm" to="/sign-up">Sign up</Link>
-          </SignedOut>
-          <SignedIn>
-            <a className="hs-btn hs-btn-primary hs-btn-sm" href={APP_URL}>
-              <span className="ms fill">rocket_launch</span>Open HearthShelf
-            </a>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          {clerkEnabled ? (
+            <>
+              <SignedOut>
+                <Link className="navlink hs-login-link" to="/sign-in">Log in</Link>
+                <Link className="hs-btn hs-btn-primary hs-btn-sm" to="/sign-up">Sign up</Link>
+              </SignedOut>
+              <SignedIn>
+                <a className="hs-btn hs-btn-primary hs-btn-sm" href={APP_URL}>
+                  <span className="ms fill">rocket_launch</span>Open HearthShelf
+                </a>
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
+            </>
+          ) : (
+            <>
+              <a className="navlink hs-login-link" href={`${APP_URL}/sign-in`}>Log in</a>
+              <a className="hs-btn hs-btn-primary hs-btn-sm" href={`${APP_URL}/sign-up`}>Sign up</a>
+            </>
+          )}
         </div>
       </nav>
 
