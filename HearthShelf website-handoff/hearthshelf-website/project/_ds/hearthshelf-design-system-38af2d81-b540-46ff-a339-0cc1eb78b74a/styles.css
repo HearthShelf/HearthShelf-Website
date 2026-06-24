@@ -1,0 +1,5 @@
+/* =====================================================================
+   Design system — global entry point.
+   Consumers link this single file; it pulls in the rest of the system.
+   ===================================================================== */
+@import "colors_and_type.css";

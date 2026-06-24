@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=swap" />
+  <link rel="stylesheet" href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/colors_and_type.css" />
+  <link rel="stylesheet" href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/styles.css" />
+  <style>
+    body { margin: 0; }
+    .ms { font-family: 'Material Symbols Rounded'; font-variation-settings: 'FILL' 0, 'wght' 400; line-height: 1; }
+    .ms.fill { font-variation-settings: 'FILL' 1, 'wght' 400; }
+    a { color: inherit; text-decoration: none; }
+    .vp-side a:hover { color: var(--foreground) !important; }
+    .vp-out a:hover { color: var(--primary) !important; }
+    .vp-nav a.navlink:hover { color: var(--foreground) !important; }
+    .vp-content::-webkit-scrollbar, .vp-side-inner::-webkit-scrollbar { width: 10px; }
+    .vp-content::-webkit-scrollbar-thumb, .vp-side-inner::-webkit-scrollbar-thumb { background: var(--fill-strong); border-radius: 99px; border: 3px solid transparent; background-clip: padding-box; }
+    html { scroll-behavior: smooth; }
+  </style>
+</helmet>
+<div class="dark" style="background:var(--background); color:var(--foreground); font-family:var(--font-sans); min-height:100vh; --primary:#e0654a; --ring:#e0654a">
+
+  <!-- ===== TOP NAV ===== -->
+  <nav class="vp-nav" style="position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; gap:0; padding:0 28px; background:color-mix(in oklab, var(--background) 80%, transparent); backdrop-filter:blur(18px); border-bottom:1px solid var(--border)">
+    <a href="HearthShelf.dc.html" style="display:flex; align-items:center; gap:10px; width:244px">
+      <span class="ms fill" style="font-size:22px; color:var(--brand-hearth); filter:drop-shadow(0 0 9px color-mix(in oklab, var(--brand-hearth) 55%, transparent))">local_fire_department</span>
+      <span style="font-size:19px; font-family:var(--font-brand)"><span style="font-weight:400; color:var(--brand-hearth)">Hearth</span><span style="font-weight:700; color:var(--wordmark-shelf)">Shelf</span></span>
+      <span style="font-family:var(--font-mono); font-size:11px; color:var(--muted-foreground); border:1px solid var(--border); border-radius:5px; padding:1px 5px; margin-left:2px">docs</span>
+    </a>
+    <div style="display:flex; align-items:center; gap:26px; font-size:14px; font-weight:500; color:var(--muted-foreground)">
+      <a class="navlink" href="#" style="color:var(--foreground); transition:color .15s">Guide</a>
+      <a class="navlink" href="#" style="transition:color .15s">Reference</a>
+      <a class="navlink" href="#" style="transition:color .15s">Changelog</a>
+    </div>
+    <div style="margin-left:auto; display:flex; align-items:center; gap:16px">
+      <div style="display:flex; align-items:center; gap:8px; height:34px; padding:0 12px; border-radius:8px; background:var(--fill); border:1px solid var(--border); font-size:13px; color:var(--muted-foreground); min-width:180px">
+        <span class="ms" style="font-size:18px">search</span>Search<span style="margin-left:auto; font-family:var(--font-mono); font-size:11px; border:1px solid var(--border); border-radius:5px; padding:1px 5px">⌘K</span>
+      </div>
+      <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--muted-foreground)">v0.9.2 <span class="ms" style="font-size:16px">expand_more</span></span>
+      <a class="navlink" href="#" style="color:var(--muted-foreground); display:flex; transition:color .15s"><span class="ms" style="font-size:21px">code</span></a>
+    </div>
+  </nav>
+
+  <div style="display:grid; grid-template-columns:272px minmax(0,1fr) 240px; max-width:1480px; margin:0 auto">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="vp-side" style="border-right:1px solid var(--border); height:calc(100vh - 64px); position:sticky; top:64px">
+      <div class="vp-side-inner" style="height:100%; overflow-y:auto; padding:32px 24px 60px">
+        <sc-for list="{{ sidebar }}" as="g" hint-placeholder-count="4">
+          <div style="margin-bottom:28px">
+            <div style="font-size:14px; font-weight:700; color:var(--foreground); margin-bottom:12px">{{ g.title }}</div>
+            <div style="display:flex; flex-direction:column; gap:2px; border-left:1px solid var(--border)">
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                <a href="{{ it.href }}" style="font-size:14px; line-height:1.3; padding:6px 0 6px 16px; margin-left:-1px; border-left:2px solid {{ it.bar }}; color:{{ it.color }}; font-weight:{{ it.weight }}; transition:color .15s">{{ it.label }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </aside>
+
+    <!-- ===== CONTENT ===== -->
+    <main class="vp-content" style="min-width:0; padding:40px 64px 120px">
+      <div style="max-width:720px">
+        <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted-foreground); margin-bottom:18px">
+          <span>Getting Started</span><span class="ms" style="font-size:16px">chevron_right</span><span style="color:var(--foreground)">Installation</span>
+        </div>
+        <h1 id="installation" style="font-size:34px; font-weight:800; letter-spacing:-0.025em; margin:0 0 14px">Installation</h1>
+        <p style="font-size:16px; line-height:1.7; color:var(--muted-foreground); margin:0 0 18px">HearthShelf ships as a single Docker image. It runs as a warm web front-end over your existing <a href="#" style="color:var(--primary); font-weight:500">Audiobookshelf</a> server — point it at your library, give it a config volume, and you're listening in under two minutes.</p>
+
+        <!-- TIP container -->
+        <div style="border-radius:10px; border:1px solid color-mix(in oklab, #7fa86b 40%, transparent); background:color-mix(in oklab, #7fa86b 12%, transparent); padding:14px 18px; margin:22px 0">
+          <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#a7c98c; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px"><span class="ms fill" style="font-size:17px">lightbulb</span>Tip</div>
+          <div style="font-size:14.5px; line-height:1.6; color:var(--foreground)">Already running Audiobookshelf? You don't need to migrate anything. HearthShelf reads the same library and database — it's purely a nicer way in.</div>
+        </div>
+
+        <h2 id="prerequisites" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">Prerequisites</h2>
+        <ul style="margin:0; padding-left:22px; display:flex; flex-direction:column; gap:9px; font-size:15px; line-height:1.6; color:var(--foreground)">
+          <li>Docker Engine 24+ and the Compose plugin</li>
+          <li>A running Audiobookshelf server (local or remote)</li>
+          <li>A folder of audiobooks mounted on the host</li>
+        </ul>
+
+        <h2 id="docker-compose" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">Docker Compose <span style="font-size:13px; font-weight:600; color:var(--primary); border:1px solid color-mix(in oklab, var(--primary) 45%, transparent); border-radius:999px; padding:2px 10px; vertical-align:middle; margin-left:6px">Recommended</span></h2>
+        <p style="font-size:15px; line-height:1.7; color:var(--muted-foreground); margin:0 0 18px">Create a <code style="font-family:var(--font-mono); font-size:0.86em; background:var(--fill); border:1px solid var(--border); border-radius:5px; padding:1px 6px">docker-compose.yml</code> and adjust the audiobooks path to match your host:</p>
+
+        <div style="border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--popover); margin:0 0 22px">
+          <div style="display:flex; align-items:center; padding:9px 16px; border-bottom:1px solid var(--border); background:var(--sidebar)">
+            <span style="font-family:var(--font-mono); font-size:12.5px; color:var(--muted-foreground)">docker-compose.yml</span>
+            <span style="margin-left:auto; display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted-foreground)"><span class="ms" style="font-size:15px">content_copy</span></span>
+          </div>
+          <pre style="margin:0; padding:18px 20px; font-family:var(--font-mono); font-size:13px; line-height:1.7; color:#cdbfae; overflow-x:auto"><span style="color:#8aa6a0">services:</span>
+  <span style="color:#e0a36a">hearthshelf:</span>
+    <span style="color:#8aa6a0">image:</span> ghcr.io/hearthshelf/hearthshelf:latest
+    <span style="color:#8aa6a0">container_name:</span> hearthshelf
+    <span style="color:#8aa6a0">ports:</span>
+      - <span style="color:#9ec48a">"8200:80"</span>
+    <span style="color:#8aa6a0">volumes:</span>
+      - ./config:/config
+      - ./metadata:/metadata
+      - <span style="color:#9ec48a">/path/to/audiobooks</span>:/audiobooks
+    <span style="color:#8aa6a0">environment:</span>
+      - ABS_URL=http://audiobookshelf:13378
+      - TZ=America/New_York
+    <span style="color:#8aa6a0">restart:</span> unless-stopped</pre>
+        </div>
+
+        <p style="font-size:15px; line-height:1.7; color:var(--muted-foreground); margin:0 0 14px">Then bring the stack up:</p>
+        <div style="border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--popover); margin:0 0 22px">
+          <pre style="margin:0; padding:16px 20px; font-family:var(--font-mono); font-size:13.5px; line-height:1.6; color:var(--foreground)"><span style="color:var(--primary)">$</span> docker compose up -d</pre>
+        </div>
+
+        <h2 id="first-run" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">First run</h2>
+        <p style="font-size:15px; line-height:1.7; color:var(--muted-foreground); margin:0 0 16px">Open <code style="font-family:var(--font-mono); font-size:0.86em; background:var(--fill); border:1px solid var(--border); border-radius:5px; padding:1px 6px">http://localhost:8200</code> in your browser. On first launch HearthShelf walks you through connecting your Audiobookshelf server and signing in — your library, progress, and bookmarks sync straight across.</p>
+
+        <h2 id="environment" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">Environment variables</h2>
+        <div style="border:1px solid var(--border); border-radius:10px; overflow:hidden; margin:8px 0 22px">
+          <div style="display:grid; grid-template-columns:1.1fr 0.9fr 1.6fr; background:var(--sidebar); border-bottom:1px solid var(--border); font-size:12.5px; font-weight:600; color:var(--muted-foreground)">
+            <span style="padding:11px 16px">Variable</span><span style="padding:11px 16px">Default</span><span style="padding:11px 16px">Description</span>
+          </div>
+          <sc-for list="{{ env }}" as="e" hint-placeholder-count="5">
+            <div style="display:grid; grid-template-columns:1.1fr 0.9fr 1.6fr; border-bottom:1px solid var(--border); font-size:13.5px; align-items:center">
+              <span style="padding:11px 16px; font-family:var(--font-mono); font-size:12.5px; color:var(--primary)">{{ e.name }}</span>
+              <span style="padding:11px 16px; font-family:var(--font-mono); font-size:12.5px; color:var(--muted-foreground)">{{ e.def }}</span>
+              <span style="padding:11px 16px; color:var(--foreground); line-height:1.5">{{ e.desc }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <h2 id="reverse-proxy" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">Reverse proxy</h2>
+        <div style="border-radius:10px; border:1px solid color-mix(in oklab, #e8b54a 40%, transparent); background:color-mix(in oklab, #e8b54a 12%, transparent); padding:14px 18px; margin:8px 0 22px">
+          <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#e0c06a; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px"><span class="ms fill" style="font-size:17px">warning</span>Warning</div>
+          <div style="font-size:14.5px; line-height:1.6; color:var(--foreground)">HearthShelf streams audio over long-lived connections. If you put it behind Nginx or Caddy, raise <code style="font-family:var(--font-mono); font-size:0.86em; background:rgba(0,0,0,0.25); border-radius:4px; padding:1px 5px">proxy_read_timeout</code> and disable buffering, or chapter seeks may stall.</div>
+        </div>
+
+        <h2 id="updating" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">Updating</h2>
+        <p style="font-size:15px; line-height:1.7; color:var(--muted-foreground); margin:0 0 16px">Pull the latest image and recreate the container. Your config volume is untouched.</p>
+        <div style="border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--popover); margin:0 0 36px">
+          <pre style="margin:0; padding:16px 20px; font-family:var(--font-mono); font-size:13.5px; line-height:1.7; color:var(--foreground)"><span style="color:var(--primary)">$</span> docker compose pull
+<span style="color:var(--primary)">$</span> docker compose up -d</pre>
+        </div>
+
+        <!-- next/prev -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:48px; padding-top:28px; border-top:1px solid var(--border)">
+          <a href="#" style="border:1px solid var(--border); border-radius:12px; padding:16px 18px; transition:border-color .15s">
+            <div style="font-size:12px; color:var(--muted-foreground)">Previous</div>
+            <div style="font-size:15px; font-weight:600; color:var(--primary); margin-top:4px">Why HearthShelf</div>
+          </a>
+          <a href="#" style="border:1px solid var(--border); border-radius:12px; padding:16px 18px; text-align:right; transition:border-color .15s">
+            <div style="font-size:12px; color:var(--muted-foreground)">Next</div>
+            <div style="font-size:15px; font-weight:600; color:var(--primary); margin-top:4px">Connecting your server</div>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== OUTLINE ===== -->
+    <aside class="vp-out" style="height:calc(100vh - 64px); position:sticky; top:64px; padding:40px 24px">
+      <div style="font-size:13px; font-weight:700; color:var(--foreground); margin-bottom:14px">On this page</div>
+      <div style="display:flex; flex-direction:column; gap:1px; border-left:1px solid var(--border)">
+        <sc-for list="{{ outline }}" as="o" hint-placeholder-count="6">
+          <a href="{{ o.href }}" style="font-size:13px; line-height:1.4; padding:5px 0 5px 14px; margin-left:-1px; border-left:2px solid {{ o.bar }}; color:{{ o.color }}; transition:color .15s">{{ o.label }}</a>
+        </sc-for>
+      </div>
+    </aside>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const navItem = (label, active) => ({
+      label,
+      href: "#",
+      color: active ? "var(--primary)" : "var(--muted-foreground)",
+      weight: active ? 600 : 400,
+      bar: active ? "var(--primary)" : "transparent",
+    });
+    const sidebar = [
+      { title: "Introduction", items: [navItem("What is HearthShelf"), navItem("Why HearthShelf"), navItem("Screenshots")] },
+      { title: "Getting Started", items: [navItem("Installation", true), navItem("Configuration"), navItem("Connecting your server")] },
+      { title: "Guides", items: [navItem("Reverse proxy"), navItem("Updating"), navItem("Backups"), navItem("Multiple users")] },
+      { title: "Reference", items: [navItem("Environment variables"), navItem("Ports & volumes"), navItem("Keyboard shortcuts")] },
+    ];
+
+    const out = (label, href, active) => ({
+      label, href,
+      color: active ? "var(--primary)" : "var(--muted-foreground)",
+      bar: active ? "var(--primary)" : "transparent",
+    });
+    const outline = [
+      out("Prerequisites", "#prerequisites"),
+      out("Docker Compose", "#docker-compose", true),
+      out("First run", "#first-run"),
+      out("Environment variables", "#environment"),
+      out("Reverse proxy", "#reverse-proxy"),
+      out("Updating", "#updating"),
+    ];
+
+    const env = [
+      { name: "ABS_URL", def: "—", desc: "URL of your Audiobookshelf server" },
+      { name: "TZ", def: "UTC", desc: "Container timezone for stats & schedules" },
+      { name: "HS_PORT", def: "80", desc: "Internal HTTP port the app listens on" },
+      { name: "CONFIG_DIR", def: "/config", desc: "Where settings & sessions are stored" },
+      { name: "HS_LOG_LEVEL", def: "info", desc: "Logging verbosity (debug · info · warn)" },
+    ];
+
+    return { sidebar, outline, env };
+  }
+}
+</script>
+</body>
+</html>
