@@ -14,3 +14,15 @@ VITE_CLERK_SIGN_IN_URL = "/sign-in"
 VITE_CLERK_SIGN_UP_URL = "/sign-up"
 VITE_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL = "/"
 VITE_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL = "/"
+
+# D1 database backing the changelog API (functions/api). After creating it with
+#   wrangler d1 create hearthshelf-changelog
+# paste the returned database_id below, then apply migrations with
+#   wrangler d1 migrations apply hearthshelf-changelog --remote
+# The CI upload secret CHANGELOG_API_KEY is set out-of-band (dashboard or
+#   wrangler pages secret put CHANGELOG_API_KEY) and must never be committed.
+[[d1_databases]]
+binding = "DB"
+database_name = "hearthshelf-changelog"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"

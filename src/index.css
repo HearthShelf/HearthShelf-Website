@@ -24,6 +24,8 @@
   --border: #383530;
   --input: #1b1a18;
   --ring: #e0654a;
+  --destructive: #dc2926;
+  --destructive-foreground: #fffaf6;
   --radius: 0.625rem;
 
   /* Brand hex tokens used directly by the ported landing markup */
@@ -66,6 +68,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
 
   --color-hearth: var(--brand-hearth);
   --color-shelf: var(--wordmark-shelf);
@@ -109,4 +113,18 @@ a {
 }
 .af-mirror {
   transform: scaleX(-1);
+}
+
+/* Changelog deep-link highlight: pulses a card when navigated to via
+   ?product=&version= so the target release is easy to spot. */
+.changelog-highlight {
+  animation: changelog-pulse 2.4s ease-out;
+}
+@keyframes changelog-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(224, 101, 74, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(224, 101, 74, 0);
+  }
 }

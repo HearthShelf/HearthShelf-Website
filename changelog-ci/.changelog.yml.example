@@ -1,0 +1,6 @@
+# Copy this to the ROOT of each product repo as `.changelog.yml`.
+# The product name is what shows on the website's changelog card and is the
+# unique key per release, so keep it stable (e.g. "HearthShelf", "HearthShelf-WebApp").
+product-name: "HearthShelf"
+product-description: "a self-hosted ebook and audiobook library"
+download-url: "https://hearthshelf.com/download"

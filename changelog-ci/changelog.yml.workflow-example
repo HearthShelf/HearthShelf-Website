@@ -1,0 +1,42 @@
+# Example GitHub Actions steps for a PRODUCT repo (HearthShelf, HearthShelf-WebApp).
+# Copy these steps into that repo's release workflow. They run on every push so
+# CHANGELOG.md stays current, and only upload to the website on tag pushes.
+#
+# Repo secrets required:
+#   GEMINI_API_KEY     - optional, enables AI summaries
+#   CHANGELOG_API_KEY  - must match the website's CHANGELOG_API_KEY binding
+
+name: Changelog
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history + tags needed for ranges
+
+      - name: Generate changelog
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          chmod +x .github/scripts/generate-changelog.sh
+          .github/scripts/generate-changelog.sh CHANGELOG.md
+
+      - name: Add changelog to run summary
+        run: cat CHANGELOG.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload changelog to website
+        if: success() && startsWith(github.ref, 'refs/tags/')
+        env:
+          CHANGELOG_API_KEY: ${{ secrets.CHANGELOG_API_KEY }}
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          chmod +x .github/scripts/upload-changelog.sh
+          .github/scripts/upload-changelog.sh CHANGELOG.md

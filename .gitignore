@@ -4,6 +4,9 @@ dist/
 *.local
 .env
 .env.*
+.dev.vars
+.dev.vars.*
+.wrangler/
 .DS_Store
 
 # Claude Design handoff bundles (prototypes + design system), not site source
