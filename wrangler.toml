@@ -24,5 +24,5 @@ VITE_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL = "/"
 [[d1_databases]]
 binding = "DB"
 database_name = "hearthshelf-changelog"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "e3e0dcc6-5b97-4c52-937e-2ca4aa4880eb"
 migrations_dir = "migrations"
