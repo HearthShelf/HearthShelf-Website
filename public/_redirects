@@ -1,4 +1,0 @@
-# SPA fallback: serve index.html for any client-side route. Pages Functions
-# (/api/*) and real static assets take precedence over this rule, so they are
-# unaffected. Replaces two per-route rules CF rejected as redirect loops.
-/* /index.html 200
