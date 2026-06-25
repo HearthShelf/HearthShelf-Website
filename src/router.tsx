@@ -4,12 +4,21 @@ import SignInPage from '@/pages/SignInPage'
 import SignUpPage from '@/pages/SignUpPage'
 import ChangelogPage from '@/pages/ChangelogPage'
 import ErrorPage from '@/pages/ErrorPage'
+import { SiteLayout } from '@/components/landing/SiteLayout'
 
 export const router = createBrowserRouter([
   // errorElement catches thrown render/loader errors on each route; the trailing
   // splat catches unmatched URLs as a 404. Both render the branded ErrorPage.
   { path: '/', element: <Home />, errorElement: <ErrorPage /> },
-  { path: '/changelog', element: <ChangelogPage />, errorElement: <ErrorPage /> },
+  {
+    path: '/changelog',
+    element: (
+      <SiteLayout>
+        <ChangelogPage />
+      </SiteLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
   // Splats so Clerk's path-based routing owns the sub-steps (verify, SSO, etc.)
   { path: '/sign-in/*', element: <SignInPage />, errorElement: <ErrorPage /> },
   { path: '/sign-up/*', element: <SignUpPage />, errorElement: <ErrorPage /> },

@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import { AppFrame } from './AppFrame'
+import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
 import { Button } from '@/components/ui/button'
-import { APP_URL, DOCS_URL, GITHUB_URL, DISCORD_URL, clerkEnabled } from '@/lib/utils'
+import { DOCS_URL, GITHUB_URL } from '@/lib/utils'
 import './home.css'
 
 const accent = '#e0654a'
@@ -51,14 +51,6 @@ const composeText = `services:
       - TZ=America/New_York
     restart: unless-stopped`
 
-function GitHubIcon() {
-  return (
-    <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
-    </svg>
-  )
-}
-
 export function Home() {
   const [copied, setCopied] = useState(false)
 
@@ -75,52 +67,7 @@ export function Home() {
       style={{ '--primary': accent, '--ring': accent, '--glow-accent': accent } as React.CSSProperties}
     >
       {/* NAV */}
-      <nav className="hs-nav">
-        <a href="#top" className="hs-nav-logo">
-          <img className="hs-logo-icon" src="/flame.png" alt="" />
-          <span className="hs-wordmark">
-            <span className="hs-hearth">Hearth</span>
-            <span className="hs-shelf">Shelf</span>
-          </span>
-        </a>
-        <div className="hs-nav-links">
-          <a className="navlink" href="#features">Features</a>
-          <a className="navlink" href="#compare">Compare</a>
-          <a className="navlink" href="#gallery">Screenshots</a>
-          <a className="navlink" href={DOCS_URL}>Docs</a>
-        </div>
-        <div className="hs-nav-right">
-          <a
-            className="navlink hs-github-star"
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener"
-            aria-label="HearthShelf on GitHub"
-          >
-            <GitHubIcon />
-            GitHub
-          </a>
-          {clerkEnabled ? (
-            <>
-              <SignedOut>
-                <Link className="navlink hs-login-link" to="/sign-in">Log in</Link>
-                <Link className="hs-btn hs-btn-primary hs-btn-sm" to="/sign-up">Sign up</Link>
-              </SignedOut>
-              <SignedIn>
-                <a className="hs-btn hs-btn-primary hs-btn-sm" href={APP_URL}>
-                  <span className="ms fill">rocket_launch</span>Open HearthShelf
-                </a>
-                <UserButton afterSignOutUrl="/" />
-              </SignedIn>
-            </>
-          ) : (
-            <>
-              <a className="navlink hs-login-link" href={`${APP_URL}/sign-in`}>Log in</a>
-              <a className="hs-btn hs-btn-primary hs-btn-sm" href={`${APP_URL}/sign-up`}>Sign up</a>
-            </>
-          )}
-        </div>
-      </nav>
+      <SiteHeader />
 
       <div id="top" />
 
@@ -404,51 +351,7 @@ export function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="hs-footer">
-        <div className="hs-footer-inner">
-          <div className="hs-footer-grid">
-            <div className="hs-footer-brand">
-              <a href="#top" className="hs-nav-logo">
-                <img className="hs-logo-icon" src="/flame.png" alt="" />
-                <span className="hs-wordmark">
-                  <span className="hs-hearth">Hearth</span>
-                  <span className="hs-shelf">Shelf</span>
-                </span>
-              </a>
-              <p className="hs-footer-tagline">
-                A calmer, self-hosted web client for your audiobook and ebook library.
-              </p>
-              <div className="hs-footer-quote">"the only light the glow of the story itself."</div>
-            </div>
-            <div className="hs-footer-col">
-              <div className="hs-footer-col-head">Product</div>
-              <a className="navlink" href="#features">Features</a>
-              <a className="navlink" href="#compare">Compare</a>
-              <a className="navlink" href="#gallery">Screenshots</a>
-              <a className="navlink" href="#quickstart">Self-host</a>
-            </div>
-            <div className="hs-footer-col">
-              <div className="hs-footer-col-head">Resources</div>
-              <a className="navlink" href={`${DOCS_URL}/guide/what-is-hearthshelf`}>Documentation</a>
-              <a className="navlink" href={`${DOCS_URL}/setup/docker`}>Installation</a>
-              <a className="navlink" href={GITHUB_URL} target="_blank">GitHub</a>
-              <a className="navlink" href={`${DOCS_URL}/`}>Changelog</a>
-            </div>
-            <div className="hs-footer-col">
-              <div className="hs-footer-col-head">Community</div>
-              <a className="navlink" href={DISCORD_URL} target="_blank">Discord</a>
-            </div>
-          </div>
-          <div className="hs-footer-bottom">
-            <span>© 2026 HearthShelf · AGPL v3 · Not affiliated with Audiobookshelf</span>
-            <span className="hs-footer-ver">v0.9.2</span>
-          </div>
-          <div className="hs-footer-legal">
-            HearthShelf is a user interface. It does not host, source, or distribute content. You are responsible for
-            the legality of the content you add and the backends you connect.
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
