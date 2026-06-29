@@ -38,9 +38,10 @@ courts treat as inducement. The website is where that risk is highest.
    store. Outdated "pure static, stores nothing" copy should be corrected when
    touched.
 
-6. **Don't reference the hosted web app's internals.** The hosted
-   `app.hearthshelf.com` product is closed-source; the public site may mention
-   it as a service but must not document proprietary internals.
+6. **Keep the marketing site high-level.** The hosted `app.hearthshelf.com`
+   product is open source (AGPLv3) like the rest of the ecosystem; the public
+   site may mention it as a service but shouldn't turn into developer docs -
+   those live in `HearthShelf-Docs`.
 
 ## License
 
@@ -51,3 +52,18 @@ on the site should say **AGPL v3**, not GPL v3.
 
 If a piece of copy could be read as "use HearthShelf to get books for free,"
 rewrite it or flag it to the maintainer before publishing.
+
+## Related repositories
+
+HearthShelf spans several repos (all AGPLv3 unless noted):
+
+| Repo | What it is |
+| --- | --- |
+| **HearthShelf** | Self-hosted SPA + Node backend (`server/`) + Docker |
+| **HearthShelf-WebApp** | Hosted front door (`app.hearthshelf.com`): SPA + control-plane Worker |
+| **HearthShelf-Mobile** | Mobile app (Expo/React Native); Android Auto via a native Media3 `MediaLibraryService` |
+| **HearthShelf-Core** | `@hearthshelf/core`: shared ABS types + pure logic, consumed as a git submodule |
+| **HearthShelf-Website** | Marketing site (`hearthshelf.com`) |
+| **HearthShelf-Docs** | Docs site (`docs.hearthshelf.com`) |
+| **HearthShelf-Direct-Infra** | VPS-side infra for the connect domain (automatic HTTPS for self-hosters) |
+| **HearthShelf-DesignSystem** | Logos, favicon, shared design assets |
