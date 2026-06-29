@@ -55,7 +55,8 @@ rewrite it or flag it to the maintainer before publishing.
 
 ## Related repositories
 
-HearthShelf spans several repos (all AGPLv3 unless noted):
+HearthShelf spans several repos. The servers are AGPLv3; the mobile app and the
+shared `@hearthshelf/core` library are MIT.
 
 | Repo | What it is |
 | --- | --- |
