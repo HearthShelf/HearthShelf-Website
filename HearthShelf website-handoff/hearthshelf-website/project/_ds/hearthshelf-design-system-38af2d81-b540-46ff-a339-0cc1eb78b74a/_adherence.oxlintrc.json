@@ -1,8 +1,5 @@
 {
-  "plugins": [
-    "react",
-    "import"
-  ],
+  "plugins": ["react", "import"],
   "rules": {
     "react/forbid-elements": [
       "warn",
@@ -15,11 +12,7 @@
       {
         "patterns": [
           {
-            "group": [
-              "app/**",
-              "components/core/**",
-              "components/media/**"
-            ],
+            "group": ["app/**", "components/core/**", "components/media/**"],
             "message": "Import design-system components from 'index.js', not component internals."
           }
         ]
@@ -87,9 +80,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/index.js"
-      ],
+      "files": ["**/index.js"],
       "rules": {
         "no-restricted-imports": "off"
       }
@@ -276,8 +267,6 @@
       "--tracking-wordmark": "font",
       "--tracking-title": "font"
     },
-    "fontFamilies": [
-      "Libre Baskerville"
-    ]
+    "fontFamilies": ["Libre Baskerville"]
   }
 }

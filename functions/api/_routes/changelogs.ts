@@ -1,11 +1,7 @@
 import { Hono } from 'hono'
 import { nanoid } from 'nanoid'
 import type { AppEnv } from '../_shared/types'
-import {
-  cleanChangelog,
-  buildChangelogWhere,
-  hasApiKey,
-} from '../_shared/helpers'
+import { cleanChangelog, buildChangelogWhere, hasApiKey } from '../_shared/helpers'
 
 const app = new Hono<AppEnv>()
 
@@ -24,8 +20,7 @@ app.post('/', async (c) => {
   if (!body.product || !body.version || !body.released_at || !body.changelog) {
     return c.json(
       {
-        error:
-          'Missing required fields: product, version, released_at, changelog',
+        error: 'Missing required fields: product, version, released_at, changelog',
       },
       400,
     )
@@ -42,14 +37,7 @@ app.post('/', async (c) => {
        released_at = excluded.released_at,
        download_url = excluded.download_url`,
   )
-    .bind(
-      id,
-      body.product,
-      body.version,
-      body.released_at,
-      changelog,
-      body.download_url || null,
-    )
+    .bind(id, body.product, body.version, body.released_at, changelog, body.download_url || null)
     .run()
 
   return c.json({ id }, 201)
@@ -58,10 +46,7 @@ app.post('/', async (c) => {
 // GET /changelogs - Paginated entries
 app.get('/', async (c) => {
   const url = new URL(c.req.url)
-  const limit = Math.min(
-    100,
-    Math.max(1, parseInt(url.searchParams.get('limit') ?? '25', 10)),
-  )
+  const limit = Math.min(100, Math.max(1, parseInt(url.searchParams.get('limit') ?? '25', 10)))
   const offset = Math.max(0, parseInt(url.searchParams.get('offset') ?? '0', 10))
 
   // Absent channel defaults to "release" to match the UI's default tab, so the
@@ -106,9 +91,7 @@ app.get('/filters', async (c) => {
       "version NOT LIKE '%-Beta%' AND version NOT LIKE '%-Alpha%' AND version NOT LIKE '%-RC%'",
     )
   } else if (channel === 'beta') {
-    conditions.push(
-      "(version LIKE '%-Beta%' OR version LIKE '%-Alpha%' OR version LIKE '%-RC%')",
-    )
+    conditions.push("(version LIKE '%-Beta%' OR version LIKE '%-Alpha%' OR version LIKE '%-RC%')")
   }
   const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
 
@@ -120,9 +103,9 @@ app.get('/filters', async (c) => {
        FROM changelogs ${where}
        ORDER BY released_at DESC`,
     ).all(),
-    c.env.DB.prepare(
-      `SELECT COUNT(*) as total FROM changelogs ${where}`,
-    ).first<{ total: number }>(),
+    c.env.DB.prepare(`SELECT COUNT(*) as total FROM changelogs ${where}`).first<{
+      total: number
+    }>(),
   ])
 
   const yearMap: Record<

@@ -23,12 +23,16 @@
 
 .hs-home .ms {
   font-family: 'Material Symbols Rounded';
-  font-variation-settings: 'FILL' 0, 'wght' 400;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400;
   line-height: 1;
   user-select: none;
 }
 .hs-home .ms.fill {
-  font-variation-settings: 'FILL' 1, 'wght' 400;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400;
 }
 
 .hs-home a {
@@ -175,7 +179,11 @@
   inset: 0 0 auto 0;
   height: 760px;
   pointer-events: none;
-  background: radial-gradient(80% 60% at 50% -8%, color-mix(in oklab, var(--primary) 54%, transparent) 0%, transparent 60%);
+  background: radial-gradient(
+    80% 60% at 50% -8%,
+    color-mix(in oklab, var(--primary) 54%, transparent) 0%,
+    transparent 60%
+  );
 }
 
 .hs-hero-inner {
@@ -637,7 +645,11 @@
 .hs-cta-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(70% 120% at 50% -20%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 60%);
+  background: radial-gradient(
+    70% 120% at 50% -20%,
+    color-mix(in oklab, var(--primary) 28%, transparent),
+    transparent 60%
+  );
   pointer-events: none;
 }
 

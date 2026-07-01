@@ -42,9 +42,7 @@ export function buildChangelogWhere(params: {
       "version NOT LIKE '%-Beta%' AND version NOT LIKE '%-Alpha%' AND version NOT LIKE '%-RC%'",
     )
   } else if (params.channel === 'beta') {
-    conditions.push(
-      "(version LIKE '%-Beta%' OR version LIKE '%-Alpha%' OR version LIKE '%-RC%')",
-    )
+    conditions.push("(version LIKE '%-Beta%' OR version LIKE '%-Alpha%' OR version LIKE '%-RC%')")
   }
 
   return {
@@ -60,8 +58,5 @@ export function buildChangelogWhere(params: {
  */
 export function hasApiKey(c: Context<AppEnv>): boolean {
   const authHeader = c.req.header('Authorization')
-  return (
-    !!authHeader?.startsWith('Bearer ') &&
-    authHeader.slice(7) === c.env.CHANGELOG_API_KEY
-  )
+  return !!authHeader?.startsWith('Bearer ') && authHeader.slice(7) === c.env.CHANGELOG_API_KEY
 }

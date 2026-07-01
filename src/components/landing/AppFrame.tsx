@@ -71,9 +71,7 @@ const readerTheme = 'sepia'
 const user = { name: 'avery', host: 'books.home' }
 
 type NavItem =
-  | { id: string; icon: string; label: string; badge?: string }
-  | { label2: string }
-  | { sep: true }
+  { id: string; icon: string; label: string; badge?: string } | { label2: string } | { sep: true }
 
 const nav: NavItem[] = [
   { id: 'home', icon: 'home', label: 'Home' },
@@ -100,7 +98,13 @@ const libTabs = [
 ]
 
 const topBooks = [
-  { title: 'The Tide Between Us', sub: 'Marian Holt · Saoirse Quinn', h: 42, rank: 1, cv: '#3f7d8c' },
+  {
+    title: 'The Tide Between Us',
+    sub: 'Marian Holt · Saoirse Quinn',
+    h: 42,
+    rank: 1,
+    cv: '#3f7d8c',
+  },
   { title: 'Notes on Falling', sub: 'Per Lindqvist · Greta Holm', h: 27, rank: 2, cv: '#7fa86b' },
   { title: 'Redshift Country', sub: 'Howard Mbeki', h: 23, rank: 3, cv: '#cc5b4a' },
   { title: 'Wavelength', sub: 'Dr. Nadia Osei', h: 19, rank: 4, cv: '#4db6ac' },
@@ -133,7 +137,12 @@ interface MenuState {
   i: number
 }
 
-export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', live = false }: AppFrameProps) {
+export function AppFrame({
+  screen = 'library',
+  scale = 0.6,
+  accent = '#e0654a',
+  live = false,
+}: AppFrameProps) {
   const scaledW = Math.round(VW * scale)
   const scaledH = Math.round(VH * scale)
 
@@ -226,7 +235,12 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
         </div>
         <nav className="af-nav">
           {nav.map((item, i) => {
-            if ('sep' in item) return <span key={`sep${i}`} className="af-nav-item"><span className="af-nav-sep" /></span>
+            if ('sep' in item)
+              return (
+                <span key={`sep${i}`} className="af-nav-item">
+                  <span className="af-nav-sep" />
+                </span>
+              )
             if ('label2' in item)
               return (
                 <span key={item.label2} className="af-nav-item">
@@ -235,10 +249,16 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
               )
             const active = item.id === screen
             return (
-              <button key={item.id} className={`af-nav-item${active ? ' active' : ''}`} type="button">
+              <button
+                key={item.id}
+                className={`af-nav-item${active ? ' active' : ''}`}
+                type="button"
+              >
                 <span className={`ms${active ? ' fill' : ''}`}>{item.icon}</span>
                 <span className="af-ni-text">{item.label}</span>
-                {item.badge && <span className={`af-ni-badge${active ? ' active' : ''}`}>{item.badge}</span>}
+                {item.badge && (
+                  <span className={`af-ni-badge${active ? ' active' : ''}`}>{item.badge}</span>
+                )}
               </button>
             )
           })}
@@ -274,7 +294,12 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
       <div className="af-viewport" style={{ width: scaledW, height: scaledH }}>
         <div
           className="af-inner"
-          style={{ width: VW, height: VH, transform: `scale(${scale})`, transformOrigin: 'top left' }}
+          style={{
+            width: VW,
+            height: VH,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+          }}
         >
           {renderSidebar()}
 
@@ -313,10 +338,18 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
                 <div className="af-book-grid">
                   {books.map((b, i) => (
                     <div key={b.title} className="af-book" onContextMenu={(e) => openMenu(e, i)}>
-                      <div className="af-cover" style={{ background: b.cv }} data-finished={b.finished}>
+                      <div
+                        className="af-cover"
+                        style={{ background: b.cv }}
+                        data-finished={b.finished}
+                      >
                         {b.ebook && (
-                          <div className={`af-cv-fmt${b.ebook && !b.audio ? ' af-cv-fmt-solo' : ''}`}>
-                            <span className="ms fill">{b.ebook && !b.audio ? 'menu_book' : 'auto_stories'}</span>
+                          <div
+                            className={`af-cv-fmt${b.ebook && !b.audio ? ' af-cv-fmt-solo' : ''}`}
+                          >
+                            <span className="ms fill">
+                              {b.ebook && !b.audio ? 'menu_book' : 'auto_stories'}
+                            </span>
                             {b.ebook && !b.audio && <span>Read</span>}
                           </div>
                         )}
@@ -329,10 +362,18 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
                           <span className="af-ha-btn" title="Add to list">
                             <span className="ms">playlist_add</span>
                           </span>
-                          <span className="af-ha-play" title={b.ebook && !b.audio ? 'Read' : 'Play'}>
-                            <span className="ms fill">{b.ebook && !b.audio ? 'menu_book' : 'play_arrow'}</span>
+                          <span
+                            className="af-ha-play"
+                            title={b.ebook && !b.audio ? 'Read' : 'Play'}
+                          >
+                            <span className="ms fill">
+                              {b.ebook && !b.audio ? 'menu_book' : 'play_arrow'}
+                            </span>
                           </span>
-                          <span className="af-ha-btn" title={b.finished ? 'Mark not finished' : 'Mark finished'}>
+                          <span
+                            className="af-ha-btn"
+                            title={b.finished ? 'Mark not finished' : 'Mark finished'}
+                          >
                             <span className={`ms${b.finished ? ' fill' : ''}`}>check</span>
                           </span>
                         </div>
@@ -391,10 +432,18 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
                 </div>
                 <div className="af-pb-right">
                   <span className="af-pill af-pb-speed">{speed}×</span>
-                  <span className="af-icon-btn"><span className="ms">list</span></span>
-                  <span className="af-icon-btn"><span className="ms">bookmark_border</span></span>
-                  <span className="af-icon-btn"><span className="ms">bedtime</span></span>
-                  <span className="af-icon-btn"><span className="ms">volume_up</span></span>
+                  <span className="af-icon-btn">
+                    <span className="ms">list</span>
+                  </span>
+                  <span className="af-icon-btn">
+                    <span className="ms">bookmark_border</span>
+                  </span>
+                  <span className="af-icon-btn">
+                    <span className="ms">bedtime</span>
+                  </span>
+                  <span className="af-icon-btn">
+                    <span className="ms">volume_up</span>
+                  </span>
                 </div>
               </div>
 
@@ -532,12 +581,25 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
                 </div>
 
                 <div className="af-action-grid">
-                  <span className="af-pill"><span className="ms">list</span>Chapters</span>
-                  <span className="af-pill"><span className="ms">info</span>Book details</span>
-                  <span className="af-pill"><span className="ms">speed</span>{speed}×</span>
-                  <span className="af-pill"><span className="ms">bedtime</span>Sleep timer</span>
-                  <span className="af-pill"><span className="ms">bookmark_add</span>Bookmark</span>
-                  <span className="af-pill"><span className="ms">history</span>Recent listens</span>
+                  <span className="af-pill">
+                    <span className="ms">list</span>Chapters
+                  </span>
+                  <span className="af-pill">
+                    <span className="ms">info</span>Book details
+                  </span>
+                  <span className="af-pill">
+                    <span className="ms">speed</span>
+                    {speed}×
+                  </span>
+                  <span className="af-pill">
+                    <span className="ms">bedtime</span>Sleep timer
+                  </span>
+                  <span className="af-pill">
+                    <span className="ms">bookmark_add</span>Bookmark
+                  </span>
+                  <span className="af-pill">
+                    <span className="ms">history</span>Recent listens
+                  </span>
                 </div>
               </div>
             </div>
@@ -585,13 +647,14 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
                     <h2 className="af-reader-chapter-title">Chapter 27 · What the Tide Keeps</h2>
                     <div className="af-reader-rule" />
                     <p className="af-reader-para">
-                      Nothing in the house had been moved and that was the worst of it; the chair still angled toward
-                      the window, the book still open on the page, as though the room were waiting for a return that
-                      the rest of them had stopped expecting.
+                      Nothing in the house had been moved and that was the worst of it; the chair
+                      still angled toward the window, the book still open on the page, as though the
+                      room were waiting for a return that the rest of them had stopped expecting.
                     </p>
                     <p className="af-reader-para">
-                      There was a word in the old dialect for the light on water at dusk - not the light itself but the
-                      way it made you feel that something had just left. She had never needed it before now.
+                      There was a word in the old dialect for the light on water at dusk - not the
+                      light itself but the way it made you feel that something had just left. She
+                      had never needed it before now.
                     </p>
                   </div>
                 </div>
@@ -640,17 +703,23 @@ export function AppFrame({ screen = 'library', scale = 0.6, accent = '#e0654a', 
 
                 <div className="af-stat-tiles">
                   <div className="af-tile">
-                    <div className="af-t-ico"><span className="ms">menu_book</span></div>
+                    <div className="af-t-ico">
+                      <span className="ms">menu_book</span>
+                    </div>
                     <div className="af-t-num">48</div>
                     <div className="af-t-cap">Books listened</div>
                   </div>
                   <div className="af-tile">
-                    <div className="af-t-ico"><span className="ms">calendar_today</span></div>
+                    <div className="af-t-ico">
+                      <span className="ms">calendar_today</span>
+                    </div>
                     <div className="af-t-num">156</div>
                     <div className="af-t-cap">Active days</div>
                   </div>
                   <div className="af-tile">
-                    <div className="af-t-ico af-t-ico-hot"><span className="ms fill">local_fire_department</span></div>
+                    <div className="af-t-ico af-t-ico-hot">
+                      <span className="ms fill">local_fire_department</span>
+                    </div>
                     <div className="af-t-num">42m</div>
                     <div className="af-t-cap">Today</div>
                   </div>

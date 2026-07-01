@@ -1,215 +1,739 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=swap" />
-  <link rel="stylesheet" href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/colors_and_type.css" />
-  <link rel="stylesheet" href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/styles.css" />
-  <style>
-    body { margin: 0; }
-    .ms { font-family: 'Material Symbols Rounded'; font-variation-settings: 'FILL' 0, 'wght' 400; line-height: 1; }
-    .ms.fill { font-variation-settings: 'FILL' 1, 'wght' 400; }
-    a { color: inherit; text-decoration: none; }
-    .vp-side a:hover { color: var(--foreground) !important; }
-    .vp-out a:hover { color: var(--primary) !important; }
-    .vp-nav a.navlink:hover { color: var(--foreground) !important; }
-    .vp-card:hover { border-color: color-mix(in oklab, var(--primary) 50%, var(--border)) !important; }
-    .vp-content::-webkit-scrollbar, .vp-side-inner::-webkit-scrollbar { width: 10px; }
-    .vp-content::-webkit-scrollbar-thumb, .vp-side-inner::-webkit-scrollbar-thumb { background: var(--fill-strong); border-radius: 99px; border: 3px solid transparent; background-clip: padding-box; }
-    html { scroll-behavior: smooth; }
-  </style>
-</helmet>
-<div class="dark" style="background:var(--background); color:var(--foreground); font-family:var(--font-sans); min-height:100vh; --primary:#e0654a; --ring:#e0654a">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/colors_and_type.css"
+        />
+        <link
+          rel="stylesheet"
+          href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/styles.css"
+        />
+        <style>
+          body {
+            margin: 0;
+          }
+          .ms {
+            font-family: 'Material Symbols Rounded';
+            font-variation-settings:
+              'FILL' 0,
+              'wght' 400;
+            line-height: 1;
+          }
+          .ms.fill {
+            font-variation-settings:
+              'FILL' 1,
+              'wght' 400;
+          }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+          .vp-side a:hover {
+            color: var(--foreground) !important;
+          }
+          .vp-out a:hover {
+            color: var(--primary) !important;
+          }
+          .vp-nav a.navlink:hover {
+            color: var(--foreground) !important;
+          }
+          .vp-card:hover {
+            border-color: color-mix(in oklab, var(--primary) 50%, var(--border)) !important;
+          }
+          .vp-content::-webkit-scrollbar,
+          .vp-side-inner::-webkit-scrollbar {
+            width: 10px;
+          }
+          .vp-content::-webkit-scrollbar-thumb,
+          .vp-side-inner::-webkit-scrollbar-thumb {
+            background: var(--fill-strong);
+            border-radius: 99px;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+          }
+          html {
+            scroll-behavior: smooth;
+          }
+        </style>
+      </helmet>
+      <div
+        class="dark"
+        style="
+          background: var(--background);
+          color: var(--foreground);
+          font-family: var(--font-sans);
+          min-height: 100vh;
+          --primary: #e0654a;
+          --ring: #e0654a;
+        "
+      >
+        <!-- ===== TOP NAV ===== -->
+        <nav
+          class="vp-nav"
+          style="
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 28px;
+            background: color-mix(in oklab, var(--background) 80%, transparent);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+          "
+        >
+          <a
+            href="HearthShelf.dc.html"
+            style="display: flex; align-items: center; gap: 10px; width: 244px"
+          >
+            <span
+              class="ms fill"
+              style="
+                font-size: 22px;
+                color: var(--brand-hearth);
+                filter: drop-shadow(
+                  0 0 9px color-mix(in oklab, var(--brand-hearth) 55%, transparent)
+                );
+              "
+              >local_fire_department</span
+            >
+            <span style="font-size: 19px; font-family: var(--font-brand)"
+              ><span style="font-weight: 400; color: var(--brand-hearth)">Hearth</span
+              ><span style="font-weight: 700; color: var(--wordmark-shelf)">Shelf</span></span
+            >
+            <span
+              style="
+                font-family: var(--font-mono);
+                font-size: 11px;
+                color: var(--muted-foreground);
+                border: 1px solid var(--border);
+                border-radius: 5px;
+                padding: 1px 5px;
+                margin-left: 2px;
+              "
+              >docs</span
+            >
+          </a>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 26px;
+              font-size: 14px;
+              font-weight: 500;
+              color: var(--muted-foreground);
+            "
+          >
+            <a
+              class="navlink"
+              href="DocsOverview.dc.html"
+              style="color: var(--foreground); transition: color 0.15s"
+              >Guide</a
+            >
+            <a class="navlink" href="Docs.dc.html#environment" style="transition: color 0.15s"
+              >Reference</a
+            >
+            <a class="navlink" href="#" style="transition: color 0.15s">Changelog</a>
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 16px">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                height: 34px;
+                padding: 0 12px;
+                border-radius: 8px;
+                background: var(--fill);
+                border: 1px solid var(--border);
+                font-size: 13px;
+                color: var(--muted-foreground);
+                min-width: 180px;
+              "
+            >
+              <span class="ms" style="font-size: 18px">search</span>Search<span
+                style="
+                  margin-left: auto;
+                  font-family: var(--font-mono);
+                  font-size: 11px;
+                  border: 1px solid var(--border);
+                  border-radius: 5px;
+                  padding: 1px 5px;
+                "
+                >⌘K</span
+              >
+            </div>
+            <span
+              style="
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: 13px;
+                color: var(--muted-foreground);
+              "
+              >v0.9.2 <span class="ms" style="font-size: 16px">expand_more</span></span
+            >
+            <a
+              class="navlink"
+              href="#"
+              style="color: var(--muted-foreground); display: flex; transition: color 0.15s"
+              ><span class="ms" style="font-size: 21px">code</span></a
+            >
+          </div>
+        </nav>
 
-  <!-- ===== TOP NAV ===== -->
-  <nav class="vp-nav" style="position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; padding:0 28px; background:color-mix(in oklab, var(--background) 80%, transparent); backdrop-filter:blur(18px); border-bottom:1px solid var(--border)">
-    <a href="HearthShelf.dc.html" style="display:flex; align-items:center; gap:10px; width:244px">
-      <span class="ms fill" style="font-size:22px; color:var(--brand-hearth); filter:drop-shadow(0 0 9px color-mix(in oklab, var(--brand-hearth) 55%, transparent))">local_fire_department</span>
-      <span style="font-size:19px; font-family:var(--font-brand)"><span style="font-weight:400; color:var(--brand-hearth)">Hearth</span><span style="font-weight:700; color:var(--wordmark-shelf)">Shelf</span></span>
-      <span style="font-family:var(--font-mono); font-size:11px; color:var(--muted-foreground); border:1px solid var(--border); border-radius:5px; padding:1px 5px; margin-left:2px">docs</span>
-    </a>
-    <div style="display:flex; align-items:center; gap:26px; font-size:14px; font-weight:500; color:var(--muted-foreground)">
-      <a class="navlink" href="DocsOverview.dc.html" style="color:var(--foreground); transition:color .15s">Guide</a>
-      <a class="navlink" href="Docs.dc.html#environment" style="transition:color .15s">Reference</a>
-      <a class="navlink" href="#" style="transition:color .15s">Changelog</a>
-    </div>
-    <div style="margin-left:auto; display:flex; align-items:center; gap:16px">
-      <div style="display:flex; align-items:center; gap:8px; height:34px; padding:0 12px; border-radius:8px; background:var(--fill); border:1px solid var(--border); font-size:13px; color:var(--muted-foreground); min-width:180px">
-        <span class="ms" style="font-size:18px">search</span>Search<span style="margin-left:auto; font-family:var(--font-mono); font-size:11px; border:1px solid var(--border); border-radius:5px; padding:1px 5px">⌘K</span>
-      </div>
-      <span style="display:flex; align-items:center; gap:5px; font-size:13px; color:var(--muted-foreground)">v0.9.2 <span class="ms" style="font-size:16px">expand_more</span></span>
-      <a class="navlink" href="#" style="color:var(--muted-foreground); display:flex; transition:color .15s"><span class="ms" style="font-size:21px">code</span></a>
-    </div>
-  </nav>
-
-  <div style="display:grid; grid-template-columns:272px minmax(0,1fr) 240px; max-width:1480px; margin:0 auto">
-
-    <!-- ===== SIDEBAR ===== -->
-    <aside class="vp-side" style="border-right:1px solid var(--border); height:calc(100vh - 64px); position:sticky; top:64px">
-      <div class="vp-side-inner" style="height:100%; overflow-y:auto; padding:32px 24px 60px">
-        <sc-for list="{{ sidebar }}" as="g" hint-placeholder-count="4">
-          <div style="margin-bottom:28px">
-            <div style="font-size:14px; font-weight:700; color:var(--foreground); margin-bottom:12px">{{ g.title }}</div>
-            <div style="display:flex; flex-direction:column; gap:2px; border-left:1px solid var(--border)">
-              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
-                <a href="{{ it.href }}" style="font-size:14px; line-height:1.3; padding:6px 0 6px 16px; margin-left:-1px; border-left:2px solid {{ it.bar }}; color:{{ it.color }}; font-weight:{{ it.weight }}; transition:color .15s">{{ it.label }}</a>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 272px minmax(0, 1fr) 240px;
+            max-width: 1480px;
+            margin: 0 auto;
+          "
+        >
+          <!-- ===== SIDEBAR ===== -->
+          <aside
+            class="vp-side"
+            style="
+              border-right: 1px solid var(--border);
+              height: calc(100vh - 64px);
+              position: sticky;
+              top: 64px;
+            "
+          >
+            <div
+              class="vp-side-inner"
+              style="height: 100%; overflow-y: auto; padding: 32px 24px 60px"
+            >
+              <sc-for list="{{ sidebar }}" as="g" hint-placeholder-count="4">
+                <div style="margin-bottom: 28px">
+                  <div
+                    style="
+                      font-size: 14px;
+                      font-weight: 700;
+                      color: var(--foreground);
+                      margin-bottom: 12px;
+                    "
+                  >
+                    {{ g.title }}
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      gap: 2px;
+                      border-left: 1px solid var(--border);
+                    "
+                  >
+                    <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                      <a
+                        href="{{ it.href }}"
+                        style="font-size:14px; line-height:1.3; padding:6px 0 6px 16px; margin-left:-1px; border-left:2px solid {{ it.bar }}; color:{{ it.color }}; font-weight:{{ it.weight }}; transition:color .15s"
+                        >{{ it.label }}</a
+                      >
+                    </sc-for>
+                  </div>
+                </div>
               </sc-for>
             </div>
-          </div>
-        </sc-for>
-      </div>
-    </aside>
+          </aside>
 
-    <!-- ===== CONTENT ===== -->
-    <main class="vp-content" style="min-width:0; padding:40px 64px 120px; position:relative">
-      <div style="position:absolute; inset:0 0 auto 0; height:360px; pointer-events:none; background:radial-gradient(70% 100% at 30% -20%, color-mix(in oklab, var(--brand-hearth) 16%, transparent), transparent 60%)"></div>
-      <div style="max-width:720px; position:relative">
-        <div style="font-size:11px; font-weight:300; letter-spacing:0.32em; text-transform:uppercase; color:var(--muted-foreground); margin-bottom:14px">Introduction</div>
-        <h1 id="what" style="font-size:38px; font-weight:800; letter-spacing:-0.03em; margin:0 0 16px; line-height:1.05">What is HearthShelf?</h1>
-        <p style="font-size:17px; line-height:1.7; color:var(--muted-foreground); margin:0 0 18px"><strong style="color:var(--foreground); font-weight:600">HearthShelf</strong> is a calmer, warmer web client for <a href="#" style="color:var(--primary); font-weight:500">Audiobookshelf</a> — the self-hosted audiobook and podcast server. It keeps everything that makes Audiobookshelf great and rehouses it in a single, quiet pane of glass: warm dark surfaces, an immersive player, and a cover-glow that tints the room around whatever you're listening to.</p>
-        <p style="font-size:15px; line-height:1.7; color:var(--muted-foreground); margin:0 0 18px">It runs as one Docker container alongside your existing server. Nothing to migrate, no second copy of your library — just a nicer way in.</p>
+          <!-- ===== CONTENT ===== -->
+          <main
+            class="vp-content"
+            style="min-width: 0; padding: 40px 64px 120px; position: relative"
+          >
+            <div
+              style="
+                position: absolute;
+                inset: 0 0 auto 0;
+                height: 360px;
+                pointer-events: none;
+                background: radial-gradient(
+                  70% 100% at 30% -20%,
+                  color-mix(in oklab, var(--brand-hearth) 16%, transparent),
+                  transparent 60%
+                );
+              "
+            ></div>
+            <div style="max-width: 720px; position: relative">
+              <div
+                style="
+                  font-size: 11px;
+                  font-weight: 300;
+                  letter-spacing: 0.32em;
+                  text-transform: uppercase;
+                  color: var(--muted-foreground);
+                  margin-bottom: 14px;
+                "
+              >
+                Introduction
+              </div>
+              <h1
+                id="what"
+                style="
+                  font-size: 38px;
+                  font-weight: 800;
+                  letter-spacing: -0.03em;
+                  margin: 0 0 16px;
+                  line-height: 1.05;
+                "
+              >
+                What is HearthShelf?
+              </h1>
+              <p
+                style="
+                  font-size: 17px;
+                  line-height: 1.7;
+                  color: var(--muted-foreground);
+                  margin: 0 0 18px;
+                "
+              >
+                <strong style="color: var(--foreground); font-weight: 600">HearthShelf</strong> is a
+                calmer, warmer web client for
+                <a href="#" style="color: var(--primary); font-weight: 500">Audiobookshelf</a> — the
+                self-hosted audiobook and podcast server. It keeps everything that makes
+                Audiobookshelf great and rehouses it in a single, quiet pane of glass: warm dark
+                surfaces, an immersive player, and a cover-glow that tints the room around whatever
+                you're listening to.
+              </p>
+              <p
+                style="
+                  font-size: 15px;
+                  line-height: 1.7;
+                  color: var(--muted-foreground);
+                  margin: 0 0 18px;
+                "
+              >
+                It runs as one Docker container alongside your existing server. Nothing to migrate,
+                no second copy of your library — just a nicer way in.
+              </p>
 
-        <div style="border-radius:10px; border:1px solid color-mix(in oklab, #7fa86b 40%, transparent); background:color-mix(in oklab, #7fa86b 12%, transparent); padding:14px 18px; margin:22px 0">
-          <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#a7c98c; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px"><span class="ms fill" style="font-size:17px">lightbulb</span>Tip</div>
-          <div style="font-size:14.5px; line-height:1.6; color:var(--foreground)">In a hurry? Jump straight to <a href="Docs.dc.html" style="color:var(--primary); font-weight:500">Installation</a> and be listening in two minutes.</div>
-        </div>
+              <div
+                style="
+                  border-radius: 10px;
+                  border: 1px solid color-mix(in oklab, #7fa86b 40%, transparent);
+                  background: color-mix(in oklab, #7fa86b 12%, transparent);
+                  padding: 14px 18px;
+                  margin: 22px 0;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 13px;
+                    font-weight: 700;
+                    color: #a7c98c;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                    margin-bottom: 6px;
+                  "
+                >
+                  <span class="ms fill" style="font-size: 17px">lightbulb</span>Tip
+                </div>
+                <div style="font-size: 14.5px; line-height: 1.6; color: var(--foreground)">
+                  In a hurry? Jump straight to
+                  <a href="Docs.dc.html" style="color: var(--primary); font-weight: 500"
+                    >Installation</a
+                  >
+                  and be listening in two minutes.
+                </div>
+              </div>
 
-        <h2 id="highlights" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 18px; padding-top:18px; border-top:1px solid var(--border)">Highlights</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px">
-          <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="4">
-            <div style="border:1px solid var(--border); border-radius:14px; padding:18px; background:var(--card)">
-              <span style="display:inline-grid; place-items:center; width:38px; height:38px; border-radius:10px; background:color-mix(in oklab, var(--primary) 16%, transparent); color:var(--primary)"><span class="ms fill" style="font-size:21px">{{ h.icon }}</span></span>
-              <div style="font-size:15.5px; font-weight:600; margin-top:13px">{{ h.title }}</div>
-              <div style="font-size:13.5px; line-height:1.55; color:var(--muted-foreground); margin-top:5px">{{ h.body }}</div>
+              <h2
+                id="highlights"
+                style="
+                  font-size: 24px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                  margin: 44px 0 18px;
+                  padding-top: 18px;
+                  border-top: 1px solid var(--border);
+                "
+              >
+                Highlights
+              </h2>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+                <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="4">
+                  <div
+                    style="
+                      border: 1px solid var(--border);
+                      border-radius: 14px;
+                      padding: 18px;
+                      background: var(--card);
+                    "
+                  >
+                    <span
+                      style="
+                        display: inline-grid;
+                        place-items: center;
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 10px;
+                        background: color-mix(in oklab, var(--primary) 16%, transparent);
+                        color: var(--primary);
+                      "
+                      ><span class="ms fill" style="font-size: 21px">{{ h.icon }}</span></span
+                    >
+                    <div style="font-size: 15.5px; font-weight: 600; margin-top: 13px">
+                      {{ h.title }}
+                    </div>
+                    <div
+                      style="
+                        font-size: 13.5px;
+                        line-height: 1.55;
+                        color: var(--muted-foreground);
+                        margin-top: 5px;
+                      "
+                    >
+                      {{ h.body }}
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <h2
+                id="how"
+                style="
+                  font-size: 24px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                  margin: 44px 0 14px;
+                  padding-top: 18px;
+                  border-top: 1px solid var(--border);
+                "
+              >
+                How it works
+              </h2>
+              <p
+                style="
+                  font-size: 15px;
+                  line-height: 1.7;
+                  color: var(--muted-foreground);
+                  margin: 0 0 16px;
+                "
+              >
+                HearthShelf talks to your Audiobookshelf server over its API. Your library,
+                progress, bookmarks, and users all live on your existing server — HearthShelf simply
+                renders them. Run them side by side; your phone apps keep working exactly as before.
+              </p>
+              <div
+                style="
+                  display: flex;
+                  align-items: stretch;
+                  gap: 10px;
+                  margin: 8px 0 8px;
+                  flex-wrap: wrap;
+                "
+              >
+                <div
+                  style="
+                    flex: 1;
+                    min-width: 150px;
+                    border: 1px solid var(--border);
+                    border-radius: 12px;
+                    padding: 16px;
+                    background: var(--card);
+                    text-align: center;
+                  "
+                >
+                  <span class="ms" style="font-size: 24px; color: var(--muted-foreground)"
+                    >dns</span
+                  >
+                  <div style="font-size: 14px; font-weight: 600; margin-top: 8px">
+                    Audiobookshelf
+                  </div>
+                  <div style="font-size: 12px; color: var(--muted-foreground); margin-top: 2px">
+                    Your library & data
+                  </div>
+                </div>
+                <div style="display: grid; place-items: center; color: var(--muted-foreground)">
+                  <span class="ms" style="font-size: 22px">sync_alt</span>
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    min-width: 150px;
+                    border: 1px solid color-mix(in oklab, var(--primary) 45%, var(--border));
+                    border-radius: 12px;
+                    padding: 16px;
+                    background: var(--card);
+                    text-align: center;
+                  "
+                >
+                  <span class="ms fill" style="font-size: 24px; color: var(--brand-hearth)"
+                    >local_fire_department</span
+                  >
+                  <div style="font-size: 14px; font-weight: 600; margin-top: 8px">HearthShelf</div>
+                  <div style="font-size: 12px; color: var(--muted-foreground); margin-top: 2px">
+                    The warm front-end
+                  </div>
+                </div>
+                <div style="display: grid; place-items: center; color: var(--muted-foreground)">
+                  <span class="ms" style="font-size: 22px">arrow_forward</span>
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    min-width: 150px;
+                    border: 1px solid var(--border);
+                    border-radius: 12px;
+                    padding: 16px;
+                    background: var(--card);
+                    text-align: center;
+                  "
+                >
+                  <span class="ms" style="font-size: 24px; color: var(--muted-foreground)"
+                    >headphones</span
+                  >
+                  <div style="font-size: 14px; font-weight: 600; margin-top: 8px">You</div>
+                  <div style="font-size: 12px; color: var(--muted-foreground); margin-top: 2px">
+                    Listening, by firelight
+                  </div>
+                </div>
+              </div>
+
+              <h2
+                id="why"
+                style="
+                  font-size: 24px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                  margin: 44px 0 14px;
+                  padding-top: 18px;
+                  border-top: 1px solid var(--border);
+                "
+              >
+                Is it for me?
+              </h2>
+              <p
+                style="
+                  font-size: 15px;
+                  line-height: 1.7;
+                  color: var(--muted-foreground);
+                  margin: 0 0 14px;
+                "
+              >
+                HearthShelf is for anyone already self-hosting audiobooks who wants the desktop
+                experience to feel less like an admin panel and more like a reading nook. If you
+                value owning your data <em>and</em> a beautiful interface, you're home.
+              </p>
+
+              <h2
+                id="next"
+                style="
+                  font-size: 24px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                  margin: 44px 0 18px;
+                  padding-top: 18px;
+                  border-top: 1px solid var(--border);
+                "
+              >
+                Next steps
+              </h2>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+                <a
+                  class="vp-card"
+                  href="Docs.dc.html"
+                  style="
+                    border: 1px solid var(--border);
+                    border-radius: 14px;
+                    padding: 20px;
+                    background: var(--card);
+                    transition: border-color 0.15s;
+                  "
+                >
+                  <span class="ms" style="font-size: 22px; color: var(--primary)"
+                    >rocket_launch</span
+                  >
+                  <div style="font-size: 16px; font-weight: 600; margin-top: 10px">
+                    Install with Docker →
+                  </div>
+                  <div
+                    style="
+                      font-size: 13.5px;
+                      color: var(--muted-foreground);
+                      margin-top: 4px;
+                      line-height: 1.5;
+                    "
+                  >
+                    One compose file and you're running.
+                  </div>
+                </a>
+                <a
+                  class="vp-card"
+                  href="HearthShelf.dc.html#gallery"
+                  style="
+                    border: 1px solid var(--border);
+                    border-radius: 14px;
+                    padding: 20px;
+                    background: var(--card);
+                    transition: border-color 0.15s;
+                  "
+                >
+                  <span class="ms" style="font-size: 22px; color: var(--primary)"
+                    >photo_library</span
+                  >
+                  <div style="font-size: 16px; font-weight: 600; margin-top: 10px">
+                    See the screens →
+                  </div>
+                  <div
+                    style="
+                      font-size: 13.5px;
+                      color: var(--muted-foreground);
+                      margin-top: 4px;
+                      line-height: 1.5;
+                    "
+                  >
+                    Library, player, and stats in full.
+                  </div>
+                </a>
+              </div>
+
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 16px;
+                  margin-top: 48px;
+                  padding-top: 28px;
+                  border-top: 1px solid var(--border);
+                "
+              >
+                <span></span>
+                <a
+                  href="Docs.dc.html"
+                  style="
+                    border: 1px solid var(--border);
+                    border-radius: 12px;
+                    padding: 16px 18px;
+                    text-align: right;
+                    transition: border-color 0.15s;
+                  "
+                >
+                  <div style="font-size: 12px; color: var(--muted-foreground)">Next</div>
+                  <div
+                    style="
+                      font-size: 15px;
+                      font-weight: 600;
+                      color: var(--primary);
+                      margin-top: 4px;
+                    "
+                  >
+                    Installation
+                  </div>
+                </a>
+              </div>
             </div>
-          </sc-for>
-        </div>
+          </main>
 
-        <h2 id="how" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">How it works</h2>
-        <p style="font-size:15px; line-height:1.7; color:var(--muted-foreground); margin:0 0 16px">HearthShelf talks to your Audiobookshelf server over its API. Your library, progress, bookmarks, and users all live on your existing server — HearthShelf simply renders them. Run them side by side; your phone apps keep working exactly as before.</p>
-        <div style="display:flex; align-items:stretch; gap:10px; margin:8px 0 8px; flex-wrap:wrap">
-          <div style="flex:1; min-width:150px; border:1px solid var(--border); border-radius:12px; padding:16px; background:var(--card); text-align:center">
-            <span class="ms" style="font-size:24px; color:var(--muted-foreground)">dns</span>
-            <div style="font-size:14px; font-weight:600; margin-top:8px">Audiobookshelf</div>
-            <div style="font-size:12px; color:var(--muted-foreground); margin-top:2px">Your library & data</div>
-          </div>
-          <div style="display:grid; place-items:center; color:var(--muted-foreground)"><span class="ms" style="font-size:22px">sync_alt</span></div>
-          <div style="flex:1; min-width:150px; border:1px solid color-mix(in oklab, var(--primary) 45%, var(--border)); border-radius:12px; padding:16px; background:var(--card); text-align:center">
-            <span class="ms fill" style="font-size:24px; color:var(--brand-hearth)">local_fire_department</span>
-            <div style="font-size:14px; font-weight:600; margin-top:8px">HearthShelf</div>
-            <div style="font-size:12px; color:var(--muted-foreground); margin-top:2px">The warm front-end</div>
-          </div>
-          <div style="display:grid; place-items:center; color:var(--muted-foreground)"><span class="ms" style="font-size:22px">arrow_forward</span></div>
-          <div style="flex:1; min-width:150px; border:1px solid var(--border); border-radius:12px; padding:16px; background:var(--card); text-align:center">
-            <span class="ms" style="font-size:24px; color:var(--muted-foreground)">headphones</span>
-            <div style="font-size:14px; font-weight:600; margin-top:8px">You</div>
-            <div style="font-size:12px; color:var(--muted-foreground); margin-top:2px">Listening, by firelight</div>
-          </div>
-        </div>
-
-        <h2 id="why" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--border)">Is it for me?</h2>
-        <p style="font-size:15px; line-height:1.7; color:var(--muted-foreground); margin:0 0 14px">HearthShelf is for anyone already self-hosting audiobooks who wants the desktop experience to feel less like an admin panel and more like a reading nook. If you value owning your data <em>and</em> a beautiful interface, you're home.</p>
-
-        <h2 id="next" style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin:44px 0 18px; padding-top:18px; border-top:1px solid var(--border)">Next steps</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px">
-          <a class="vp-card" href="Docs.dc.html" style="border:1px solid var(--border); border-radius:14px; padding:20px; background:var(--card); transition:border-color .15s">
-            <span class="ms" style="font-size:22px; color:var(--primary)">rocket_launch</span>
-            <div style="font-size:16px; font-weight:600; margin-top:10px">Install with Docker →</div>
-            <div style="font-size:13.5px; color:var(--muted-foreground); margin-top:4px; line-height:1.5">One compose file and you're running.</div>
-          </a>
-          <a class="vp-card" href="HearthShelf.dc.html#gallery" style="border:1px solid var(--border); border-radius:14px; padding:20px; background:var(--card); transition:border-color .15s">
-            <span class="ms" style="font-size:22px; color:var(--primary)">photo_library</span>
-            <div style="font-size:16px; font-weight:600; margin-top:10px">See the screens →</div>
-            <div style="font-size:13.5px; color:var(--muted-foreground); margin-top:4px; line-height:1.5">Library, player, and stats in full.</div>
-          </a>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:48px; padding-top:28px; border-top:1px solid var(--border)">
-          <span></span>
-          <a href="Docs.dc.html" style="border:1px solid var(--border); border-radius:12px; padding:16px 18px; text-align:right; transition:border-color .15s">
-            <div style="font-size:12px; color:var(--muted-foreground)">Next</div>
-            <div style="font-size:15px; font-weight:600; color:var(--primary); margin-top:4px">Installation</div>
-          </a>
+          <!-- ===== OUTLINE ===== -->
+          <aside
+            class="vp-out"
+            style="height: calc(100vh - 64px); position: sticky; top: 64px; padding: 40px 24px"
+          >
+            <div
+              style="
+                font-size: 13px;
+                font-weight: 700;
+                color: var(--foreground);
+                margin-bottom: 14px;
+              "
+            >
+              On this page
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1px;
+                border-left: 1px solid var(--border);
+              "
+            >
+              <sc-for list="{{ outline }}" as="o" hint-placeholder-count="4">
+                <a
+                  href="{{ o.href }}"
+                  style="font-size:13px; line-height:1.4; padding:5px 0 5px 14px; margin-left:-1px; border-left:2px solid {{ o.bar }}; color:{{ o.color }}; transition:color .15s"
+                  >{{ o.label }}</a
+                >
+              </sc-for>
+            </div>
+          </aside>
         </div>
       </div>
-    </main>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script>
+      class Component extends DCLogic {
+        renderVals() {
+          const item = (label, href, active) => ({
+            label, href,
+            color: active ? "var(--primary)" : "var(--muted-foreground)",
+            weight: active ? 600 : 400,
+            bar: active ? "var(--primary)" : "transparent",
+          });
+          const sidebar = [
+            { title: "Introduction", items: [
+              item("What is HearthShelf", "DocsOverview.dc.html", true),
+              item("Why HearthShelf", "DocsOverview.dc.html#why"),
+              item("Screenshots", "HearthShelf.dc.html#gallery"),
+            ] },
+            { title: "Getting Started", items: [
+              item("Installation", "Docs.dc.html"),
+              item("Configuration", "Docs.dc.html#environment"),
+              item("Connecting your server", "Docs.dc.html#first-run"),
+            ] },
+            { title: "Guides", items: [
+              item("Reverse proxy", "Docs.dc.html#reverse-proxy"),
+              item("Updating", "Docs.dc.html#updating"),
+              item("Backups", "#"),
+              item("Multiple users", "#"),
+            ] },
+            { title: "Reference", items: [
+              item("Environment variables", "Docs.dc.html#environment"),
+              item("Ports & volumes", "Docs.dc.html#docker-compose"),
+              item("Keyboard shortcuts", "#"),
+            ] },
+          ];
 
-    <!-- ===== OUTLINE ===== -->
-    <aside class="vp-out" style="height:calc(100vh - 64px); position:sticky; top:64px; padding:40px 24px">
-      <div style="font-size:13px; font-weight:700; color:var(--foreground); margin-bottom:14px">On this page</div>
-      <div style="display:flex; flex-direction:column; gap:1px; border-left:1px solid var(--border)">
-        <sc-for list="{{ outline }}" as="o" hint-placeholder-count="4">
-          <a href="{{ o.href }}" style="font-size:13px; line-height:1.4; padding:5px 0 5px 14px; margin-left:-1px; border-left:2px solid {{ o.bar }}; color:{{ o.color }}; transition:color .15s">{{ o.label }}</a>
-        </sc-for>
-      </div>
-    </aside>
+          const out = (label, href, active) => ({
+            label, href,
+            color: active ? "var(--primary)" : "var(--muted-foreground)",
+            bar: active ? "var(--primary)" : "transparent",
+          });
+          const outline = [
+            out("What is HearthShelf", "#what", true),
+            out("Highlights", "#highlights"),
+            out("How it works", "#how"),
+            out("Is it for me?", "#why"),
+            out("Next steps", "#next"),
+          ];
 
-  </div>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  renderVals() {
-    const item = (label, href, active) => ({
-      label, href,
-      color: active ? "var(--primary)" : "var(--muted-foreground)",
-      weight: active ? 600 : 400,
-      bar: active ? "var(--primary)" : "transparent",
-    });
-    const sidebar = [
-      { title: "Introduction", items: [
-        item("What is HearthShelf", "DocsOverview.dc.html", true),
-        item("Why HearthShelf", "DocsOverview.dc.html#why"),
-        item("Screenshots", "HearthShelf.dc.html#gallery"),
-      ] },
-      { title: "Getting Started", items: [
-        item("Installation", "Docs.dc.html"),
-        item("Configuration", "Docs.dc.html#environment"),
-        item("Connecting your server", "Docs.dc.html#first-run"),
-      ] },
-      { title: "Guides", items: [
-        item("Reverse proxy", "Docs.dc.html#reverse-proxy"),
-        item("Updating", "Docs.dc.html#updating"),
-        item("Backups", "#"),
-        item("Multiple users", "#"),
-      ] },
-      { title: "Reference", items: [
-        item("Environment variables", "Docs.dc.html#environment"),
-        item("Ports & volumes", "Docs.dc.html#docker-compose"),
-        item("Keyboard shortcuts", "#"),
-      ] },
-    ];
+          const highlights = [
+            { icon: "blur_on", title: "Cover-glow", body: "The room takes on the color of the story you're in." },
+            { icon: "graphic_eq", title: "Immersive player", body: "Two-pane view with inline chapters, speed, and sleep timer." },
+            { icon: "insights", title: "Stats & leaderboard", body: "Streaks and shared-server rankings, kept on your box." },
+            { icon: "bolt", title: "One container", body: "Deploy alongside Audiobookshelf with a single compose file." },
+          ];
 
-    const out = (label, href, active) => ({
-      label, href,
-      color: active ? "var(--primary)" : "var(--muted-foreground)",
-      bar: active ? "var(--primary)" : "transparent",
-    });
-    const outline = [
-      out("What is HearthShelf", "#what", true),
-      out("Highlights", "#highlights"),
-      out("How it works", "#how"),
-      out("Is it for me?", "#why"),
-      out("Next steps", "#next"),
-    ];
-
-    const highlights = [
-      { icon: "blur_on", title: "Cover-glow", body: "The room takes on the color of the story you're in." },
-      { icon: "graphic_eq", title: "Immersive player", body: "Two-pane view with inline chapters, speed, and sleep timer." },
-      { icon: "insights", title: "Stats & leaderboard", body: "Streaks and shared-server rankings, kept on your box." },
-      { icon: "bolt", title: "One container", body: "Deploy alongside Audiobookshelf with a single compose file." },
-    ];
-
-    return { sidebar, outline, highlights };
-  }
-}
-</script>
-</body>
+          return { sidebar, outline, highlights };
+        }
+      }
+    </script>
+  </body>
 </html>

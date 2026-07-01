@@ -30,11 +30,21 @@ export function SiteHeader() {
         </span>
       </a>
       <div className="hs-nav-links">
-        <a className="navlink" href={anchor('features')}>Features</a>
-        <a className="navlink" href={anchor('compare')}>Compare</a>
-        <a className="navlink" href={anchor('gallery')}>Screenshots</a>
-        <Link className="navlink" to="/changelog">Changelog</Link>
-        <a className="navlink" href={DOCS_URL}>Docs</a>
+        <a className="navlink" href={anchor('features')}>
+          Features
+        </a>
+        <a className="navlink" href={anchor('compare')}>
+          Compare
+        </a>
+        <a className="navlink" href={anchor('gallery')}>
+          Screenshots
+        </a>
+        <Link className="navlink" to="/changelog">
+          Changelog
+        </Link>
+        <a className="navlink" href={DOCS_URL}>
+          Docs
+        </a>
       </div>
       <div className="hs-nav-right">
         <a
@@ -50,8 +60,12 @@ export function SiteHeader() {
         {clerkEnabled ? (
           <>
             <SignedOut>
-              <Link className="navlink hs-login-link" to="/sign-in">Log in</Link>
-              <Link className="hs-btn hs-btn-primary hs-btn-sm" to="/sign-up">Sign up</Link>
+              <Link className="navlink hs-login-link" to="/sign-in">
+                Log in
+              </Link>
+              <Link className="hs-btn hs-btn-primary hs-btn-sm" to="/sign-up">
+                Sign up
+              </Link>
             </SignedOut>
             <SignedIn>
               <a className="hs-btn hs-btn-primary hs-btn-sm" href={APP_URL}>
@@ -62,8 +76,12 @@ export function SiteHeader() {
           </>
         ) : (
           <>
-            <a className="navlink hs-login-link" href={`${APP_URL}/sign-in`}>Log in</a>
-            <a className="hs-btn hs-btn-primary hs-btn-sm" href={`${APP_URL}/sign-up`}>Sign up</a>
+            <a className="navlink hs-login-link" href={`${APP_URL}/sign-in`}>
+              Log in
+            </a>
+            <a className="hs-btn hs-btn-primary hs-btn-sm" href={`${APP_URL}/sign-up`}>
+              Sign up
+            </a>
           </>
         )}
       </div>

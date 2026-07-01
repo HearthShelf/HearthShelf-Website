@@ -103,10 +103,7 @@ function displayProduct(name: string): string {
 
 /** Format version for display: "1.4.0-Beta3" -> "1.4.0 Beta 3" */
 function formatVersion(version: string): string {
-  return version.replace(
-    /-([A-Za-z]+)(\d+)?$/,
-    (_, tag, num) => ` ${tag}${num ? ' ' + num : ''}`,
-  )
+  return version.replace(/-([A-Za-z]+)(\d+)?$/, (_, tag, num) => ` ${tag}${num ? ' ' + num : ''}`)
 }
 
 function isBeta(version: string): boolean {
@@ -130,9 +127,7 @@ function countChanges(markdown: string): number {
 }
 
 /** Map a verb at the start of a bullet to a change kind + display color. */
-function detectKind(
-  text: string,
-): { kind: string; color: string; rest: string } | null {
+function detectKind(text: string): { kind: string; color: string; rest: string } | null {
   const m = text.match(
     /^(new|added?|adds?|adding|implement(?:ed|s)?|integrate(?:d|s)?|fix(?:es|ed|ing)?|fixes?|bug|silenced?|protect(?:ed|s)?|ensure[sd]?|improved?|improves?|enhanced?|enhances?|update[sd]?|updates?|refactor(?:ed|s|ing)?|cleanup|moved?|moves?|removed?|removes?)(?::|\b)\s*(.+)$/i,
   )
@@ -229,28 +224,17 @@ function ChangelogPage() {
   const filtersLoadedForKey = useRef<string | null>(null)
   const resolveAttempted = useRef<string | null>(null)
 
-  const activeYear = searchParams.get('year')
-    ? parseInt(searchParams.get('year')!, 10)
-    : null
-  const activeMonth = searchParams.get('month')
-    ? parseInt(searchParams.get('month')!, 10)
-    : null
+  const activeYear = searchParams.get('year') ? parseInt(searchParams.get('year')!, 10) : null
+  const activeMonth = searchParams.get('month') ? parseInt(searchParams.get('month')!, 10) : null
   const targetVersion = searchParams.get('version')
   const targetProduct = searchParams.get('product')
-  const channel =
-    (searchParams.get('channel') as 'all' | 'release' | 'beta') ?? 'release'
+  const channel = (searchParams.get('channel') as 'all' | 'release' | 'beta') ?? 'release'
   const query = searchParams.get('q') ?? ''
   const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
   const pageSize = PAGE_SIZE_OPTIONS.includes(
-    parseInt(
-      searchParams.get('pageSize') ?? '',
-      10,
-    ) as (typeof PAGE_SIZE_OPTIONS)[number],
+    parseInt(searchParams.get('pageSize') ?? '', 10) as (typeof PAGE_SIZE_OPTIONS)[number],
   )
-    ? (parseInt(
-        searchParams.get('pageSize')!,
-        10,
-      ) as (typeof PAGE_SIZE_OPTIONS)[number])
+    ? (parseInt(searchParams.get('pageSize')!, 10) as (typeof PAGE_SIZE_OPTIONS)[number])
     : DEFAULT_PAGE_SIZE
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize))
@@ -275,9 +259,7 @@ function ChangelogPage() {
           setExpandedYears(new Set(result.years.slice(0, 2).map((y) => y.year)))
           const firstYear = result.years[0]
           if (firstYear?.months.length > 0) {
-            setExpandedMonths(
-              new Set([`${firstYear.year}-${firstYear.months[0].month}`]),
-            )
+            setExpandedMonths(new Set([`${firstYear.year}-${firstYear.months[0].month}`]))
           }
         }
       })
@@ -318,9 +300,7 @@ function ChangelogPage() {
     if (!targetVersion || entries.length === 0) return
 
     const entry = entries.find(
-      (e) =>
-        e.version === targetVersion &&
-        (!targetProduct || e.product === targetProduct),
+      (e) => e.version === targetVersion && (!targetProduct || e.product === targetProduct),
     )
 
     if (entry) {
@@ -345,8 +325,7 @@ function ChangelogPage() {
     params.set('product', targetProduct)
     params.set('version', targetVersion)
     params.set('pageSize', String(pageSize))
-    if (channel !== 'all')
-      params.set('channel', channel === 'release' ? 'release' : 'beta')
+    if (channel !== 'all') params.set('channel', channel === 'release' ? 'release' : 'beta')
 
     fetch(`/api/v1/changelogs/resolve?${params.toString()}`)
       .then((res) => {
@@ -365,15 +344,7 @@ function ChangelogPage() {
       .catch(() => {
         // Silently fail - entry may not exist
       })
-  }, [
-    targetVersion,
-    targetProduct,
-    entries,
-    channel,
-    pageSize,
-    searchParams,
-    setSearchParams,
-  ])
+  }, [targetVersion, targetProduct, entries, channel, pageSize, searchParams, setSearchParams])
 
   // Show scroll-to-top button when scrolled past 400px
   useEffect(() => {
@@ -495,8 +466,7 @@ function ChangelogPage() {
       })
     : entries
 
-  const hasFilters =
-    activeYear !== null || channel !== 'release' || query.length > 0
+  const hasFilters = activeYear !== null || channel !== 'release' || query.length > 0
 
   // -----------------------------------------------------------------------
   // Render
@@ -593,8 +563,7 @@ function ChangelogPage() {
         <div className="space-y-0.5">
           {sidebarYears.map((yearInfo) => {
             const yearExpanded = expandedYears.has(yearInfo.year)
-            const yearActive =
-              activeYear === yearInfo.year && activeMonth === null
+            const yearActive = activeYear === yearInfo.year && activeMonth === null
 
             return (
               <div key={yearInfo.year}>
@@ -610,9 +579,7 @@ function ChangelogPage() {
                     )}
                   </button>
                   <button
-                    onClick={() =>
-                      setDateFilter(yearActive ? null : yearInfo.year, null)
-                    }
+                    onClick={() => setDateFilter(yearActive ? null : yearInfo.year, null)}
                     className={cn(
                       'flex-1 cursor-pointer rounded bg-transparent px-1.5 py-1 text-left text-sm transition-colors',
                       yearActive
@@ -621,9 +588,7 @@ function ChangelogPage() {
                     )}
                   >
                     {yearInfo.year}{' '}
-                    <span className="text-xs text-muted-foreground">
-                      ({yearInfo.count})
-                    </span>
+                    <span className="text-xs text-muted-foreground">({yearInfo.count})</span>
                   </button>
                 </div>
 
@@ -633,8 +598,7 @@ function ChangelogPage() {
                       const monthKey = `${yearInfo.year}-${monthInfo.month}`
                       const monthExpanded = expandedMonths.has(monthKey)
                       const monthActive =
-                        activeYear === yearInfo.year &&
-                        activeMonth === monthInfo.month
+                        activeYear === yearInfo.year && activeMonth === monthInfo.month
 
                       return (
                         <div key={monthKey}>
@@ -719,14 +683,8 @@ function ChangelogPage() {
     >
       <div className="flex items-center gap-3 text-xs text-muted-foreground">
         <span>
-          Showing{' '}
-          <span className="font-mono tabular-nums text-foreground">
-            {firstItem}
-          </span>
-          –
-          <span className="font-mono tabular-nums text-foreground">
-            {lastItem}
-          </span>
+          Showing <span className="font-mono tabular-nums text-foreground">{firstItem}</span>–
+          <span className="font-mono tabular-nums text-foreground">{lastItem}</span>
           {' of '}
           <span className="font-mono tabular-nums text-foreground">{total}</span>{' '}
           {total === 1 ? 'release' : 'releases'}
@@ -765,10 +723,7 @@ function ChangelogPage() {
 
         {getPageNumbers(page, totalPages).map((p, i) =>
           p === '...' ? (
-            <span
-              key={`ellipsis-${i}`}
-              className="px-1 text-xs text-muted-foreground"
-            >
+            <span key={`ellipsis-${i}`} className="px-1 text-xs text-muted-foreground">
               ...
             </span>
           ) : (
@@ -809,9 +764,7 @@ function ChangelogPage() {
     <div className="mx-auto max-w-5xl px-4 py-10">
       {/* Header */}
       <div className="mb-8 text-center">
-        <h1 className="font-brand text-3xl font-bold tracking-tight sm:text-4xl">
-          Changelog
-        </h1>
+        <h1 className="font-brand text-3xl font-bold tracking-tight sm:text-4xl">Changelog</h1>
       </div>
 
       {/* Mobile filter toggle */}
@@ -877,9 +830,7 @@ function ChangelogPage() {
                   className="cursor-pointer gap-1 pl-2.5 pr-1.5"
                   onClick={() => setDateFilter(null, null)}
                 >
-                  {activeMonth
-                    ? `${MONTH_NAMES[activeMonth]} ${activeYear}`
-                    : activeYear}
+                  {activeMonth ? `${MONTH_NAMES[activeMonth]} ${activeYear}` : activeYear}
                   <X className="h-3 w-3" />
                 </Badge>
               )}
@@ -902,8 +853,8 @@ function ChangelogPage() {
                 </button>
               )}
               <span className="ml-auto text-xs tabular-nums text-muted-foreground">
-                <span className="text-foreground">{visibleEntries.length}</span>{' '}
-                of <span className="text-foreground">{total}</span>{' '}
+                <span className="text-foreground">{visibleEntries.length}</span> of{' '}
+                <span className="text-foreground">{total}</span>{' '}
                 {total === 1 ? 'release' : 'releases'}
               </span>
             </div>
@@ -920,9 +871,7 @@ function ChangelogPage() {
           {!loading && visibleEntries.length === 0 && (
             <div className="rounded-[15px] border border-dashed border-border bg-card py-20 text-center">
               <Search className="mx-auto h-7 w-7 text-muted-foreground" />
-              <div className="mt-3 text-sm font-semibold">
-                No releases match these filters.
-              </div>
+              <div className="mt-3 text-sm font-semibold">No releases match these filters.</div>
               {hasFilters && (
                 <button
                   onClick={clearAllFilters}
@@ -979,9 +928,7 @@ function ChangelogPage() {
                           <span className="text-sm font-bold text-primary">
                             {displayProduct(entry.product)}
                           </span>
-                          <span className="text-[11px] text-muted-foreground">
-                            ·
-                          </span>
+                          <span className="text-[11px] text-muted-foreground">·</span>
                           <span className="font-brand text-lg font-bold tabular-nums">
                             {formatVersion(entry.version)}
                           </span>
@@ -999,8 +946,7 @@ function ChangelogPage() {
                             <>
                               <span>·</span>
                               <span>
-                                {changeCount}{' '}
-                                {changeCount === 1 ? 'change' : 'changes'}
+                                {changeCount} {changeCount === 1 ? 'change' : 'changes'}
                               </span>
                             </>
                           )}
@@ -1009,10 +955,7 @@ function ChangelogPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       {isLatest && (
-                        <Badge
-                          variant="default"
-                          className="text-[10px] tracking-widest"
-                        >
+                        <Badge variant="default" className="text-[10px] tracking-widest">
                           LATEST
                         </Badge>
                       )}
@@ -1031,10 +974,9 @@ function ChangelogPage() {
                     <div
                       className="text-sm leading-relaxed"
                       dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(
-                          renderMarkdown(entry.changelog),
-                          { ADD_ATTR: ['target', 'rel'] },
-                        ),
+                        __html: DOMPurify.sanitize(renderMarkdown(entry.changelog), {
+                          ADD_ATTR: ['target', 'rel'],
+                        }),
                       }}
                     />
                   )}

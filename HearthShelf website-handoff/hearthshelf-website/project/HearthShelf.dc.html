@@ -1,235 +1,997 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=swap" />
-  <link rel="stylesheet" href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/colors_and_type.css" />
-  <link rel="stylesheet" href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/styles.css" />
-  <script src="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/_ds_bundle.js"></script>
-  <style>
-    body { margin: 0; }
-    .ms { font-family: 'Material Symbols Rounded'; font-variation-settings: 'FILL' 0, 'wght' 400; line-height: 1; }
-    .ms.fill { font-variation-settings: 'FILL' 1, 'wght' 400; }
-    a { color: inherit; text-decoration: none; }
-    .navlink:hover { color: var(--foreground) !important; }
-    html { scroll-behavior: smooth; }
-  </style>
-</helmet>
-<div class="dark" style="background:var(--background); color:var(--foreground); font-family:var(--font-sans); --primary:{{ accent }}; --ring:{{ accent }}; --glow-accent:{{ accent }}; --glow-strength:{{ glow }}; min-height:100vh; overflow-x:clip">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,300..700,0..1&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/colors_and_type.css"
+        />
+        <link
+          rel="stylesheet"
+          href="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/styles.css"
+        />
+        <script src="_ds/hearthshelf-design-system-38af2d81-b540-46ff-a339-0cc1eb78b74a/_ds_bundle.js"></script>
+        <style>
+          body {
+            margin: 0;
+          }
+          .ms {
+            font-family: 'Material Symbols Rounded';
+            font-variation-settings:
+              'FILL' 0,
+              'wght' 400;
+            line-height: 1;
+          }
+          .ms.fill {
+            font-variation-settings:
+              'FILL' 1,
+              'wght' 400;
+          }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+          .navlink:hover {
+            color: var(--foreground) !important;
+          }
+          html {
+            scroll-behavior: smooth;
+          }
+        </style>
+      </helmet>
+      <div
+        class="dark"
+        style="background:var(--background); color:var(--foreground); font-family:var(--font-sans); --primary:{{ accent }}; --ring:{{ accent }}; --glow-accent:{{ accent }}; --glow-strength:{{ glow }}; min-height:100vh; overflow-x:clip"
+      >
+        <!-- ============ NAV ============ -->
+        <nav
+          style="
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding: 0 40px;
+            height: 68px;
+            background: color-mix(in oklab, var(--background) 78%, transparent);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+          "
+        >
+          <a href="#top" style="display: flex; align-items: center; gap: 10px">
+            <img
+              src="uploads/FlameLogo-Transparent.png"
+              alt=""
+              style="
+                width: 26px;
+                height: 26px;
+                object-fit: contain;
+                filter: drop-shadow(
+                  0 0 10px color-mix(in oklab, var(--brand-hearth) 45%, transparent)
+                );
+              "
+            />
+            <span style="font-size: 20px; font-family: var(--font-brand)"
+              ><span style="font-weight: 400; color: var(--brand-hearth)">Hearth</span
+              ><span style="font-weight: 700; color: var(--wordmark-shelf)">Shelf</span></span
+            >
+          </a>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 28px;
+              margin-left: 18px;
+              font-size: 14px;
+              color: var(--muted-foreground);
+            "
+          >
+            <a class="navlink" href="#features" style="transition: color 0.15s">Features</a>
+            <a class="navlink" href="#compare" style="transition: color 0.15s">Compare</a>
+            <a class="navlink" href="#gallery" style="transition: color 0.15s">Screenshots</a>
+            <a class="navlink" href="https://docs.hearthshelf.com" style="transition: color 0.15s"
+              >Docs</a
+            >
+          </div>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 14px">
+            <a href="#"
+              ><x-import
+                component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                variant="ghost"
+                size="sm"
+                icon="login"
+                hint-size="auto,38px"
+                >Log in</x-import
+              ></a
+            >
+            <a href="https://app.hearthshelf.com"
+              ><x-import
+                component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                variant="primary"
+                size="sm"
+                icon="local_fire_department"
+                hint-size="auto,38px"
+                >My HearthShelf</x-import
+              ></a
+            >
+          </div>
+        </nav>
 
-  <!-- ============ NAV ============ -->
-  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:32px; padding:0 40px; height:68px; background:color-mix(in oklab, var(--background) 78%, transparent); backdrop-filter:blur(18px); border-bottom:1px solid var(--border)">
-    <a href="#top" style="display:flex; align-items:center; gap:10px">
-      <img src="uploads/FlameLogo-Transparent.png" alt="" style="width:26px; height:26px; object-fit:contain; filter:drop-shadow(0 0 10px color-mix(in oklab, var(--brand-hearth) 45%, transparent))">
-      <span style="font-size:20px; font-family:var(--font-brand)"><span style="font-weight:400; color:var(--brand-hearth)">Hearth</span><span style="font-weight:700; color:var(--wordmark-shelf)">Shelf</span></span>
-    </a>
-    <div style="display:flex; align-items:center; gap:28px; margin-left:18px; font-size:14px; color:var(--muted-foreground)">
-      <a class="navlink" href="#features" style="transition:color .15s">Features</a>
-      <a class="navlink" href="#compare" style="transition:color .15s">Compare</a>
-      <a class="navlink" href="#gallery" style="transition:color .15s">Screenshots</a>
-      <a class="navlink" href="https://docs.hearthshelf.com" style="transition:color .15s">Docs</a>
-    </div>
-    <div style="margin-left:auto; display:flex; align-items:center; gap:14px">
-      <a href="#"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="ghost" size="sm" icon="login" hint-size="auto,38px">Log in</x-import></a>
-      <a href="https://app.hearthshelf.com"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="primary" size="sm" icon="local_fire_department" hint-size="auto,38px">My HearthShelf</x-import></a>
-    </div>
-  </nav>
+        <div id="top"></div>
 
-  <div id="top"></div>
+        <!-- ============ HERO ============ -->
+        <header style="position: relative; overflow: hidden">
+          <div
+            style="
+              position: absolute;
+              inset: 0 0 auto 0;
+              height: 760px;
+              pointer-events: none;
+              background: radial-gradient(
+                80% 60% at 50% -8%,
+                color-mix(
+                    in oklab,
+                    var(--glow-accent) calc(var(--glow-strength) * 0.9%),
+                    transparent
+                  )
+                  0%,
+                transparent 60%
+              );
+            "
+          ></div>
 
-  <!-- ============ HERO ============ -->
-  <header style="position:relative; overflow:hidden">
-    <div style="position:absolute; inset:0 0 auto 0; height:760px; pointer-events:none; background:radial-gradient(80% 60% at 50% -8%, color-mix(in oklab, var(--glow-accent) calc(var(--glow-strength) * 0.9%), transparent) 0%, transparent 60%)"></div>
+          <!-- HERO · HEARTH (centered editorial) -->
+          <sc-if value="{{ isHearth }}" hint-placeholder-val="{{ true }}">
+            <div
+              style="
+                position: relative;
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 96px 40px 0;
+                text-align: center;
+              "
+            >
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 7px 14px;
+                  border-radius: 999px;
+                  background: var(--fill);
+                  border: 1px solid var(--border);
+                  font-size: 12.5px;
+                  color: var(--muted-foreground);
+                  margin-bottom: 30px;
+                "
+              >
+                <span class="ms fill" style="font-size: 15px; color: var(--brand-hearth)">bolt</span
+                >A warmer home for Audiobookshelf
+              </div>
+              <h1
+                style="
+                  font-size: 68px;
+                  font-weight: 800;
+                  letter-spacing: -0.035em;
+                  line-height: 1.02;
+                  margin: 0 auto;
+                  max-width: 14ch;
+                "
+              >
+                A single pane of glass for your audiobooks.
+              </h1>
+              <p
+                style="
+                  font-size: 19px;
+                  line-height: 1.6;
+                  color: var(--muted-foreground);
+                  max-width: 60ch;
+                  margin: 24px auto 0;
+                "
+              >
+                HearthShelf is a calmer, self-hosted web client for your audiobook library — warm
+                dark surfaces, an immersive player, and a signature cover-glow that tints the room
+                around whatever you're listening to.
+              </p>
+              <div style="display: flex; gap: 14px; justify-content: center; margin-top: 36px">
+                <a href="#quickstart"
+                  ><x-import
+                    component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                    variant="primary"
+                    size="lg"
+                    icon="rocket_launch"
+                    hint-size="auto,50px"
+                    >Deploy with Docker</x-import
+                  ></a
+                >
+                <a href="https://docs.hearthshelf.com"
+                  ><x-import
+                    component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                    variant="pill"
+                    size="lg"
+                    icon="menu_book"
+                    hint-size="auto,50px"
+                    >Read the docs</x-import
+                  ></a
+                >
+              </div>
+              <div
+                style="
+                  font-family: var(--font-mono);
+                  font-size: 12.5px;
+                  color: var(--muted-foreground);
+                  margin-top: 18px;
+                  display: flex;
+                  gap: 18px;
+                  justify-content: center;
+                  flex-wrap: wrap;
+                "
+              >
+                <span>$ docker compose up -d</span><span style="opacity: 0.4">·</span
+                ><span>MIT licensed</span><span style="opacity: 0.4">·</span
+                ><span>Built on Audiobookshelf</span>
+              </div>
+              <div style="margin-top: 60px; display: flex; justify-content: center">
+                <dc-import
+                  name="AppFrame"
+                  screen="library"
+                  scale="{{ 0.66 }}"
+                  accent="{{ accent }}"
+                  hint-size="780px,540px"
+                ></dc-import>
+              </div>
+            </div>
+          </sc-if>
 
-    <!-- HERO · HEARTH (centered editorial) -->
-    <sc-if value="{{ isHearth }}" hint-placeholder-val="{{ true }}">
-    <div style="position:relative; max-width:980px; margin:0 auto; padding:96px 40px 0; text-align:center">
-      <div style="display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px; background:var(--fill); border:1px solid var(--border); font-size:12.5px; color:var(--muted-foreground); margin-bottom:30px">
-        <span class="ms fill" style="font-size:15px; color:var(--brand-hearth)">bolt</span>A warmer home for Audiobookshelf
-      </div>
-      <h1 style="font-size:68px; font-weight:800; letter-spacing:-0.035em; line-height:1.02; margin:0 auto; max-width:14ch">A single pane of glass for your audiobooks.</h1>
-      <p style="font-size:19px; line-height:1.6; color:var(--muted-foreground); max-width:60ch; margin:24px auto 0">HearthShelf is a calmer, self-hosted web client for your audiobook library — warm dark surfaces, an immersive player, and a signature cover-glow that tints the room around whatever you're listening to.</p>
-      <div style="display:flex; gap:14px; justify-content:center; margin-top:36px">
-        <a href="#quickstart"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="primary" size="lg" icon="rocket_launch" hint-size="auto,50px">Deploy with Docker</x-import></a>
-        <a href="https://docs.hearthshelf.com"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="pill" size="lg" icon="menu_book" hint-size="auto,50px">Read the docs</x-import></a>
-      </div>
-      <div style="font-family:var(--font-mono); font-size:12.5px; color:var(--muted-foreground); margin-top:18px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap">
-        <span>$ docker compose up -d</span><span style="opacity:.4">·</span><span>MIT licensed</span><span style="opacity:.4">·</span><span>Built on Audiobookshelf</span>
-      </div>
-      <div style="margin-top:60px; display:flex; justify-content:center">
-        <dc-import name="AppFrame" screen="library" scale="{{ 0.66 }}" accent="{{ accent }}" hint-size="780px,540px"></dc-import>
-      </div>
-    </div>
-    </sc-if>
+          <!-- HERO · SHELF (asymmetric split, screen bleeds right) -->
+          <sc-if value="{{ isShelf }}" hint-placeholder-val="{{ true }}">
+            <div
+              style="
+                position: relative;
+                max-width: 1340px;
+                margin: 0 auto;
+                padding: 88px 0 0 56px;
+                display: grid;
+                grid-template-columns: minmax(420px, 520px) 1fr;
+                align-items: center;
+                gap: 40px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 7px 14px;
+                    border-radius: 999px;
+                    background: var(--fill);
+                    border: 1px solid var(--border);
+                    font-size: 12.5px;
+                    color: var(--muted-foreground);
+                    margin-bottom: 28px;
+                  "
+                >
+                  <span class="ms fill" style="font-size: 15px; color: var(--brand-hearth)"
+                    >bolt</span
+                  >A warmer home for Audiobookshelf
+                </div>
+                <h1
+                  style="
+                    font-size: 62px;
+                    font-weight: 800;
+                    letter-spacing: -0.035em;
+                    line-height: 1.03;
+                    margin: 0;
+                  "
+                >
+                  Your whole library, in one warm place.
+                </h1>
+                <p
+                  style="
+                    font-size: 18px;
+                    line-height: 1.6;
+                    color: var(--muted-foreground);
+                    max-width: 46ch;
+                    margin: 22px 0 0;
+                  "
+                >
+                  A single pane of glass for your self-hosted audiobooks. HearthShelf keeps
+                  everything Audiobookshelf does well and rehouses it in an interface you'll
+                  actually want to open at night.
+                </p>
+                <div style="display: flex; gap: 14px; margin-top: 34px">
+                  <a href="#quickstart"
+                    ><x-import
+                      component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                      variant="primary"
+                      size="lg"
+                      icon="rocket_launch"
+                      hint-size="auto,50px"
+                      >Deploy with Docker</x-import
+                    ></a
+                  >
+                  <a href="https://docs.hearthshelf.com"
+                    ><x-import
+                      component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                      variant="pill"
+                      size="lg"
+                      icon="menu_book"
+                      hint-size="auto,50px"
+                      >Read the docs</x-import
+                    ></a
+                  >
+                </div>
+                <div style="display: flex; gap: 30px; margin-top: 40px">
+                  <div>
+                    <div style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em">
+                      100%
+                    </div>
+                    <div style="font-size: 13px; color: var(--muted-foreground); margin-top: 2px">
+                      Self-hosted
+                    </div>
+                  </div>
+                  <div>
+                    <div style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em">
+                      MIT
+                    </div>
+                    <div style="font-size: 13px; color: var(--muted-foreground); margin-top: 2px">
+                      Open source
+                    </div>
+                  </div>
+                  <div>
+                    <div style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em">1</div>
+                    <div style="font-size: 13px; color: var(--muted-foreground); margin-top: 2px">
+                      Docker command
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="perspective: 1800px; display: flex; justify-content: flex-start">
+                <div style="transform: rotateY(-14deg) rotate(1deg); transform-origin: left center">
+                  <dc-import
+                    name="AppFrame"
+                    screen="library"
+                    scale="{{ 0.72 }}"
+                    accent="{{ accent }}"
+                    hint-size="850px,580px"
+                  ></dc-import>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </header>
 
-    <!-- HERO · SHELF (asymmetric split, screen bleeds right) -->
-    <sc-if value="{{ isShelf }}" hint-placeholder-val="{{ true }}">
-    <div style="position:relative; max-width:1340px; margin:0 auto; padding:88px 0 0 56px; display:grid; grid-template-columns:minmax(420px, 520px) 1fr; align-items:center; gap:40px">
-      <div>
-        <div style="display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px; background:var(--fill); border:1px solid var(--border); font-size:12.5px; color:var(--muted-foreground); margin-bottom:28px">
-          <span class="ms fill" style="font-size:15px; color:var(--brand-hearth)">bolt</span>A warmer home for Audiobookshelf
-        </div>
-        <h1 style="font-size:62px; font-weight:800; letter-spacing:-0.035em; line-height:1.03; margin:0">Your whole library, in one warm place.</h1>
-        <p style="font-size:18px; line-height:1.6; color:var(--muted-foreground); max-width:46ch; margin:22px 0 0">A single pane of glass for your self-hosted audiobooks. HearthShelf keeps everything Audiobookshelf does well and rehouses it in an interface you'll actually want to open at night.</p>
-        <div style="display:flex; gap:14px; margin-top:34px">
-          <a href="#quickstart"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="primary" size="lg" icon="rocket_launch" hint-size="auto,50px">Deploy with Docker</x-import></a>
-          <a href="https://docs.hearthshelf.com"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="pill" size="lg" icon="menu_book" hint-size="auto,50px">Read the docs</x-import></a>
-        </div>
-        <div style="display:flex; gap:30px; margin-top:40px">
-          <div><div style="font-size:26px; font-weight:700; letter-spacing:-0.02em">100%</div><div style="font-size:13px; color:var(--muted-foreground); margin-top:2px">Self-hosted</div></div>
-          <div><div style="font-size:26px; font-weight:700; letter-spacing:-0.02em">MIT</div><div style="font-size:13px; color:var(--muted-foreground); margin-top:2px">Open source</div></div>
-          <div><div style="font-size:26px; font-weight:700; letter-spacing:-0.02em">1</div><div style="font-size:13px; color:var(--muted-foreground); margin-top:2px">Docker command</div></div>
-        </div>
-      </div>
-      <div style="perspective:1800px; display:flex; justify-content:flex-start">
-        <div style="transform:rotateY(-14deg) rotate(1deg); transform-origin:left center">
-          <dc-import name="AppFrame" screen="library" scale="{{ 0.72 }}" accent="{{ accent }}" hint-size="850px,580px"></dc-import>
-        </div>
-      </div>
-    </div>
-    </sc-if>
+        <!-- ============ FEATURES ============ -->
+        <section id="features" style="max-width: 1140px; margin: 0 auto; padding: 120px 40px 0">
+          <div style="text-align: center; margin-bottom: 72px">
+            <div
+              style="
+                font-size: 11px;
+                font-weight: 300;
+                letter-spacing: 0.32em;
+                text-transform: uppercase;
+                color: var(--muted-foreground);
+              "
+            >
+              Why HearthShelf
+            </div>
+            <h2
+              style="font-size: 42px; font-weight: 800; letter-spacing: -0.03em; margin: 12px 0 0"
+            >
+              Built for the way you actually listen.
+            </h2>
+          </div>
 
-  </header>
-
-  <!-- ============ FEATURES ============ -->
-  <section id="features" style="max-width:1140px; margin:0 auto; padding:120px 40px 0">
-    <div style="text-align:center; margin-bottom:72px">
-      <div style="font-size:11px; font-weight:300; letter-spacing:0.32em; text-transform:uppercase; color:var(--muted-foreground)">Why HearthShelf</div>
-      <h2 style="font-size:42px; font-weight:800; letter-spacing:-0.03em; margin:12px 0 0">Built for the way you actually listen.</h2>
-    </div>
-
-    <!-- Feature 1: cover-glow -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; margin-bottom:128px">
-      <div>
-        <span style="display:inline-grid; place-items:center; width:46px; height:46px; border-radius:13px; background:color-mix(in oklab, var(--primary) 18%, transparent); color:var(--primary)"><span class="ms fill" style="font-size:24px">blur_on</span></span>
-        <h3 style="font-size:30px; font-weight:700; letter-spacing:-0.02em; margin:22px 0 0">The room glows with the story.</h3>
-        <p style="font-size:16px; line-height:1.65; color:var(--muted-foreground); margin:14px 0 0">Every cover carries its own color. When a title plays, that hue blooms softly from the top of the page and tints the controls — so the interface quietly takes on the mood of whatever you're in. No themes to pick. Color flows from the art.</p>
-        <ul style="list-style:none; padding:0; margin:24px 0 0; display:flex; flex-direction:column; gap:12px">
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Dynamic accent from cover artwork</li>
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Typeset covers when artwork is missing</li>
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Tunable glow intensity, light & dark</li>
-        </ul>
-      </div>
-      <div style="display:flex; justify-content:center">
-        <dc-import name="AppFrame" screen="player" scale="{{ 0.5 }}" accent="{{ accent }}" hint-size="600px,420px"></dc-import>
-      </div>
-    </div>
-
-    <!-- Feature 2: player -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; margin-bottom:128px">
-      <div style="order:2">
-        <span style="display:inline-grid; place-items:center; width:46px; height:46px; border-radius:13px; background:color-mix(in oklab, var(--primary) 18%, transparent); color:var(--primary)"><span class="ms fill" style="font-size:24px">graphic_eq</span></span>
-        <h3 style="font-size:30px; font-weight:700; letter-spacing:-0.02em; margin:22px 0 0">An immersive player, not a toolbar.</h3>
-        <p style="font-size:16px; line-height:1.65; color:var(--muted-foreground); margin:14px 0 0">A persistent bar for quick control, and a two-pane immersive view when you want to settle in — cover, chapters, sleep timer, and speed, all without leaving the page. Chapters slide in inline; nothing gets in your way.</p>
-        <ul style="list-style:none; padding:0; margin:24px 0 0; display:flex; flex-direction:column; gap:12px">
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Inline chapter list &amp; jump-to</li>
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Variable speed, sleep timer, bookmarks</li>
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Resume across every device</li>
-        </ul>
-      </div>
-      <div style="order:1; display:flex; justify-content:center">
-        <dc-import name="AppFrame" screen="library" scale="{{ 0.5 }}" accent="{{ accent }}" hint-size="600px,420px"></dc-import>
-      </div>
-    </div>
-
-    <!-- Feature 3: stats -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center">
-      <div>
-        <span style="display:inline-grid; place-items:center; width:46px; height:46px; border-radius:13px; background:color-mix(in oklab, var(--primary) 18%, transparent); color:var(--primary)"><span class="ms fill" style="font-size:24px">insights</span></span>
-        <h3 style="font-size:30px; font-weight:700; letter-spacing:-0.02em; margin:22px 0 0">Stats worth opening the app for.</h3>
-        <p style="font-size:16px; line-height:1.65; color:var(--muted-foreground); margin:14px 0 0">Streaks, hours, finished counts — and a server leaderboard so the people sharing your instance can compare notes. Your numbers stay on your hardware, never a third party's.</p>
-        <ul style="list-style:none; padding:0; margin:24px 0 0; display:flex; flex-direction:column; gap:12px">
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Listening streaks &amp; weekly trends</li>
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Shared-server leaderboard</li>
-          <li style="display:flex; gap:11px; align-items:center; font-size:15px; color:var(--foreground)"><span class="ms fill" style="font-size:19px; color:var(--primary)">check_circle</span>Private by default — your data, your box</li>
-        </ul>
-      </div>
-      <div style="display:flex; justify-content:center">
-        <dc-import name="AppFrame" screen="stats" scale="{{ 0.5 }}" accent="{{ accent }}" hint-size="600px,420px"></dc-import>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ COMPARE ============ -->
-  <section id="compare" style="max-width:920px; margin:0 auto; padding:140px 40px 0">
-    <div style="text-align:center; margin-bottom:48px">
-      <div style="font-size:11px; font-weight:300; letter-spacing:0.32em; text-transform:uppercase; color:var(--muted-foreground)">Same engine, warmer room</div>
-      <h2 style="font-size:42px; font-weight:800; letter-spacing:-0.03em; margin:12px 0 14px">HearthShelf vs. vanilla Audiobookshelf</h2>
-      <p style="font-size:16px; color:var(--muted-foreground); max-width:60ch; margin:0 auto; line-height:1.6">HearthShelf isn't a replacement — it's a front-end. Same library, same files, same mobile apps and API. It just makes the desktop experience feel like home.</p>
-    </div>
-    <div style="border:1px solid var(--border); border-radius:18px; overflow:hidden; background:var(--card)">
-      <div style="display:grid; grid-template-columns:1.7fr 1fr 1fr; align-items:center; padding:18px 26px; border-bottom:1px solid var(--border); background:var(--sidebar)">
-        <span style="font-size:13px; color:var(--muted-foreground)"></span>
-        <span style="font-size:13.5px; font-weight:600; text-align:center; color:var(--muted-foreground)">Audiobookshelf</span>
-        <span style="font-size:13.5px; font-weight:700; text-align:center; display:flex; align-items:center; justify-content:center; gap:7px"><span class="ms fill" style="font-size:17px; color:var(--brand-hearth)">local_fire_department</span>HearthShelf</span>
-      </div>
-      <sc-for list="{{ compare }}" as="r" hint-placeholder-count="7">
-        <div style="display:grid; grid-template-columns:1.7fr 1fr 1fr; align-items:center; padding:17px 26px; border-bottom:1px solid var(--border)">
-          <span style="font-size:14.5px; font-weight:500; color:var(--foreground)">{{ r.label }}</span>
-          <span style="text-align:center; font-size:13px; color:var(--muted-foreground)">{{ r.base }}</span>
-          <span style="text-align:center; display:flex; justify-content:center"><span class="ms fill" style="font-size:21px; color:{{ r.hsColor }}">{{ r.hsIcon }}</span></span>
-        </div>
-      </sc-for>
-      <div style="padding:16px 26px; display:flex; align-items:center; gap:9px; font-size:13px; color:var(--muted-foreground)">
-        <span class="ms" style="font-size:17px">info</span>HearthShelf reads your existing Audiobookshelf server — nothing to migrate.
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ GALLERY ============ -->
-  <section id="gallery" style="max-width:1240px; margin:0 auto; padding:140px 40px 0">
-    <div style="text-align:center; margin-bottom:56px">
-      <div style="font-size:11px; font-weight:300; letter-spacing:0.32em; text-transform:uppercase; color:var(--muted-foreground)">A look around</div>
-      <h2 style="font-size:42px; font-weight:800; letter-spacing:-0.03em; margin:12px 0 0">Every screen, reconsidered.</h2>
-    </div>
-    <div style="display:flex; gap:32px; justify-content:center; flex-wrap:wrap; align-items:flex-start">
-      <div style="display:flex; flex-direction:column; align-items:center; gap:16px">
-        <dc-import name="AppFrame" screen="library" scale="{{ 0.5 }}" accent="{{ accent }}" hint-size="600px,420px"></dc-import>
-        <div style="font-size:14px; color:var(--muted-foreground)"><span style="color:var(--foreground); font-weight:600">Library</span> · your whole collection</div>
-      </div>
-      <div style="display:flex; flex-direction:column; align-items:center; gap:16px">
-        <dc-import name="AppFrame" screen="player" scale="{{ 0.5 }}" accent="{{ accent }}" hint-size="600px,420px"></dc-import>
-        <div style="font-size:14px; color:var(--muted-foreground)"><span style="color:var(--foreground); font-weight:600">Player</span> · immersive, cover-lit</div>
-      </div>
-      <div style="display:flex; flex-direction:column; align-items:center; gap:16px">
-        <dc-import name="AppFrame" screen="stats" scale="{{ 0.5 }}" accent="{{ accent }}" hint-size="600px,420px"></dc-import>
-        <div style="font-size:14px; color:var(--muted-foreground)"><span style="color:var(--foreground); font-weight:600">Stats</span> · streaks &amp; leaderboard</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ QUICKSTART ============ -->
-  <section id="quickstart" style="max-width:1000px; margin:0 auto; padding:140px 40px 0">
-    <div style="text-align:center; margin-bottom:48px">
-      <div style="font-size:11px; font-weight:300; letter-spacing:0.32em; text-transform:uppercase; color:var(--muted-foreground)">Up in two minutes</div>
-      <h2 style="font-size:42px; font-weight:800; letter-spacing:-0.03em; margin:12px 0 0">Self-host it with one command.</h2>
-    </div>
-    <div style="display:grid; grid-template-columns:200px 1fr; gap:36px; align-items:start">
-      <div style="display:flex; flex-direction:column; gap:6px">
-        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
-          <div style="display:flex; gap:14px; padding:14px 0">
-            <span style="flex:none; width:30px; height:30px; border-radius:50%; background:color-mix(in oklab, var(--primary) 16%, transparent); color:var(--primary); display:grid; place-items:center; font-family:var(--font-mono); font-size:14px; font-weight:600">{{ s.n }}</span>
+          <!-- Feature 1: cover-glow -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 64px;
+              align-items: center;
+              margin-bottom: 128px;
+            "
+          >
             <div>
-              <div style="font-size:15px; font-weight:600">{{ s.title }}</div>
-              <div style="font-size:13px; color:var(--muted-foreground); margin-top:3px; line-height:1.5">{{ s.body }}</div>
+              <span
+                style="
+                  display: inline-grid;
+                  place-items: center;
+                  width: 46px;
+                  height: 46px;
+                  border-radius: 13px;
+                  background: color-mix(in oklab, var(--primary) 18%, transparent);
+                  color: var(--primary);
+                "
+                ><span class="ms fill" style="font-size: 24px">blur_on</span></span
+              >
+              <h3
+                style="font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 22px 0 0"
+              >
+                The room glows with the story.
+              </h3>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.65;
+                  color: var(--muted-foreground);
+                  margin: 14px 0 0;
+                "
+              >
+                Every cover carries its own color. When a title plays, that hue blooms softly from
+                the top of the page and tints the controls — so the interface quietly takes on the
+                mood of whatever you're in. No themes to pick. Color flows from the art.
+              </p>
+              <ul
+                style="
+                  list-style: none;
+                  padding: 0;
+                  margin: 24px 0 0;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                "
+              >
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Dynamic accent from cover artwork
+                </li>
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Typeset covers when artwork is missing
+                </li>
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Tunable glow intensity, light & dark
+                </li>
+              </ul>
+            </div>
+            <div style="display: flex; justify-content: center">
+              <dc-import
+                name="AppFrame"
+                screen="player"
+                scale="{{ 0.5 }}"
+                accent="{{ accent }}"
+                hint-size="600px,420px"
+              ></dc-import>
             </div>
           </div>
-        </sc-for>
-      </div>
-      <div style="border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--popover)">
-        <div style="display:flex; align-items:center; gap:10px; padding:13px 18px; border-bottom:1px solid var(--border); background:var(--sidebar)">
-          <span class="ms" style="font-size:18px; color:var(--muted-foreground)">description</span>
-          <span style="font-family:var(--font-mono); font-size:13px; color:var(--foreground)">docker-compose.yml</span>
-          <span style="margin-left:auto; display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--muted-foreground)"><span class="ms" style="font-size:16px">content_copy</span>Copy</span>
-        </div>
-        <pre style="margin:0; padding:22px 24px; font-family:var(--font-mono); font-size:13px; line-height:1.75; color:#cdbfae; overflow-x:auto"><span style="color:#8aa6a0">services:</span>
+
+          <!-- Feature 2: player -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 64px;
+              align-items: center;
+              margin-bottom: 128px;
+            "
+          >
+            <div style="order: 2">
+              <span
+                style="
+                  display: inline-grid;
+                  place-items: center;
+                  width: 46px;
+                  height: 46px;
+                  border-radius: 13px;
+                  background: color-mix(in oklab, var(--primary) 18%, transparent);
+                  color: var(--primary);
+                "
+                ><span class="ms fill" style="font-size: 24px">graphic_eq</span></span
+              >
+              <h3
+                style="font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 22px 0 0"
+              >
+                An immersive player, not a toolbar.
+              </h3>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.65;
+                  color: var(--muted-foreground);
+                  margin: 14px 0 0;
+                "
+              >
+                A persistent bar for quick control, and a two-pane immersive view when you want to
+                settle in — cover, chapters, sleep timer, and speed, all without leaving the page.
+                Chapters slide in inline; nothing gets in your way.
+              </p>
+              <ul
+                style="
+                  list-style: none;
+                  padding: 0;
+                  margin: 24px 0 0;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                "
+              >
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Inline chapter list &amp; jump-to
+                </li>
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Variable speed, sleep timer, bookmarks
+                </li>
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Resume across every device
+                </li>
+              </ul>
+            </div>
+            <div style="order: 1; display: flex; justify-content: center">
+              <dc-import
+                name="AppFrame"
+                screen="library"
+                scale="{{ 0.5 }}"
+                accent="{{ accent }}"
+                hint-size="600px,420px"
+              ></dc-import>
+            </div>
+          </div>
+
+          <!-- Feature 3: stats -->
+          <div
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center"
+          >
+            <div>
+              <span
+                style="
+                  display: inline-grid;
+                  place-items: center;
+                  width: 46px;
+                  height: 46px;
+                  border-radius: 13px;
+                  background: color-mix(in oklab, var(--primary) 18%, transparent);
+                  color: var(--primary);
+                "
+                ><span class="ms fill" style="font-size: 24px">insights</span></span
+              >
+              <h3
+                style="font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 22px 0 0"
+              >
+                Stats worth opening the app for.
+              </h3>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.65;
+                  color: var(--muted-foreground);
+                  margin: 14px 0 0;
+                "
+              >
+                Streaks, hours, finished counts — and a server leaderboard so the people sharing
+                your instance can compare notes. Your numbers stay on your hardware, never a third
+                party's.
+              </p>
+              <ul
+                style="
+                  list-style: none;
+                  padding: 0;
+                  margin: 24px 0 0;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                "
+              >
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Listening streaks &amp; weekly trends
+                </li>
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Shared-server leaderboard
+                </li>
+                <li
+                  style="
+                    display: flex;
+                    gap: 11px;
+                    align-items: center;
+                    font-size: 15px;
+                    color: var(--foreground);
+                  "
+                >
+                  <span class="ms fill" style="font-size: 19px; color: var(--primary)"
+                    >check_circle</span
+                  >Private by default — your data, your box
+                </li>
+              </ul>
+            </div>
+            <div style="display: flex; justify-content: center">
+              <dc-import
+                name="AppFrame"
+                screen="stats"
+                scale="{{ 0.5 }}"
+                accent="{{ accent }}"
+                hint-size="600px,420px"
+              ></dc-import>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ COMPARE ============ -->
+        <section id="compare" style="max-width: 920px; margin: 0 auto; padding: 140px 40px 0">
+          <div style="text-align: center; margin-bottom: 48px">
+            <div
+              style="
+                font-size: 11px;
+                font-weight: 300;
+                letter-spacing: 0.32em;
+                text-transform: uppercase;
+                color: var(--muted-foreground);
+              "
+            >
+              Same engine, warmer room
+            </div>
+            <h2
+              style="
+                font-size: 42px;
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                margin: 12px 0 14px;
+              "
+            >
+              HearthShelf vs. vanilla Audiobookshelf
+            </h2>
+            <p
+              style="
+                font-size: 16px;
+                color: var(--muted-foreground);
+                max-width: 60ch;
+                margin: 0 auto;
+                line-height: 1.6;
+              "
+            >
+              HearthShelf isn't a replacement — it's a front-end. Same library, same files, same
+              mobile apps and API. It just makes the desktop experience feel like home.
+            </p>
+          </div>
+          <div
+            style="
+              border: 1px solid var(--border);
+              border-radius: 18px;
+              overflow: hidden;
+              background: var(--card);
+            "
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1.7fr 1fr 1fr;
+                align-items: center;
+                padding: 18px 26px;
+                border-bottom: 1px solid var(--border);
+                background: var(--sidebar);
+              "
+            >
+              <span style="font-size: 13px; color: var(--muted-foreground)"></span>
+              <span
+                style="
+                  font-size: 13.5px;
+                  font-weight: 600;
+                  text-align: center;
+                  color: var(--muted-foreground);
+                "
+                >Audiobookshelf</span
+              >
+              <span
+                style="
+                  font-size: 13.5px;
+                  font-weight: 700;
+                  text-align: center;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 7px;
+                "
+                ><span class="ms fill" style="font-size: 17px; color: var(--brand-hearth)"
+                  >local_fire_department</span
+                >HearthShelf</span
+              >
+            </div>
+            <sc-for list="{{ compare }}" as="r" hint-placeholder-count="7">
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1.7fr 1fr 1fr;
+                  align-items: center;
+                  padding: 17px 26px;
+                  border-bottom: 1px solid var(--border);
+                "
+              >
+                <span style="font-size: 14.5px; font-weight: 500; color: var(--foreground)"
+                  >{{ r.label }}</span
+                >
+                <span style="text-align: center; font-size: 13px; color: var(--muted-foreground)"
+                  >{{ r.base }}</span
+                >
+                <span style="text-align: center; display: flex; justify-content: center"
+                  ><span class="ms fill" style="font-size:21px; color:{{ r.hsColor }}"
+                    >{{ r.hsIcon }}</span
+                  ></span
+                >
+              </div>
+            </sc-for>
+            <div
+              style="
+                padding: 16px 26px;
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                font-size: 13px;
+                color: var(--muted-foreground);
+              "
+            >
+              <span class="ms" style="font-size: 17px">info</span>HearthShelf reads your existing
+              Audiobookshelf server — nothing to migrate.
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ GALLERY ============ -->
+        <section id="gallery" style="max-width: 1240px; margin: 0 auto; padding: 140px 40px 0">
+          <div style="text-align: center; margin-bottom: 56px">
+            <div
+              style="
+                font-size: 11px;
+                font-weight: 300;
+                letter-spacing: 0.32em;
+                text-transform: uppercase;
+                color: var(--muted-foreground);
+              "
+            >
+              A look around
+            </div>
+            <h2
+              style="font-size: 42px; font-weight: 800; letter-spacing: -0.03em; margin: 12px 0 0"
+            >
+              Every screen, reconsidered.
+            </h2>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 32px;
+              justify-content: center;
+              flex-wrap: wrap;
+              align-items: flex-start;
+            "
+          >
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
+              <dc-import
+                name="AppFrame"
+                screen="library"
+                scale="{{ 0.5 }}"
+                accent="{{ accent }}"
+                hint-size="600px,420px"
+              ></dc-import>
+              <div style="font-size: 14px; color: var(--muted-foreground)">
+                <span style="color: var(--foreground); font-weight: 600">Library</span> · your whole
+                collection
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
+              <dc-import
+                name="AppFrame"
+                screen="player"
+                scale="{{ 0.5 }}"
+                accent="{{ accent }}"
+                hint-size="600px,420px"
+              ></dc-import>
+              <div style="font-size: 14px; color: var(--muted-foreground)">
+                <span style="color: var(--foreground); font-weight: 600">Player</span> · immersive,
+                cover-lit
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
+              <dc-import
+                name="AppFrame"
+                screen="stats"
+                scale="{{ 0.5 }}"
+                accent="{{ accent }}"
+                hint-size="600px,420px"
+              ></dc-import>
+              <div style="font-size: 14px; color: var(--muted-foreground)">
+                <span style="color: var(--foreground); font-weight: 600">Stats</span> · streaks
+                &amp; leaderboard
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ QUICKSTART ============ -->
+        <section id="quickstart" style="max-width: 1000px; margin: 0 auto; padding: 140px 40px 0">
+          <div style="text-align: center; margin-bottom: 48px">
+            <div
+              style="
+                font-size: 11px;
+                font-weight: 300;
+                letter-spacing: 0.32em;
+                text-transform: uppercase;
+                color: var(--muted-foreground);
+              "
+            >
+              Up in two minutes
+            </div>
+            <h2
+              style="font-size: 42px; font-weight: 800; letter-spacing: -0.03em; margin: 12px 0 0"
+            >
+              Self-host it with one command.
+            </h2>
+          </div>
+          <div
+            style="display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: start"
+          >
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+                <div style="display: flex; gap: 14px; padding: 14px 0">
+                  <span
+                    style="
+                      flex: none;
+                      width: 30px;
+                      height: 30px;
+                      border-radius: 50%;
+                      background: color-mix(in oklab, var(--primary) 16%, transparent);
+                      color: var(--primary);
+                      display: grid;
+                      place-items: center;
+                      font-family: var(--font-mono);
+                      font-size: 14px;
+                      font-weight: 600;
+                    "
+                    >{{ s.n }}</span
+                  >
+                  <div>
+                    <div style="font-size: 15px; font-weight: 600">{{ s.title }}</div>
+                    <div
+                      style="
+                        font-size: 13px;
+                        color: var(--muted-foreground);
+                        margin-top: 3px;
+                        line-height: 1.5;
+                      "
+                    >
+                      {{ s.body }}
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div
+              style="
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                overflow: hidden;
+                background: var(--popover);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  padding: 13px 18px;
+                  border-bottom: 1px solid var(--border);
+                  background: var(--sidebar);
+                "
+              >
+                <span class="ms" style="font-size: 18px; color: var(--muted-foreground)"
+                  >description</span
+                >
+                <span
+                  style="font-family: var(--font-mono); font-size: 13px; color: var(--foreground)"
+                  >docker-compose.yml</span
+                >
+                <span
+                  style="
+                    margin-left: auto;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 12.5px;
+                    color: var(--muted-foreground);
+                  "
+                  ><span class="ms" style="font-size: 16px">content_copy</span>Copy</span
+                >
+              </div>
+              <pre
+                style="
+                  margin: 0;
+                  padding: 22px 24px;
+                  font-family: var(--font-mono);
+                  font-size: 13px;
+                  line-height: 1.75;
+                  color: #cdbfae;
+                  overflow-x: auto;
+                "
+              ><span style="color:#8aa6a0">services:</span>
   <span style="color:#e0a36a">hearthshelf:</span>
     <span style="color:#8aa6a0">image:</span> ghcr.io/hearthshelf/hearthshelf:latest
     <span style="color:#8aa6a0">container_name:</span> hearthshelf
@@ -242,112 +1004,312 @@
     <span style="color:#8aa6a0">environment:</span>
       - TZ=America/New_York
     <span style="color:#8aa6a0">restart:</span> unless-stopped</pre>
-        <div style="padding:16px 24px; border-top:1px solid var(--border); display:flex; align-items:center; gap:12px; background:var(--card)">
-          <span style="color:var(--primary); font-family:var(--font-mono); font-size:14px">$</span>
-          <span style="font-family:var(--font-mono); font-size:14px; color:var(--foreground)">docker compose up -d</span>
-          <a href="https://docs.hearthshelf.com" style="margin-left:auto"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="pill" size="sm" iconRight="arrow_forward" hint-size="auto,36px">Full install guide</x-import></a>
-        </div>
-      </div>
-    </div>
-  </section>
+              <div
+                style="
+                  padding: 16px 24px;
+                  border-top: 1px solid var(--border);
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  background: var(--card);
+                "
+              >
+                <span style="color: var(--primary); font-family: var(--font-mono); font-size: 14px"
+                  >$</span
+                >
+                <span
+                  style="font-family: var(--font-mono); font-size: 14px; color: var(--foreground)"
+                  >docker compose up -d</span
+                >
+                <a href="https://docs.hearthshelf.com" style="margin-left: auto"
+                  ><x-import
+                    component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                    variant="pill"
+                    size="sm"
+                    iconRight="arrow_forward"
+                    hint-size="auto,36px"
+                    >Full install guide</x-import
+                  ></a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <!-- ============ CTA STRIP ============ -->
-  <section style="max-width:1140px; margin:0 auto; padding:140px 40px 0">
-    <div style="position:relative; overflow:hidden; border:1px solid var(--border); border-radius:26px; background:var(--card); padding:72px 48px; text-align:center">
-      <div style="position:absolute; inset:0 0 auto 0; height:100%; pointer-events:none; background:radial-gradient(70% 120% at 50% -20%, color-mix(in oklab, var(--glow-accent) 28%, transparent), transparent 60%)"></div>
-      <div style="position:relative">
-        <img src="uploads/FlameLogo-Transparent.png" alt="" style="width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 0 16px color-mix(in oklab, var(--brand-hearth) 45%, transparent))">
-        <h2 style="font-size:40px; font-weight:800; letter-spacing:-0.03em; margin:18px 0 0">Bring your library home.</h2>
-        <p style="font-size:17px; color:var(--muted-foreground); margin:14px auto 0; max-width:50ch; line-height:1.6">Free, open source, and yours to run forever. Point it at your Audiobookshelf server and open the door.</p>
-        <div style="display:flex; gap:14px; justify-content:center; margin-top:32px">
-          <a href="#quickstart"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="primary" size="lg" icon="rocket_launch" hint-size="auto,50px">Deploy with Docker</x-import></a>
-          <a href="#"><x-import component-from-global-scope="AudplexusDesignSystem_019e15.Button" variant="pill" size="lg" icon="star" hint-size="auto,50px">Star on GitHub</x-import></a>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- ============ CTA STRIP ============ -->
+        <section style="max-width: 1140px; margin: 0 auto; padding: 140px 40px 0">
+          <div
+            style="
+              position: relative;
+              overflow: hidden;
+              border: 1px solid var(--border);
+              border-radius: 26px;
+              background: var(--card);
+              padding: 72px 48px;
+              text-align: center;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                inset: 0 0 auto 0;
+                height: 100%;
+                pointer-events: none;
+                background: radial-gradient(
+                  70% 120% at 50% -20%,
+                  color-mix(in oklab, var(--glow-accent) 28%, transparent),
+                  transparent 60%
+                );
+              "
+            ></div>
+            <div style="position: relative">
+              <img
+                src="uploads/FlameLogo-Transparent.png"
+                alt=""
+                style="
+                  width: 48px;
+                  height: 48px;
+                  object-fit: contain;
+                  filter: drop-shadow(
+                    0 0 16px color-mix(in oklab, var(--brand-hearth) 45%, transparent)
+                  );
+                "
+              />
+              <h2
+                style="font-size: 40px; font-weight: 800; letter-spacing: -0.03em; margin: 18px 0 0"
+              >
+                Bring your library home.
+              </h2>
+              <p
+                style="
+                  font-size: 17px;
+                  color: var(--muted-foreground);
+                  margin: 14px auto 0;
+                  max-width: 50ch;
+                  line-height: 1.6;
+                "
+              >
+                Free, open source, and yours to run forever. Point it at your Audiobookshelf server
+                and open the door.
+              </p>
+              <div style="display: flex; gap: 14px; justify-content: center; margin-top: 32px">
+                <a href="#quickstart"
+                  ><x-import
+                    component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                    variant="primary"
+                    size="lg"
+                    icon="rocket_launch"
+                    hint-size="auto,50px"
+                    >Deploy with Docker</x-import
+                  ></a
+                >
+                <a href="#"
+                  ><x-import
+                    component-from-global-scope="AudplexusDesignSystem_019e15.Button"
+                    variant="pill"
+                    size="lg"
+                    icon="star"
+                    hint-size="auto,50px"
+                    >Star on GitHub</x-import
+                  ></a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer style="max-width:1140px; margin:0 auto; padding:96px 40px 56px">
-    <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:48px; border-bottom:1px solid var(--border)">
-      <div>
-        <a href="#top" style="display:flex; align-items:center; gap:10px">
-          <img src="uploads/FlameLogo-Transparent.png" alt="" style="width:24px; height:24px; object-fit:contain">
-          <span style="font-size:19px; font-family:var(--font-brand)"><span style="font-weight:400; color:var(--brand-hearth)">Hearth</span><span style="font-weight:700; color:var(--wordmark-shelf)">Shelf</span></span>
-        </a>
-        <p style="font-size:14px; color:var(--muted-foreground); margin:16px 0 0; max-width:34ch; line-height:1.6">A calmer, self-hosted web client for your audiobook library.</p>
-        <div style="font-family:var(--font-brand); font-style:italic; font-size:15px; color:var(--muted-foreground); margin-top:18px">"the only light the glow of the story itself."</div>
+        <!-- ============ FOOTER ============ -->
+        <footer style="max-width: 1140px; margin: 0 auto; padding: 96px 40px 56px">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1.6fr 1fr 1fr 1fr;
+              gap: 40px;
+              padding-bottom: 48px;
+              border-bottom: 1px solid var(--border);
+            "
+          >
+            <div>
+              <a href="#top" style="display: flex; align-items: center; gap: 10px">
+                <img
+                  src="uploads/FlameLogo-Transparent.png"
+                  alt=""
+                  style="width: 24px; height: 24px; object-fit: contain"
+                />
+                <span style="font-size: 19px; font-family: var(--font-brand)"
+                  ><span style="font-weight: 400; color: var(--brand-hearth)">Hearth</span
+                  ><span style="font-weight: 700; color: var(--wordmark-shelf)">Shelf</span></span
+                >
+              </a>
+              <p
+                style="
+                  font-size: 14px;
+                  color: var(--muted-foreground);
+                  margin: 16px 0 0;
+                  max-width: 34ch;
+                  line-height: 1.6;
+                "
+              >
+                A calmer, self-hosted web client for your audiobook library.
+              </p>
+              <div
+                style="
+                  font-family: var(--font-brand);
+                  font-style: italic;
+                  font-size: 15px;
+                  color: var(--muted-foreground);
+                  margin-top: 18px;
+                "
+              >
+                "the only light the glow of the story itself."
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.18em;
+                  text-transform: uppercase;
+                  color: var(--muted-foreground);
+                  margin-bottom: 16px;
+                "
+              >
+                Product
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 11px;
+                  font-size: 14px;
+                  color: var(--muted-foreground);
+                "
+              >
+                <a class="navlink" href="#features" style="transition: color 0.15s">Features</a>
+                <a class="navlink" href="#compare" style="transition: color 0.15s">Compare</a>
+                <a class="navlink" href="#gallery" style="transition: color 0.15s">Screenshots</a>
+                <a class="navlink" href="#quickstart" style="transition: color 0.15s">Self-host</a>
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.18em;
+                  text-transform: uppercase;
+                  color: var(--muted-foreground);
+                  margin-bottom: 16px;
+                "
+              >
+                Resources
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 11px;
+                  font-size: 14px;
+                  color: var(--muted-foreground);
+                "
+              >
+                <a
+                  class="navlink"
+                  href="https://docs.hearthshelf.com"
+                  style="transition: color 0.15s"
+                  >Documentation</a
+                >
+                <a
+                  class="navlink"
+                  href="https://docs.hearthshelf.com"
+                  style="transition: color 0.15s"
+                  >Installation</a
+                >
+                <a class="navlink" href="#" style="transition: color 0.15s">GitHub</a>
+                <a class="navlink" href="#" style="transition: color 0.15s">Changelog</a>
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.18em;
+                  text-transform: uppercase;
+                  color: var(--muted-foreground);
+                  margin-bottom: 16px;
+                "
+              >
+                Community
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 11px;
+                  font-size: 14px;
+                  color: var(--muted-foreground);
+                "
+              >
+                <a class="navlink" href="#" style="transition: color 0.15s">Discord</a>
+                <a class="navlink" href="#" style="transition: color 0.15s">Reddit</a>
+                <a class="navlink" href="#" style="transition: color 0.15s">Matrix</a>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding-top: 24px;
+              font-size: 13px;
+              color: var(--muted-foreground);
+            "
+          >
+            <span>© 2026 HearthShelf · MIT licensed · Not affiliated with Audiobookshelf</span>
+            <span style="font-family: var(--font-mono)">v0.9.2</span>
+          </div>
+        </footer>
       </div>
-      <div>
-        <div style="font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted-foreground); margin-bottom:16px">Product</div>
-        <div style="display:flex; flex-direction:column; gap:11px; font-size:14px; color:var(--muted-foreground)">
-          <a class="navlink" href="#features" style="transition:color .15s">Features</a>
-          <a class="navlink" href="#compare" style="transition:color .15s">Compare</a>
-          <a class="navlink" href="#gallery" style="transition:color .15s">Screenshots</a>
-          <a class="navlink" href="#quickstart" style="transition:color .15s">Self-host</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted-foreground); margin-bottom:16px">Resources</div>
-        <div style="display:flex; flex-direction:column; gap:11px; font-size:14px; color:var(--muted-foreground)">
-          <a class="navlink" href="https://docs.hearthshelf.com" style="transition:color .15s">Documentation</a>
-          <a class="navlink" href="https://docs.hearthshelf.com" style="transition:color .15s">Installation</a>
-          <a class="navlink" href="#" style="transition:color .15s">GitHub</a>
-          <a class="navlink" href="#" style="transition:color .15s">Changelog</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted-foreground); margin-bottom:16px">Community</div>
-        <div style="display:flex; flex-direction:column; gap:11px; font-size:14px; color:var(--muted-foreground)">
-          <a class="navlink" href="#" style="transition:color .15s">Discord</a>
-          <a class="navlink" href="#" style="transition:color .15s">Reddit</a>
-          <a class="navlink" href="#" style="transition:color .15s">Matrix</a>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex; align-items:center; justify-content:space-between; padding-top:24px; font-size:13px; color:var(--muted-foreground)">
-      <span>© 2026 HearthShelf · MIT licensed · Not affiliated with Audiobookshelf</span>
-      <span style="font-family:var(--font-mono)">v0.9.2</span>
-    </div>
-  </footer>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{"heroVariant":{"editor":"enum","options":["shelf","hearth"],"default":"shelf","tsType":"string"},"accent":{"editor":"color","default":"#e0654a","options":["#e0654a","#bd863f","#4f9db0","#7fa86b","#9b6fb8"],"tsType":"string"},"glow":{"editor":"int","default":60,"min":0,"max":100,"step":2,"tsType":"number"}}'
+    >
+      class Component extends DCLogic {
+        renderVals() {
+          const hero = this.props.heroVariant || "shelf";
+          const compare = [
+            { label: "Warm dark “hearth” theme", base: "Default theme", hs: true },
+            { label: "Dynamic cover-glow", base: "—", hs: true },
+            { label: "Immersive two-pane player", base: "Basic player bar", hs: true },
+            { label: "Typeset covers for missing art", base: "Gray placeholder", hs: true },
+            { label: "Server leaderboard & stats", base: "Personal only", hs: true },
+            { label: "Self-hosted — your data, your box", base: "Yes", hs: true, baseOk: true },
+            { label: "Same library, API & mobile apps", base: "Yes", hs: true, baseOk: true },
+          ].map((r) => ({
+            label: r.label,
+            base: r.base,
+            hsIcon: "check_circle",
+            hsColor: "var(--primary)",
+          }));
 
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;heroVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;shelf&quot;,&quot;hearth&quot;],&quot;default&quot;:&quot;shelf&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#e0654a&quot;,&quot;options&quot;:[&quot;#e0654a&quot;,&quot;#bd863f&quot;,&quot;#4f9db0&quot;,&quot;#7fa86b&quot;,&quot;#9b6fb8&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:60,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;}}">
-class Component extends DCLogic {
-  renderVals() {
-    const hero = this.props.heroVariant || "shelf";
-    const compare = [
-      { label: "Warm dark “hearth” theme", base: "Default theme", hs: true },
-      { label: "Dynamic cover-glow", base: "—", hs: true },
-      { label: "Immersive two-pane player", base: "Basic player bar", hs: true },
-      { label: "Typeset covers for missing art", base: "Gray placeholder", hs: true },
-      { label: "Server leaderboard & stats", base: "Personal only", hs: true },
-      { label: "Self-hosted — your data, your box", base: "Yes", hs: true, baseOk: true },
-      { label: "Same library, API & mobile apps", base: "Yes", hs: true, baseOk: true },
-    ].map((r) => ({
-      label: r.label,
-      base: r.base,
-      hsIcon: "check_circle",
-      hsColor: "var(--primary)",
-    }));
+          const steps = [
+            { n: 1, title: "Add the compose file", body: "Drop docker-compose.yml in a folder and point a volume at your audiobooks." },
+            { n: 2, title: "Bring it up", body: "Run docker compose up -d. The image pulls and starts in seconds." },
+            { n: 3, title: "Open the door", body: "Visit http://localhost:8200 and connect your Audiobookshelf server." },
+          ];
 
-    const steps = [
-      { n: 1, title: "Add the compose file", body: "Drop docker-compose.yml in a folder and point a volume at your audiobooks." },
-      { n: 2, title: "Bring it up", body: "Run docker compose up -d. The image pulls and starts in seconds." },
-      { n: 3, title: "Open the door", body: "Visit http://localhost:8200 and connect your Audiobookshelf server." },
-    ];
-
-    return {
-      accent: this.props.accent || "#e0654a",
-      glow: this.props.glow ?? 60,
-      isHearth: hero === "hearth",
-      isShelf: hero === "shelf",
-      compare,
-      steps,
-    };
-  }
-}
-</script>
-</body>
+          return {
+            accent: this.props.accent || "#e0654a",
+            glow: this.props.glow ?? 60,
+            isHearth: hero === "hearth",
+            isShelf: hero === "shelf",
+            compare,
+            steps,
+          };
+        }
+      }
+    </script>
+  </body>
 </html>

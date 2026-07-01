@@ -13,11 +13,6 @@ v1.route('/changelogs', changelogs)
 
 app.route('/v1', v1)
 
-app.all('*', (c) =>
-  c.json(
-    { error: 'API moved to /api/v1', hint: 'Use the /api/v1/ prefix' },
-    404,
-  ),
-)
+app.all('*', (c) => c.json({ error: 'API moved to /api/v1', hint: 'Use the /api/v1/ prefix' }, 404))
 
 export const onRequest = handle(app)

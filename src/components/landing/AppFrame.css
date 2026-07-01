@@ -24,7 +24,9 @@
   overflow: hidden;
   background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  box-shadow:
+    0 40px 90px -30px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   color: var(--foreground);
   display: inline-block;
@@ -32,12 +34,16 @@
 
 .af-shell .ms {
   font-family: 'Material Symbols Rounded';
-  font-variation-settings: 'FILL' 0, 'wght' 400;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400;
   line-height: 1;
   user-select: none;
 }
 .af-shell .ms.fill {
-  font-variation-settings: 'FILL' 1, 'wght' 400;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400;
 }
 .af-mono {
   font-family: var(--font-mono);
@@ -248,7 +254,11 @@
   font-weight: 700;
   font-size: 14px;
   color: var(--on-accent);
-  background: linear-gradient(150deg, var(--primary), color-mix(in oklab, var(--primary) 45%, #000));
+  background: linear-gradient(
+    150deg,
+    var(--primary),
+    color-mix(in oklab, var(--primary) 45%, #000)
+  );
 }
 .af-u-meta {
   min-width: 0;
@@ -478,7 +488,9 @@
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(4px);
-  transition: transform 0.12s, background 0.15s;
+  transition:
+    transform 0.12s,
+    background 0.15s;
 }
 .af-ha-btn {
   width: 28px;
@@ -573,7 +585,9 @@
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
   padding: 6px;
   animation: afCtxPop 0.12s ease;
 }
@@ -821,7 +835,11 @@
   inset: 0 0 auto 0;
   height: 100%;
   pointer-events: none;
-  background: radial-gradient(120% 90% at 50% -10%, color-mix(in oklab, var(--primary) 56%, transparent) 0%, transparent 60%);
+  background: radial-gradient(
+    120% 90% at 50% -10%,
+    color-mix(in oklab, var(--primary) 56%, transparent) 0%,
+    transparent 60%
+  );
 }
 .af-player-col {
   position: relative;

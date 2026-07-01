@@ -10,7 +10,9 @@ import './index.css'
 if (!clerkEnabled) {
   // Not fatal: the site renders without auth (see lib/utils clerkEnabled).
   // Logged so a misconfigured build env var is obvious in the console.
-  console.warn('VITE_CLERK_PUBLISHABLE_KEY is not set - auth controls fall back to links into app.hearthshelf.com')
+  console.warn(
+    'VITE_CLERK_PUBLISHABLE_KEY is not set - auth controls fall back to links into app.hearthshelf.com',
+  )
 }
 
 const app = <RouterProvider router={router} />

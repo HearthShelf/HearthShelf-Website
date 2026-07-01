@@ -11,8 +11,7 @@ export default function ErrorPage() {
 
   // Three cases: a 404 route response, no error at all (the `*` catch-all route
   // renders this directly for unmatched URLs), or a thrown render/loader error.
-  const isNotFound =
-    !error || (isRouteErrorResponse(error) && error.status === 404)
+  const isNotFound = !error || (isRouteErrorResponse(error) && error.status === 404)
   const code = isRouteErrorResponse(error) ? error.status : isNotFound ? 404 : 500
   const title = isNotFound ? 'Page not found' : 'Something went wrong'
   const message = isNotFound
@@ -28,13 +27,9 @@ export default function ErrorPage() {
       <div className="absolute inset-0 bg-black/60" />
 
       <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center">
-        <p className="text-7xl font-bold leading-none text-[var(--brand-hearth)]">
-          {code}
-        </p>
+        <p className="text-7xl font-bold leading-none text-[var(--brand-hearth)]">{code}</p>
         <div className="flex flex-col gap-2">
-          <h1 className="font-brand text-2xl font-bold text-[var(--wordmark-shelf)]">
-            {title}
-          </h1>
+          <h1 className="font-brand text-2xl font-bold text-[var(--wordmark-shelf)]">{title}</h1>
           <p className="max-w-xs text-sm leading-relaxed text-white/60">{message}</p>
         </div>
         <div className="flex gap-3">

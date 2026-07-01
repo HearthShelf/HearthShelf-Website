@@ -28,21 +28,39 @@ export function SiteFooter() {
           </div>
           <div className="hs-footer-col">
             <div className="hs-footer-col-head">Product</div>
-            <a className="navlink" href={anchor('features')}>Features</a>
-            <a className="navlink" href={anchor('compare')}>Compare</a>
-            <a className="navlink" href={anchor('gallery')}>Screenshots</a>
-            <a className="navlink" href={anchor('quickstart')}>Self-host</a>
+            <a className="navlink" href={anchor('features')}>
+              Features
+            </a>
+            <a className="navlink" href={anchor('compare')}>
+              Compare
+            </a>
+            <a className="navlink" href={anchor('gallery')}>
+              Screenshots
+            </a>
+            <a className="navlink" href={anchor('quickstart')}>
+              Self-host
+            </a>
           </div>
           <div className="hs-footer-col">
             <div className="hs-footer-col-head">Resources</div>
-            <a className="navlink" href={`${DOCS_URL}/guide/what-is-hearthshelf`}>Documentation</a>
-            <a className="navlink" href={`${DOCS_URL}/setup/docker`}>Installation</a>
-            <a className="navlink" href={GITHUB_URL} target="_blank">GitHub</a>
-            <Link className="navlink" to="/changelog">Changelog</Link>
+            <a className="navlink" href={`${DOCS_URL}/guide/what-is-hearthshelf`}>
+              Documentation
+            </a>
+            <a className="navlink" href={`${DOCS_URL}/setup/docker`}>
+              Installation
+            </a>
+            <a className="navlink" href={GITHUB_URL} target="_blank">
+              GitHub
+            </a>
+            <Link className="navlink" to="/changelog">
+              Changelog
+            </Link>
           </div>
           <div className="hs-footer-col">
             <div className="hs-footer-col-head">Community</div>
-            <a className="navlink" href={DISCORD_URL} target="_blank">Discord</a>
+            <a className="navlink" href={DISCORD_URL} target="_blank">
+              Discord
+            </a>
           </div>
         </div>
         <div className="hs-footer-bottom">
@@ -50,8 +68,8 @@ export function SiteFooter() {
           <span className="hs-footer-ver">v0.9.2</span>
         </div>
         <div className="hs-footer-legal">
-          HearthShelf is a user interface. It does not host, source, or distribute content. You are responsible for
-          the legality of the content you add and the backends you connect.
+          HearthShelf is a user interface. It does not host, source, or distribute content. You are
+          responsible for the legality of the content you add and the backends you connect.
         </div>
       </div>
     </footer>

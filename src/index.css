@@ -104,12 +104,16 @@ a {
 /* Material Symbols icon font */
 .ms {
   font-family: 'Material Symbols Rounded';
-  font-variation-settings: 'FILL' 0, 'wght' 400;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400;
   line-height: 1;
   user-select: none;
 }
 .ms.fill {
-  font-variation-settings: 'FILL' 1, 'wght' 400;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400;
 }
 .af-mirror {
   transform: scaleX(-1);

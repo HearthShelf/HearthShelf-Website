@@ -14,7 +14,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div
       className="hs-home dark"
-      style={{ '--primary': accent, '--ring': accent, '--glow-accent': accent } as React.CSSProperties}
+      style={
+        { '--primary': accent, '--ring': accent, '--glow-accent': accent } as React.CSSProperties
+      }
     >
       <SiteHeader />
       {children}
