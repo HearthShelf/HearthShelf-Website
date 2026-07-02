@@ -3,7 +3,7 @@ import { AppFrame } from './AppFrame'
 import { SiteHeader } from './SiteHeader'
 import { SiteFooter } from './SiteFooter'
 import { Button } from '@/components/ui/button'
-import { DOCS_URL, GITHUB_URL } from '@/lib/utils'
+import { APP_URL, DOCS_URL, GITHUB_URL } from '@/lib/utils'
 import './home.css'
 
 const accent = '#e0654a'
@@ -66,33 +66,35 @@ const compareRows: CompareRow[] = [
 const steps = [
   {
     n: 1,
-    title: 'Add the compose file',
-    body: 'Drop docker-compose.yml in a folder and point a volume at your audiobooks.',
+    title: 'Install',
+    body: 'Drop the compose file, point the audiobooks volume at your library, and run docker compose up -d. The all-in-one image bundles Audiobookshelf.',
   },
   {
     n: 2,
-    title: 'Bring it up',
-    body: 'Run docker compose up -d. The image pulls and starts in seconds.',
+    title: 'Forward a port',
+    body: 'Want it from anywhere? Forward one port and HearthShelf gets a free, secure web address on its own — no domain, no certificate wrangling.',
   },
   {
     n: 3,
-    title: 'Open the door',
-    body: 'Visit http://localhost:8200 and connect your Audiobookshelf server.',
+    title: 'Run the setup wizard',
+    body: 'Open it in your browser, follow the first-run wizard, and start listening. Just like standing up a new Plex server.',
   },
 ]
 
+// The all-in-one image bundles Audiobookshelf, so this one file is a complete
+// server — no separate ABS to run. Already have your own Audiobookshelf? The
+// slim image points at it instead; see the docs linked below.
 const composeText = `services:
   hearthshelf:
-    image: ghcr.io/hearthshelf/hearthshelf:latest
+    image: ghcr.io/hearthshelf/hearthshelf-aio:latest
     container_name: hearthshelf
     ports:
-      - "8200:80"
+      - "9277:80"
     volumes:
+      - ./audiobooks:/audiobooks
       - ./config:/config
       - ./metadata:/metadata
-      - /path/to/audiobooks:/audiobooks
-    environment:
-      - TZ=America/New_York
+      - ./hearthshelf-data:/app/data
     restart: unless-stopped`
 
 export function Home() {
@@ -390,12 +392,75 @@ export function Home() {
         </div>
       </section>
 
+      {/* SURFACES */}
+      <section id="apps" className="hs-section">
+        <div className="hs-section-inner">
+          <div className="hs-section-header">
+            <div className="hs-eyebrow">Listen anywhere</div>
+            <h2 className="hs-section-h2">One library, on every screen you own.</h2>
+            <p className="hs-compare-sub">
+              Run HearthShelf yourself and open it in any browser. Add the free hosted front door for
+              one sign-in across every server, and take it on the road with the native mobile app —
+              Android Auto included.
+            </p>
+          </div>
+          <div className="hs-surfaces-grid">
+            <div className="hs-surface-card">
+              <span className="hs-feature-icon">
+                <span className="ms fill">public</span>
+              </span>
+              <h3 className="hs-feature-h3">Web</h3>
+              <p className="hs-feature-p">
+                The full experience in your browser, served straight from your own container. This is
+                the app the rest of this page is showing.
+              </p>
+              <a className="hs-btn hs-btn-pill hs-btn-sm" href="#quickstart">
+                Self-host it<span className="ms">arrow_forward</span>
+              </a>
+            </div>
+            <div className="hs-surface-card">
+              <span className="hs-feature-icon">
+                <span className="ms fill">directions_car</span>
+              </span>
+              <h3 className="hs-feature-h3">
+                Mobile <span className="hs-tag">Android · beta</span>
+              </h3>
+              <p className="hs-feature-p">
+                A native Android app with <strong>Android Auto</strong> so your books play on the car
+                screen. Sideload the beta today; iOS is on the way.
+              </p>
+              <a className="hs-btn hs-btn-pill hs-btn-sm" href={`${DOCS_URL}/mobile/overview`}>
+                Get the app<span className="ms">arrow_forward</span>
+              </a>
+            </div>
+            <div className="hs-surface-card">
+              <span className="hs-feature-icon">
+                <span className="ms fill">cloud</span>
+              </span>
+              <h3 className="hs-feature-h3">Hosted front door</h3>
+              <p className="hs-feature-p">
+                Sign in once at app.hearthshelf.com and reach every server you've been invited to —
+                no IPs to remember, and your Audiobookshelf can stay behind the firewall.
+              </p>
+              <a className="hs-btn hs-btn-pill hs-btn-sm" href={APP_URL}>
+                Open the WebApp<span className="ms">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* QUICKSTART */}
       <section id="quickstart" className="hs-section">
         <div className="hs-quickstart-inner">
           <div className="hs-section-header">
             <div className="hs-eyebrow">Up in two minutes</div>
             <h2 className="hs-section-h2">Self-host it with one command.</h2>
+            <p className="hs-compare-sub">
+              The all-in-one image bundles Audiobookshelf, so this is a complete server in a single
+              container. Already run your own Audiobookshelf? The{' '}
+              <a href={`${DOCS_URL}/setup/docker`}>slim image</a> points HearthShelf at it instead.
+            </p>
           </div>
           <div className="hs-quickstart-grid">
             <div className="hs-steps">
@@ -426,23 +491,21 @@ export function Home() {
                 <span className="hs-yaml-key">services:</span>
                 {'\n'} <span className="hs-yaml-val">hearthshelf:</span>
                 {'\n'} <span className="hs-yaml-key">image:</span>{' '}
-                ghcr.io/hearthshelf/hearthshelf:latest{'\n'}{' '}
+                ghcr.io/hearthshelf/hearthshelf-aio:latest{'\n'}{' '}
                 <span className="hs-yaml-key">container_name:</span> hearthshelf{'\n'}{' '}
                 <span className="hs-yaml-key">ports:</span>
-                {'\n'} - <span className="hs-yaml-str">"8200:80"</span>
+                {'\n'} - <span className="hs-yaml-str">"9277:80"</span>
                 {'\n'} <span className="hs-yaml-key">volumes:</span>
-                {'\n'} - ./config:/config{'\n'} - ./metadata:/metadata{'\n'} -{' '}
-                <span className="hs-yaml-str">/path/to/audiobooks</span>:/audiobooks{'\n'}{' '}
-                <span className="hs-yaml-key">environment:</span>
-                {'\n'} - TZ=America/New_York{'\n'} <span className="hs-yaml-key">restart:</span>{' '}
-                unless-stopped
+                {'\n'} - ./audiobooks:/audiobooks{'\n'} - ./config:/config{'\n'} -
+                ./metadata:/metadata{'\n'} - ./hearthshelf-data:/app/data{'\n'}{' '}
+                <span className="hs-yaml-key">restart:</span> unless-stopped
               </pre>
               <div className="hs-code-footer">
                 <span className="hs-prompt">$</span>
                 <span className="hs-cmd">docker compose up -d</span>
                 <a
                   className="hs-btn hs-btn-pill hs-btn-sm"
-                  href={`${DOCS_URL}/setup/docker`}
+                  href={`${DOCS_URL}/setup/all-in-one`}
                   style={{ marginLeft: 'auto' }}
                 >
                   Full install guide<span className="ms">arrow_forward</span>

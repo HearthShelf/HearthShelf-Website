@@ -37,6 +37,9 @@ export function SiteFooter() {
             <a className="navlink" href={anchor('gallery')}>
               Screenshots
             </a>
+            <a className="navlink" href={anchor('apps')}>
+              Apps
+            </a>
             <a className="navlink" href={anchor('quickstart')}>
               Self-host
             </a>
@@ -46,8 +49,11 @@ export function SiteFooter() {
             <a className="navlink" href={`${DOCS_URL}/guide/what-is-hearthshelf`}>
               Documentation
             </a>
-            <a className="navlink" href={`${DOCS_URL}/setup/docker`}>
+            <a className="navlink" href={`${DOCS_URL}/setup/all-in-one`}>
               Installation
+            </a>
+            <a className="navlink" href={`${DOCS_URL}/mobile/overview`}>
+              Mobile app
             </a>
             <a className="navlink" href={GITHUB_URL} target="_blank">
               GitHub

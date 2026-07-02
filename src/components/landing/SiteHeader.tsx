@@ -39,6 +39,9 @@ export function SiteHeader() {
         <a className="navlink" href={anchor('gallery')}>
           Screenshots
         </a>
+        <a className="navlink" href={anchor('apps')}>
+          Apps
+        </a>
         <Link className="navlink" to="/changelog">
           Changelog
         </Link>
