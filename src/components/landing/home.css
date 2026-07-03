@@ -678,6 +678,77 @@
   color: var(--foreground);
 }
 
+/* Install tabs (Compose / Docker run / Unraid) */
+.hs-code-tabs {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--border);
+  background: var(--sidebar);
+}
+
+.hs-code-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--muted-foreground);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.hs-code-tab:hover {
+  color: var(--foreground);
+}
+
+.hs-code-tab.is-active {
+  color: var(--foreground);
+  border-bottom-color: var(--primary);
+}
+
+.hs-code-tabs .hs-copy-btn {
+  margin-left: auto;
+  align-self: center;
+}
+
+.hs-unraid-panel {
+  padding: 26px 24px;
+  background: var(--popover);
+}
+
+.hs-unraid-panel .hs-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.hs-unraid-panel p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+
+.hs-unraid-panel strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.hs-unraid-hint {
+  margin-top: 14px !important;
+  font-size: 13px !important;
+  color: var(--muted-foreground);
+  opacity: 0.85;
+}
+
 /* CTA strip */
 .hs-cta-inner {
   max-width: 1140px;

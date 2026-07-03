@@ -97,11 +97,30 @@ const composeText = `services:
       - ./hearthshelf-data:/app/data
     restart: unless-stopped`
 
+// Same all-in-one container as the compose file, as a single command.
+const dockerRunText = `docker run -d --name hearthshelf \\
+  -p 9277:80 \\
+  -v ./audiobooks:/audiobooks \\
+  -v ./config:/config \\
+  -v ./metadata:/metadata \\
+  -v ./hearthshelf-data:/app/data \\
+  --restart unless-stopped \\
+  ghcr.io/hearthshelf/hearthshelf-aio:latest`
+
+type InstallTab = 'compose' | 'run' | 'unraid'
+
+const installTabs: { id: InstallTab; label: string; icon: string }[] = [
+  { id: 'compose', label: 'Compose', icon: 'description' },
+  { id: 'run', label: 'Docker run', icon: 'terminal' },
+  { id: 'unraid', label: 'Unraid', icon: 'dns' },
+]
+
 export function Home() {
   const [copied, setCopied] = useState(false)
+  const [installTab, setInstallTab] = useState<InstallTab>('compose')
 
-  const copyCompose = () => {
-    navigator.clipboard.writeText(composeText).then(() => {
+  const copyText = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     })
@@ -475,42 +494,102 @@ export function Home() {
               ))}
             </div>
             <div className="hs-code-card">
-              <div className="hs-code-header">
-                <span className="ms" style={{ fontSize: 18, color: 'var(--hs-muted-foreground)' }}>
-                  description
-                </span>
-                <span className="hs-code-filename">docker-compose.yml</span>
-                <button className="hs-copy-btn" onClick={copyCompose}>
-                  <span className="ms" style={{ fontSize: 16 }}>
-                    content_copy
-                  </span>
-                  {copied ? 'Copied!' : 'Copy'}
-                </button>
+              <div className="hs-code-tabs" role="tablist">
+                {installTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    role="tab"
+                    aria-selected={installTab === tab.id}
+                    className={`hs-code-tab${installTab === tab.id ? ' is-active' : ''}`}
+                    onClick={() => setInstallTab(tab.id)}
+                  >
+                    <span className="ms" style={{ fontSize: 16 }}>
+                      {tab.icon}
+                    </span>
+                    {tab.label}
+                  </button>
+                ))}
+                {installTab !== 'unraid' && (
+                  <button
+                    className="hs-copy-btn"
+                    onClick={() => copyText(installTab === 'compose' ? composeText : dockerRunText)}
+                  >
+                    <span className="ms" style={{ fontSize: 16 }}>
+                      content_copy
+                    </span>
+                    {copied ? 'Copied!' : 'Copy'}
+                  </button>
+                )}
               </div>
-              <pre className="hs-code-pre">
-                <span className="hs-yaml-key">services:</span>
-                {'\n'} <span className="hs-yaml-val">hearthshelf:</span>
-                {'\n'} <span className="hs-yaml-key">image:</span>{' '}
-                ghcr.io/hearthshelf/hearthshelf-aio:latest{'\n'}{' '}
-                <span className="hs-yaml-key">container_name:</span> hearthshelf{'\n'}{' '}
-                <span className="hs-yaml-key">ports:</span>
-                {'\n'} - <span className="hs-yaml-str">"9277:80"</span>
-                {'\n'} <span className="hs-yaml-key">volumes:</span>
-                {'\n'} - ./audiobooks:/audiobooks{'\n'} - ./config:/config{'\n'} -
-                ./metadata:/metadata{'\n'} - ./hearthshelf-data:/app/data{'\n'}{' '}
-                <span className="hs-yaml-key">restart:</span> unless-stopped
-              </pre>
-              <div className="hs-code-footer">
-                <span className="hs-prompt">$</span>
-                <span className="hs-cmd">docker compose up -d</span>
-                <a
-                  className="hs-btn hs-btn-pill hs-btn-sm"
-                  href={`${DOCS_URL}/setup/all-in-one`}
-                  style={{ marginLeft: 'auto' }}
-                >
-                  Full install guide<span className="ms">arrow_forward</span>
-                </a>
-              </div>
+
+              {installTab === 'compose' && (
+                <>
+                  <pre className="hs-code-pre">
+                    <span className="hs-yaml-key">services:</span>
+                    {'\n'} <span className="hs-yaml-val">hearthshelf:</span>
+                    {'\n'} <span className="hs-yaml-key">image:</span>{' '}
+                    ghcr.io/hearthshelf/hearthshelf-aio:latest{'\n'}{' '}
+                    <span className="hs-yaml-key">container_name:</span> hearthshelf{'\n'}{' '}
+                    <span className="hs-yaml-key">ports:</span>
+                    {'\n'} - <span className="hs-yaml-str">"9277:80"</span>
+                    {'\n'} <span className="hs-yaml-key">volumes:</span>
+                    {'\n'} - ./audiobooks:/audiobooks{'\n'} - ./config:/config{'\n'} -
+                    ./metadata:/metadata{'\n'} - ./hearthshelf-data:/app/data{'\n'}{' '}
+                    <span className="hs-yaml-key">restart:</span> unless-stopped
+                  </pre>
+                  <div className="hs-code-footer">
+                    <span className="hs-prompt">$</span>
+                    <span className="hs-cmd">docker compose up -d</span>
+                    <a
+                      className="hs-btn hs-btn-pill hs-btn-sm"
+                      href={`${DOCS_URL}/setup/all-in-one`}
+                      style={{ marginLeft: 'auto' }}
+                    >
+                      Full install guide<span className="ms">arrow_forward</span>
+                    </a>
+                  </div>
+                </>
+              )}
+
+              {installTab === 'run' && (
+                <>
+                  <pre className="hs-code-pre">
+                    <span className="hs-prompt">$</span> docker run -d --name hearthshelf \{'\n'} -p{' '}
+                    <span className="hs-yaml-str">9277:80</span> \{'\n'} -v
+                    ./audiobooks:/audiobooks \{'\n'} -v ./config:/config \{'\n'} -v
+                    ./metadata:/metadata \{'\n'} -v ./hearthshelf-data:/app/data \{'\n'} --restart
+                    unless-stopped \{'\n'} ghcr.io/hearthshelf/hearthshelf-aio:latest
+                  </pre>
+                  <div className="hs-code-footer">
+                    <span className="hs-cmd" style={{ color: 'var(--muted-foreground)' }}>
+                      One line, same all-in-one container as the compose file.
+                    </span>
+                    <a
+                      className="hs-btn hs-btn-pill hs-btn-sm"
+                      href={`${DOCS_URL}/setup/all-in-one`}
+                      style={{ marginLeft: 'auto' }}
+                    >
+                      Full install guide<span className="ms">arrow_forward</span>
+                    </a>
+                  </div>
+                </>
+              )}
+
+              {installTab === 'unraid' && (
+                <div className="hs-unraid-panel">
+                  <span className="hs-tag">Coming soon</span>
+                  <p>
+                    HearthShelf is headed to the <strong>Unraid Community Apps</strong> catalog — both
+                    the all-in-one and slim images — so you can install it from Unraid's own UI with a
+                    couple of clicks. The templates are ready; they'll publish once the build reaches a
+                    more feature-complete release.
+                  </p>
+                  <p className="hs-unraid-hint">
+                    Until then, use the Compose or Docker run tab. Running Unraid today? The Docker run
+                    command works from Unraid's Docker page.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
