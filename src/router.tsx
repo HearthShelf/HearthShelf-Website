@@ -3,6 +3,7 @@ import Home from '@/components/landing/Home'
 import SignInPage from '@/pages/SignInPage'
 import SignUpPage from '@/pages/SignUpPage'
 import ChangelogPage from '@/pages/ChangelogPage'
+import StatsPage from '@/pages/StatsPage'
 import ErrorPage from '@/pages/ErrorPage'
 import { SiteLayout } from '@/components/landing/SiteLayout'
 
@@ -15,6 +16,15 @@ export const router = createBrowserRouter([
     element: (
       <SiteLayout>
         <ChangelogPage />
+      </SiteLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/stats',
+    element: (
+      <SiteLayout>
+        <StatsPage />
       </SiteLayout>
     ),
     errorElement: <ErrorPage />,
