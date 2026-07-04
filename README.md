@@ -1,5 +1,9 @@
 # HearthShelf Website
 
+[![Website](https://img.shields.io/badge/site-hearthshelf.com-2c6e6b)](https://hearthshelf.com)
+[![Docs](https://img.shields.io/badge/docs-docs.hearthshelf.com-2c6e6b)](https://docs.hearthshelf.com)
+[![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
+
 The marketing landing page for [HearthShelf](https://hearthshelf.com) - a
 self-hostable reading and listening UI for the library you run.
 
