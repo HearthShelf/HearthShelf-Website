@@ -71,6 +71,14 @@ export function SiteFooter() {
         </div>
         <div className="hs-footer-bottom">
           <span>© 2026 HearthShelf · AGPL v3 · Not affiliated with Audiobookshelf</span>
+          <span className="hs-footer-legal-links">
+            <Link className="navlink" to="/privacy">
+              Privacy
+            </Link>
+            <Link className="navlink" to="/terms">
+              Terms
+            </Link>
+          </span>
           <span className="hs-footer-ver">v0.9.2</span>
         </div>
         <div className="hs-footer-legal">

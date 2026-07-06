@@ -893,6 +893,15 @@
   font-family: var(--font-mono);
 }
 
+.hs-footer-legal-links {
+  display: flex;
+  gap: 16px;
+}
+
+.hs-footer-legal-links .navlink {
+  font-size: 13px;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .hs-hero-inner {

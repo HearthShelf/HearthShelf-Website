@@ -4,6 +4,8 @@ import SignInPage from '@/pages/SignInPage'
 import SignUpPage from '@/pages/SignUpPage'
 import ChangelogPage from '@/pages/ChangelogPage'
 import StatsPage from '@/pages/StatsPage'
+import PrivacyPage from '@/pages/PrivacyPage'
+import TermsPage from '@/pages/TermsPage'
 import ErrorPage from '@/pages/ErrorPage'
 import { SiteLayout } from '@/components/landing/SiteLayout'
 
@@ -25,6 +27,24 @@ export const router = createBrowserRouter([
     element: (
       <SiteLayout>
         <StatsPage />
+      </SiteLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/privacy',
+    element: (
+      <SiteLayout>
+        <PrivacyPage />
+      </SiteLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/terms',
+    element: (
+      <SiteLayout>
+        <TermsPage />
       </SiteLayout>
     ),
     errorElement: <ErrorPage />,
