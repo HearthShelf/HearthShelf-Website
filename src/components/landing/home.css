@@ -536,6 +536,18 @@
   margin-top: 22px;
 }
 
+.hs-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* Pills inside a row own their spacing via the row's gap/margin. */
+.hs-surface-card .hs-btn-row .hs-btn-pill {
+  margin-top: 0;
+}
+
 .hs-tag {
   font-size: 11px;
   font-weight: 600;

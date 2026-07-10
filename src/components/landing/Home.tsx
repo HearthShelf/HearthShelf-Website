@@ -418,9 +418,9 @@ export function Home() {
             <div className="hs-eyebrow">Listen anywhere</div>
             <h2 className="hs-section-h2">One library, on every screen you own.</h2>
             <p className="hs-compare-sub">
-              Run HearthShelf yourself and open it in any browser. Add the free hosted front door for
-              one sign-in across every server, and take it on the road with the native mobile app —
-              Android Auto included.
+              Run HearthShelf yourself and open it in any browser. Add the free hosted front door
+              for one sign-in across every server, and take it on the road with the native mobile
+              app — Android Auto included.
             </p>
           </div>
           <div className="hs-surfaces-grid">
@@ -430,8 +430,8 @@ export function Home() {
               </span>
               <h3 className="hs-feature-h3">Web</h3>
               <p className="hs-feature-p">
-                The full experience in your browser, served straight from your own container. This is
-                the app the rest of this page is showing.
+                The full experience in your browser, served straight from your own container. This
+                is the app the rest of this page is showing.
               </p>
               <a className="hs-btn hs-btn-pill hs-btn-sm" href="#quickstart">
                 Self-host it<span className="ms">arrow_forward</span>
@@ -442,15 +442,30 @@ export function Home() {
                 <span className="ms fill">directions_car</span>
               </span>
               <h3 className="hs-feature-h3">
-                Mobile <span className="hs-tag">Android · beta</span>
+                Mobile <span className="hs-tag">iOS · Android · beta</span>
               </h3>
               <p className="hs-feature-p">
-                A native Android app with <strong>Android Auto</strong> so your books play on the car
-                screen. Sideload the beta today; iOS is on the way.
+                Native apps with <strong>Android Auto</strong> and <strong>CarPlay</strong> so your
+                books play on the car screen. Join the beta:
               </p>
-              <a className="hs-btn hs-btn-pill hs-btn-sm" href={`${DOCS_URL}/mobile/overview`}>
-                Get the app<span className="ms">arrow_forward</span>
-              </a>
+              <div className="hs-btn-row">
+                <a
+                  className="hs-btn hs-btn-pill hs-btn-sm"
+                  href="https://testflight.apple.com/join/ehxv65Ms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  iOS (TestFlight)<span className="ms">arrow_forward</span>
+                </a>
+                <a
+                  className="hs-btn hs-btn-pill hs-btn-sm"
+                  href="https://play.google.com/apps/internaltest/4701644118536911529"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Android<span className="ms">arrow_forward</span>
+                </a>
+              </div>
             </div>
             <div className="hs-surface-card">
               <span className="hs-feature-icon">
@@ -555,10 +570,10 @@ export function Home() {
                 <>
                   <pre className="hs-code-pre">
                     <span className="hs-prompt">$</span> docker run -d --name hearthshelf \{'\n'} -p{' '}
-                    <span className="hs-yaml-str">9277:80</span> \{'\n'} -v
-                    ./audiobooks:/audiobooks \{'\n'} -v ./config:/config \{'\n'} -v
-                    ./metadata:/metadata \{'\n'} -v ./hearthshelf-data:/app/data \{'\n'} --restart
-                    unless-stopped \{'\n'} ghcr.io/hearthshelf/hearthshelf-aio:latest
+                    <span className="hs-yaml-str">9277:80</span> \{'\n'} -v ./audiobooks:/audiobooks
+                    \{'\n'} -v ./config:/config \{'\n'} -v ./metadata:/metadata \{'\n'} -v
+                    ./hearthshelf-data:/app/data \{'\n'} --restart unless-stopped \{'\n'}{' '}
+                    ghcr.io/hearthshelf/hearthshelf-aio:latest
                   </pre>
                   <div className="hs-code-footer">
                     <span className="hs-cmd" style={{ color: 'var(--muted-foreground)' }}>
@@ -579,14 +594,14 @@ export function Home() {
                 <div className="hs-unraid-panel">
                   <span className="hs-tag">Coming soon</span>
                   <p>
-                    HearthShelf is headed to the <strong>Unraid Community Apps</strong> catalog — both
-                    the all-in-one and slim images — so you can install it from Unraid's own UI with a
-                    couple of clicks. The templates are ready; they'll publish once the build reaches a
-                    more feature-complete release.
+                    HearthShelf is headed to the <strong>Unraid Community Apps</strong> catalog —
+                    both the all-in-one and slim images — so you can install it from Unraid's own UI
+                    with a couple of clicks. The templates are ready; they'll publish once the build
+                    reaches a more feature-complete release.
                   </p>
                   <p className="hs-unraid-hint">
-                    Until then, use the Compose or Docker run tab. Running Unraid today? The Docker run
-                    command works from Unraid's Docker page.
+                    Until then, use the Compose or Docker run tab. Running Unraid today? The Docker
+                    run command works from Unraid's Docker page.
                   </p>
                 </div>
               )}
