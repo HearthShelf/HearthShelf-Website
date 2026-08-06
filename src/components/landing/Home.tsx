@@ -50,6 +50,12 @@ const compareRows: CompareRow[] = [
     absColor: 'var(--hs-muted-foreground)',
   },
   {
+    label: 'Connect an AI app to your library, read-only',
+    base: '—',
+    absIcon: 'remove',
+    absColor: 'var(--hs-muted-foreground)',
+  },
+  {
     label: 'Same library, files & API — nothing to migrate',
     base: 'Yes',
     absIcon: 'check_circle',
@@ -312,6 +318,39 @@ export function Home() {
             </div>
             <div className="hs-feature-media">
               <AppFrame screen="reader" scale={0.5} accent={accent} />
+            </div>
+          </div>
+
+          <div className="hs-feature-row">
+            <div className="hs-feature-text">
+              <span className="hs-feature-icon">
+                <span className="ms fill">smart_toy</span>
+              </span>
+              <h3 className="hs-feature-h3">Ask an AI about your own shelves.</h3>
+              <p className="hs-feature-p">
+                Connect Claude — or any app that speaks the Model Context Protocol — to the hosted
+                web app, and talk about your library in plain language. "Would I like this one?"
+                "What should I finish first?" "Do I already own it?" It answers from what you've
+                actually read, not a generic chart. The connection is read-only, and it uses your
+                own AI subscription rather than adding a fee here.
+              </p>
+              <ul className="hs-check-list">
+                <li>
+                  <span className="ms fill">check_circle</span>Reads your library, history &amp;
+                  stats — never writes
+                </li>
+                <li>
+                  <span className="ms fill">check_circle</span>Sign in once; no tokens or config
+                  files
+                </li>
+                <li>
+                  <span className="ms fill">check_circle</span>Disconnect from your AI app whenever
+                  you like
+                </li>
+              </ul>
+            </div>
+            <div className="hs-feature-media">
+              <AppFrame screen="library" scale={0.5} accent={accent} />
             </div>
           </div>
         </div>
