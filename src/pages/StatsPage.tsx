@@ -31,6 +31,8 @@ interface PublicStats {
   /** App versions across the mobile apps only. */
   app_version_distribution?: Record<string, number>
   device_model_distribution: Record<string, number>
+  /** Servers by install shape: 'slim' vs 'aio'. Absent on an older control plane. */
+  server_mode_distribution?: Record<string, number>
   installs_over_time: TrendPoint[]
   latest_version: string | null
   latest_server_version?: string | null
@@ -54,6 +56,13 @@ const PLATFORM_LABEL: Record<string, string> = {
   android: 'Android',
   docker: 'Docker server',
   'windows-service': 'Windows service',
+}
+
+// How a server was installed: bring-your-own AudiobookShelf, or the image that
+// bundles one. Said in plain words - 'slim' and 'aio' mean nothing to a visitor.
+const MODE_LABEL: Record<string, string> = {
+  slim: 'With their own AudiobookShelf',
+  aio: 'All-in-one image',
 }
 
 function sumWhere(map: Record<string, number>, keys: Set<string>): number {
@@ -236,6 +245,7 @@ function StatsPage() {
   const sortRows = (d: Record<string, number>) =>
     Object.entries(d).sort((a, b) => b[1] - a[1])
 
+  const modeRows = sortRows(stats.server_mode_distribution ?? {})
   const serverVersionRows = sortRows(stats.server_version_distribution ?? {})
   const appVersionRows = sortRows(stats.app_version_distribution ?? {})
   const hasSplitVersions = serverVersionRows.length > 0 || appVersionRows.length > 0
@@ -324,6 +334,15 @@ function StatsPage() {
               title="By platform"
               unit="install"
               rows={platformRows.map(([k, n]) => [PLATFORM_LABEL[k] ?? k, n])}
+            />
+          </Card>
+        )}
+        {modeRows.length > 0 && (
+          <Card className="p-6">
+            <DistBars
+              title="How servers are set up"
+              unit="server"
+              rows={modeRows.map(([k, n]) => [MODE_LABEL[k] ?? k, n])}
             />
           </Card>
         )}
