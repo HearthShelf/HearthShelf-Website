@@ -24,10 +24,16 @@ interface TrendPoint {
 interface PublicStats {
   active_installs: number
   installs_by_platform: Record<string, number>
+  /** Servers and apps pooled. Older control planes send only this. */
   version_distribution: Record<string, number>
+  /** HearthShelf versions across self-hosted servers only. */
+  server_version_distribution?: Record<string, number>
+  /** App versions across the mobile apps only. */
+  app_version_distribution?: Record<string, number>
   device_model_distribution: Record<string, number>
   installs_over_time: TrendPoint[]
   latest_version: string | null
+  latest_server_version?: string | null
   totals: {
     quests_given: number
     quests_accepted: number
@@ -223,7 +229,17 @@ function StatsPage() {
     .filter(([, n]) => n > 0)
     .sort((a, b) => b[1] - a[1])
 
-  const versionRows = Object.entries(stats.version_distribution ?? {}).sort((a, b) => b[1] - a[1])
+  // Versions split by what they mean: a server admin asking "is my box behind"
+  // is a different question from "what app build are phones on". The control
+  // plane sends both lists; fall back to the pooled one when it has not been
+  // deployed yet, so the page never goes blank mid-rollout.
+  const sortRows = (d: Record<string, number>) =>
+    Object.entries(d).sort((a, b) => b[1] - a[1])
+
+  const serverVersionRows = sortRows(stats.server_version_distribution ?? {})
+  const appVersionRows = sortRows(stats.app_version_distribution ?? {})
+  const hasSplitVersions = serverVersionRows.length > 0 || appVersionRows.length > 0
+  const versionRows = sortRows(stats.version_distribution ?? {})
   const deviceRows = Object.entries(stats.device_model_distribution ?? {}).sort(
     (a, b) => b[1] - a[1],
   )
@@ -272,9 +288,17 @@ function StatsPage() {
           </div>
         </Card>
         <Card className="p-5">
-          <div className="text-xs font-medium text-muted-foreground">Latest version</div>
+          {/* The newest SERVER version - what a self-hoster checks their box
+              against. Falls back to the pooled newest on an older control plane. */}
+          <div className="text-xs font-medium text-muted-foreground">
+            {stats.latest_server_version ? 'Latest server' : 'Latest version'}
+          </div>
           <div className="mt-1 truncate font-mono text-2xl font-bold tabular-nums">
-            {stats.latest_version ? `v${stats.latest_version}` : '-'}
+            {stats.latest_server_version
+              ? `v${stats.latest_server_version}`
+              : stats.latest_version
+                ? `v${stats.latest_version}`
+                : '-'}
           </div>
         </Card>
       </div>
@@ -303,14 +327,37 @@ function StatsPage() {
             />
           </Card>
         )}
-        {versionRows.length > 0 && (
-          <Card className="p-6">
-            <DistBars
-              title="By version"
-              unit="install"
-              rows={versionRows.map(([v, n]) => [`v${v}`, n])}
-            />
-          </Card>
+        {hasSplitVersions ? (
+          <>
+            {serverVersionRows.length > 0 && (
+              <Card className="p-6">
+                <DistBars
+                  title="Server versions"
+                  unit="server"
+                  rows={serverVersionRows.map(([v, n]) => [`v${v}`, n])}
+                />
+              </Card>
+            )}
+            {appVersionRows.length > 0 && (
+              <Card className="p-6">
+                <DistBars
+                  title="App versions"
+                  unit="install"
+                  rows={appVersionRows.map(([v, n]) => [`v${v}`, n])}
+                />
+              </Card>
+            )}
+          </>
+        ) : (
+          versionRows.length > 0 && (
+            <Card className="p-6">
+              <DistBars
+                title="By version"
+                unit="install"
+                rows={versionRows.map(([v, n]) => [`v${v}`, n])}
+              />
+            </Card>
+          )
         )}
         {deviceRows.length > 0 && (
           <Card className="p-6 md:col-span-2">
@@ -334,9 +381,10 @@ function StatsPage() {
       </div>
 
       <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-muted-foreground">
-        These numbers come from HearthShelf apps and servers whose owners opted in to anonymous
-        stats. Sharing is on by default in the app (off any time under Settings &gt; Community) and
-        off by default on servers (Config &gt; Community).
+        These numbers come from HearthShelf apps and servers that share anonymous stats. Sharing is
+        on by default and can be turned off any time - in the app under Settings &gt; Community, and
+        on a server under Config &gt; Community. A new server asks during setup before it sends
+        anything. Simulators and development builds are not counted.
       </p>
     </div>
   )
