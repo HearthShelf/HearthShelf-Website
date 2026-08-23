@@ -135,12 +135,7 @@ function TrendChart({ points }: { points: TrendPoint[] }) {
       ))}
       {area && <path d={area} fill="currentColor" fillOpacity={0.12} />}
       <path d={line} fill="none" stroke="currentColor" strokeWidth={2} strokeLinejoin="round" />
-      <text
-        x={PAD.left}
-        y={H - 6}
-        className="fill-muted-foreground"
-        style={{ fontSize: 10 }}
-      >
+      <text x={PAD.left} y={H - 6} className="fill-muted-foreground" style={{ fontSize: 10 }}>
         {firstLabel}
       </text>
       <text
@@ -154,6 +149,39 @@ function TrendChart({ points }: { points: TrendPoint[] }) {
       </text>
     </svg>
   )
+}
+
+/**
+ * Display label for a reported version.
+ *
+ * Canary images report "<last-tag>+canary.<short-sha>" (see the dev-release
+ * workflow), which is precise but unreadable on a chart - and every canary build
+ * of the same release is a separate string, so they scatter into a row each. The
+ * sha is meaningless to a reader deciding whether their box is current, so the
+ * label keeps the release and just says it is a canary.
+ */
+function versionLabel(raw: string): string {
+  const canary = /^(.+?)\+canary/.exec(raw)
+  if (canary) return `v${canary[1]} Canary`
+  // Any other build-metadata tail (+dev.x, +local) collapses the same way rather
+  // than rendering a hash nobody can act on.
+  const plus = raw.indexOf('+')
+  return plus === -1 ? `v${raw}` : `v${raw.slice(0, plus)} Build`
+}
+
+/**
+ * Turn a raw version distribution into display rows, merging every version that
+ * shares a label. Without the merge, three canary builds of 0.4.0 would render
+ * as three identical "v0.4.0 Canary" bars (and React would warn on the repeated
+ * key, since the label is the key).
+ */
+function versionRowsFor(dist: Record<string, number>): Array<[string, number]> {
+  const merged = new Map<string, number>()
+  for (const [raw, n] of Object.entries(dist)) {
+    const label = versionLabel(raw)
+    merged.set(label, (merged.get(label) ?? 0) + n)
+  }
+  return [...merged.entries()].sort((a, b) => b[1] - a[1])
 }
 
 /** A labelled distribution as horizontal bars (version, platform, or device). */
@@ -242,14 +270,13 @@ function StatsPage() {
   // is a different question from "what app build are phones on". The control
   // plane sends both lists; fall back to the pooled one when it has not been
   // deployed yet, so the page never goes blank mid-rollout.
-  const sortRows = (d: Record<string, number>) =>
-    Object.entries(d).sort((a, b) => b[1] - a[1])
+  const sortRows = (d: Record<string, number>) => Object.entries(d).sort((a, b) => b[1] - a[1])
 
   const modeRows = sortRows(stats.server_mode_distribution ?? {})
-  const serverVersionRows = sortRows(stats.server_version_distribution ?? {})
-  const appVersionRows = sortRows(stats.app_version_distribution ?? {})
+  const serverVersionRows = versionRowsFor(stats.server_version_distribution ?? {})
+  const appVersionRows = versionRowsFor(stats.app_version_distribution ?? {})
   const hasSplitVersions = serverVersionRows.length > 0 || appVersionRows.length > 0
-  const versionRows = sortRows(stats.version_distribution ?? {})
+  const versionRows = versionRowsFor(stats.version_distribution ?? {})
   const deviceRows = Object.entries(stats.device_model_distribution ?? {}).sort(
     (a, b) => b[1] - a[1],
   )
@@ -350,31 +377,19 @@ function StatsPage() {
           <>
             {serverVersionRows.length > 0 && (
               <Card className="p-6">
-                <DistBars
-                  title="Server versions"
-                  unit="server"
-                  rows={serverVersionRows.map(([v, n]) => [`v${v}`, n])}
-                />
+                <DistBars title="Server versions" unit="server" rows={serverVersionRows} />
               </Card>
             )}
             {appVersionRows.length > 0 && (
               <Card className="p-6">
-                <DistBars
-                  title="App versions"
-                  unit="install"
-                  rows={appVersionRows.map(([v, n]) => [`v${v}`, n])}
-                />
+                <DistBars title="App versions" unit="install" rows={appVersionRows} />
               </Card>
             )}
           </>
         ) : (
           versionRows.length > 0 && (
             <Card className="p-6">
-              <DistBars
-                title="By version"
-                unit="install"
-                rows={versionRows.map(([v, n]) => [`v${v}`, n])}
-              />
+              <DistBars title="By version" unit="install" rows={versionRows} />
             </Card>
           )
         )}
