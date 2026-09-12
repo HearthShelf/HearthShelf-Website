@@ -1,0 +1,15 @@
+# Serve the Apple App Site Association as JSON. The file is intentionally
+# extensionless (Apple requires the exact path
+# /.well-known/apple-app-site-association with no suffix), so Cloudflare Pages
+# would otherwise serve it as octet-stream and iOS would ignore it.
+#
+# These live on the APEX as well as on app.hearthshelf.com because a passkey is
+# bound to its Relying Party ID, which is `hearthshelf.com` - the registrable
+# domain the user sees. Both platforms fetch the association file from the RP ID
+# itself, so serving it only from the app subdomain leaves passkeys unverifiable.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
+# Android App Links + passkey (get_login_creds) verification file.
+/.well-known/assetlinks.json
+  Content-Type: application/json
