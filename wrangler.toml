@@ -6,14 +6,15 @@ pages_build_output_dir = "dist"
 # Build-time environment variables. When a wrangler.toml is present, CF Pages
 # reads build config from here, so the dashboard "Variables and secrets" panel
 # does NOT feed the Vite build - these [vars] do. Vite inlines VITE_* at build
-# time. The Clerk publishable key is public (it ships in the browser bundle),
-# so it is safe to commit; the Clerk SECRET key must never go here.
+# time.
+#
+# The identity-provider keys that used to live here are GONE ON PURPOSE.
+# HearthShelf accounts moved to its own auth service, but this site kept
+# shipping the old provider's key, so "Sign up" here still opened the old
+# provider's form - and an account created there could not sign in to the app
+# at all. With no key, every auth control falls back to linking into
+# app.hearthshelf.com, which is where accounts are actually made.
 [vars]
-VITE_CLERK_PUBLISHABLE_KEY = "pk_live_Y2xlcmsuaGVhcnRoc2hlbGYuY29tJA"
-VITE_CLERK_SIGN_IN_URL = "/sign-in"
-VITE_CLERK_SIGN_UP_URL = "/sign-up"
-VITE_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL = "/"
-VITE_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL = "/"
 
 # D1 database backing the changelog API (functions/api). After creating it with
 #   wrangler d1 create hearthshelf-changelog

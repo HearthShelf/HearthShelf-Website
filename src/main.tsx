@@ -7,13 +7,11 @@ import { clerkAppearance } from '@/auth/clerkAppearance'
 import { CLERK_PUBLISHABLE_KEY, clerkEnabled } from '@/lib/utils'
 import './index.css'
 
-if (!clerkEnabled) {
-  // Not fatal: the site renders without auth (see lib/utils clerkEnabled).
-  // Logged so a misconfigured build env var is obvious in the console.
-  console.warn(
-    'VITE_CLERK_PUBLISHABLE_KEY is not set - auth controls fall back to links into app.hearthshelf.com',
-  )
-}
+// No warning when the key is absent: that is now the INTENDED state, not a
+// misconfiguration. HearthShelf accounts are created by the app's own auth
+// service, so every auth control here links into app.hearthshelf.com. The
+// provider branches below remain only so this can be switched back on without
+// a rewrite; see wrangler.toml.
 
 const app = <RouterProvider router={router} />
 
